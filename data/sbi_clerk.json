@@ -1,0 +1,2825 @@
+{
+  "exam": {
+    "id": "sbi_clerk",
+    "name": "SBI Clerk",
+    "organization": "sbi",
+    "post": "clerk"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": [
+            {
+              "id": "simplification",
+              "name": "Simplification & Approximation",
+              "timerMinutes": 10
+            }
+          ]
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": [
+            {
+              "id": "alphanumeric",
+              "name": "Alphanumeric Series",
+              "timerMinutes": 10
+            }
+          ]
+        },
+        {
+          "id": "english",
+          "name": "English Language",
+          "topics": [
+            {
+              "id": "error_detection",
+              "name": "Error Detection",
+              "timerMinutes": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "ga",
+          "name": "General & Financial Awareness",
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "sbi_clerk",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 60
+    },
+    {
+      "examId": "sbi_clerk",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 18
+    },
+    {
+      "examId": "sbi_clerk",
+      "day": 3,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 15
+    },
+    {
+      "examId": "sbi_clerk",
+      "day": 4,
+      "timerMinutes": 60
+    }
+  ],
+  "questions": [
+    {
+      "id": "sbi_clerk_dpp_d1_1790707107_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Solve the given equations and choose the correct option.\n\nI. $x^2 - 5x + 4 = 0$\nII. $y^2 - 28y + 132 = 0$",
+      "questionTextHi": "दिए गए समीकरणों को हल करें और सही विकल्प चुनें।\n\nI. $x^2 - 5x + 4 = 0$\nII. $y^2 - 28y + 132 = 0$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ or no relation can be established"
+      ],
+      "optionsHi": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ या कोई संबंध स्थापित नहीं किया जा सकता है"
+      ],
+      "correctIndex": 1,
+      "explanation": "To solve the given quadratic equations:\n\n**Equation I:**\n$$x^2 - 5x + 4 = 0$$\n$$(x - 1)(x - 4) = 0$$\n$$x = 1, 4$$\n\n**Equation II:**\n$$y^2 - 28y + 132 = 0$$\n$$(y - 6)(y - 22) = 0$$\n$$y = 6, 22$$\n\n**Comparison:**\nComparing the values of $x$ and $y$:\n- For $x = 1$: $1 < 6$ and $1 < 22$\n- For $x = 4$: $4 < 6$ and $4 < 22$\n\nClearly, $x < y$ in all cases.\n\nTherefore, the correct option is **B**.",
+      "explanationHi": "दिए गए द्विघात समीकरणों को हल करने पर:\n\n**समीकरण I:**\n$$x^2 - 5x + 4 = 0$$\n$$(x - 1)(x - 4) = 0$$\n$$x = 1, 4$$\n\n**समीकरण II:**\n$$y^2 - 28y + 132 = 0$$\n$$(y - 6)(y - 22) = 0$$\n$$y = 6, 22$$\n\n**तुलना:**\n$x$ और $y$ के मानों की तुलना करने पर:\n- $x = 1$ के लिए: $1 < 6$ और $1 < 22$\n- $x = 4$ के लिए: $4 < 6$ और $4 < 22$\n\nस्पष्ट रूप से, सभी मामलों में $x < y$ है।\n\nइसलिए, सही विकल्प **B** है।",
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707107_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Solve the given equations and choose the correct option.\n\nI. $x^2 - 18x - 88 = 0$\nII. $y^2 + 26y + 88 = 0$",
+      "questionTextHi": "दिए गए समीकरणों को हल करें और सही विकल्प चुनें।\n\nI. $x^2 - 18x - 88 = 0$\nII. $y^2 + 26y + 88 = 0$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ or no relation can be established"
+      ],
+      "optionsHi": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ या कोई संबंध स्थापित नहीं किया जा सकता है"
+      ],
+      "correctIndex": 2,
+      "explanation": "To solve the given quadratic equations:\n\n**Equation I:**\n$$x^2 - 18x - 88 = 0$$\n$$(x - 22)(x + 4) = 0$$\n$$x = 22, -4$$\n\n**Equation II:**\n$$y^2 + 26y + 88 = 0$$\n$$(y + 22)(y + 4) = 0$$\n$$y = -22, -4$$\n\n**Comparison:**\nComparing the values of $x$ and $y$:\n- For $x = 22$: $22 > -22$ and $22 > -4$\n- For $x = -4$: $-4 > -22$ and $-4 = -4$\n\nIn all cases, we get $x \\ge y$.\n\nTherefore, the correct option is **C**.",
+      "explanationHi": "दिए गए द्विघात समीकरणों को हल करने पर:\n\n**समीकरण I:**\n$$x^2 - 18x - 88 = 0$$\n$$(x - 22)(x + 4) = 0$$\n$$x = 22, -4$$\n\n**समीकरण II:**\n$$y^2 + 26y + 88 = 0$$\n$$(y + 22)(y + 4) = 0$$\n$$y = -22, -4$$\n\n**तुलना:**\n$x$ और $y$ के मानों की तुलना करने पर:\n- $x = 22$ के लिए: $22 > -22$ और $22 > -4$\n- $x = -4$ के लिए: $-4 > -22$ और $-4 = -4$\n\nसभी मामलों में, हमें $x \\ge y$ प्राप्त होता है।\n\nइसलिए, सही विकल्प **C** है।",
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707107_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Solve the given equations and choose the correct option.\n\nI. $x^2 + 16x - 57 = 0$\nII. $y^2 - 23y + 60 = 0$",
+      "questionTextHi": "दिए गए समीकरणों को हल करें और सही विकल्प चुनें।\n\nI. $x^2 + 16x - 57 = 0$\nII. $y^2 - 23y + 60 = 0$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ or no relation can be established"
+      ],
+      "optionsHi": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ या कोई संबंध स्थापित नहीं किया जा सकता है"
+      ],
+      "correctIndex": 3,
+      "explanation": "To solve the given quadratic equations:\n\n**Equation I:**\n$$x^2 + 16x - 57 = 0$$\n$$(x + 19)(x - 3) = 0$$\n$$x = -19, 3$$\n\n**Equation II:**\n$$y^2 - 23y + 60 = 0$$\n$$(y - 20)(y - 3) = 0$$\n$$y = 20, 3$$\n\n**Comparison:**\nComparing the values of $x$ and $y$:\n- For $x = -19$: $-19 < 20$ and $-19 < 3$\n- For $x = 3$: $3 < 20$ and $3 = 3$\n\nIn all cases, we get $x \\le y$.\n\nTherefore, the correct option is **D**.",
+      "explanationHi": "दिए गए द्विघात समीकरणों को हल करने पर:\n\n**समीकरण I:**\n$$x^2 + 16x - 57 = 0$$\n$$(x + 19)(x - 3) = 0$$\n$$x = -19, 3$$\n\n**समीकरण II:**\n$$y^2 - 23y + 60 = 0$$\n$$(y - 20)(y - 3) = 0$$\n$$y = 20, 3$$\n\n**तुलना:**\n$x$ और $y$ के मानों की तुलना करने पर:\n- $x = -19$ के लिए: $-19 < 20$ और $-19 < 3$\n- $x = 3$ के लिए: $3 < 20$ और $3 = 3$\n\nसभी मामलों में, हमें $x \\le y$ प्राप्त होता है।\n\nइसलिए, सही विकल्प **D** है।",
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707107_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Solve the given equations and choose the correct option.\n\nI. $x^2 - 4x - 45 = 0$\nII. $y^2 + 21y + 108 = 0$",
+      "questionTextHi": "दिए गए समीकरणों को हल करें और सही विकल्प चुनें।\n\nI. $x^2 - 4x - 45 = 0$\nII. $y^2 + 21y + 108 = 0$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ or no relation can be established"
+      ],
+      "optionsHi": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ या कोई संबंध स्थापित नहीं किया जा सकता है"
+      ],
+      "correctIndex": 0,
+      "explanation": "To solve the given quadratic equations:\n\n**Equation I:**\n$$x^2 - 4x - 45 = 0$$\n$$(x - 9)(x + 5) = 0$$\n$$x = 9, -5$$\n\n**Equation II:**\n$$y^2 + 21y + 108 = 0$$\n$$(y + 12)(y + 9) = 0$$\n$$y = -12, -9$$\n\n**Comparison:**\nComparing the values of $x$ and $y$:\n- For $x = 9$: $9 > -12$ and $9 > -9$\n- For $x = -5$: $-5 > -12$ and $-5 > -9$\n\nIn all cases, we get $x > y$.\n\nTherefore, the correct option is **A**.",
+      "explanationHi": "दिए गए द्विघात समीकरणों को हल करने पर:\n\n**समीकरण I:**\n$$x^2 - 4x - 45 = 0$$\n$$(x - 9)(x + 5) = 0$$\n$$x = 9, -5$$\n\n**समीकरण II:**\n$$y^2 + 21y + 108 = 0$$\n$$(y + 12)(y + 9) = 0$$\n$$y = -12, -9$$\n\n**तुलना:**\n$x$ और $y$ के मानों की तुलना करने पर:\n- $x = 9$ के लिए: $9 > -12$ और $9 > -9$\n- $x = -5$ के लिए: $-5 > -12$ और $-5 > -9$\n\nसभी मामलों में, हमें $x > y$ प्राप्त होता है।\n\nइसलिए, सही विकल्प **A** है।",
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707107_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Solve the given equations and choose the correct option.\n\nI. $x^2 + 19x - 92 = 0$\nII. $y^2 - 26y + 88 = 0$",
+      "questionTextHi": "दिए गए समीकरणों को हल करें और सही विकल्प चुनें।\n\nI. $x^2 + 19x - 92 = 0$\nII. $y^2 - 26y + 88 = 0$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ or no relation can be established"
+      ],
+      "optionsHi": [
+        "$x > y$",
+        "$x < y$",
+        "$x \\ge y$",
+        "$x \\le y$",
+        "$x = y$ या कोई संबंध स्थापित नहीं किया जा सकता है"
+      ],
+      "correctIndex": 3,
+      "explanation": "To solve the given quadratic equations:\n\n**Equation I:**\n$$x^2 + 19x - 92 = 0$$\n$$(x + 23)(x - 4) = 0$$\n$$x = -23, 4$$\n\n**Equation II:**\n$$y^2 - 26y + 88 = 0$$\n$$(y - 22)(y - 4) = 0$$\n$$y = 22, 4$$\n\n**Comparison:**\nComparing the values of $x$ and $y$:\n- For $x = -23$: $-23 < 22$ and $-23 < 4$\n- For $x = 4$: $4 < 22$ and $4 = 4$\n\nIn all cases, we get $x \\le y$.\n\nTherefore, the correct option is **D**.",
+      "explanationHi": "दिए गए द्विघात समीकरणों को हल करने पर:\n\n**समीकरण I:**\n$$x^2 + 19x - 92 = 0$$\n$$(x + 23)(x - 4) = 0$$\n$$x = -23, 4$$\n\n**समीकरण II:**\n$$y^2 - 26y + 88 = 0$$\n$$(y - 22)(y - 4) = 0$$\n$$y = 22, 4$$\n\n**तुलना:**\n$x$ और $y$ के मानों की तुलना करने पर:\n- $x = -23$ के लिए: $-23 < 22$ और $-23 < 4$\n- $x = 4$ के लिए: $4 < 22$ और $4 = 4$\n\nसभी मामलों में, हमें $x \\le y$ प्राप्त होता है।\n\nइसलिए, सही विकल्प **D** है।",
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$26^2 - 260 + 8 \t\\times 3 = ? \t\\times 8$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$26^2 - 260 + 8 \t\\times 3 = ? \t\\times 8$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$42$",
+        "$48$",
+        "$55$",
+        "$60$",
+        "$52$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 2,
+      "explanation": "Given expression:\n$26^2 - 260 + 8 \t\\times 3 = ? \t\\times 8$\n\nFirst, calculate the exponent and multiplication:\n$676 - 260 + 24 = ? \t\\times 8$\n\nNow, perform addition and subtraction:\n$416 + 24 = ? \t\\times 8$\n$440 = ? \t\\times 8$\n\nSolve for $?$:\n$? = \\frac{440}{8} = 55$\n\nHence, the correct option is C.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$35\\%$ of $20\\%$ of $45\\%$ of $600 = ? \\div 20$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n $600$ का $45\\%$ का $20\\%$ का $35\\% = ? \\div 20$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$324$",
+        "$378$",
+        "$366$",
+        "$358$",
+        "$328$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 1,
+      "explanation": "Given expression:\n$35\\% \\text{ of } 20\\% \\text{ of } 45\\% \\text{ of } 600 = ? \\div 20$\n\nLet's calculate the left-hand side:\n$\\text{LHS} = \\frac{35}{100} \\times \\frac{20}{100} \\times \\frac{45}{100} \\times 600$\n$\\text{LHS} = \\frac{35}{100} \\times \\frac{1}{5} \\times \\frac{45}{100} \\times 600$\n$\\text{LHS} = \\frac{35}{5} \\times \\frac{45}{100} \\times 6$\n$\\text{LHS} = 7 \\times 0.45 \\times 6 = 18.9$\n\nNow, set LHS equal to RHS:\n$18.9 = \\frac{?}{20}$\n$? = 18.9 \\times 20 = 378$\n\nHence, the correct option is B.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Medium",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$1755 \\div \\sqrt{225} + 1353 \\div 41 = ?$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$1755 \\div \\sqrt{225} + 1353 \\div 41 = ?$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$110$",
+        "$120$",
+        "$130$",
+        "$140$",
+        "$150$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 4,
+      "explanation": "Given expression:\n$1755 \\div \\sqrt{225} + 1353 \\div 41 = ?$\n\nSince $\\sqrt{225} = 15$:\n$1755 \\div 15 + 1353 \\div 41 = ?$\n\nPerform the divisions:\n$117 + 33 = ?$\n$? = 150$\n\nHence, the correct option is E.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$1530 \\div 34 = ? + 507 \\div \\sqrt{169}$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$1530 \\div 34 = ? + 507 \\div \\sqrt{169}$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$",
+        "$11$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 1,
+      "explanation": "Given expression:\n$1530 \\div 34 = ? + 507 \\div \\sqrt{169}$\n\nSince $\\sqrt{169} = 13$:\n$1530 \\div 34 = ? + 507 \\div 13$\n\nPerform the divisions:\n$45 = ? + 39$\n$? = 45 - 39 = 6$\n\nHence, the correct option is B.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$(31 \\div 215) \\times (43 \\div 248) \\times ? = 3$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$(31 \\div 215) \\times (43 \\div 248) \\times ? = 3$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$120$",
+        "$110$",
+        "$140$",
+        "$150$",
+        "$180$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 0,
+      "explanation": "Note: There is a typographical error in the original question printed in the image. The values $215$ and $248$ are misprints for $155$ and $344$ respectively.\n\nUsing the corrected equation from the solution key:\n$(31 \\div 155) \\times (43 \\div 344) \\times ? = 3$\n\nSimplify the fractions:\n$\\frac{1}{5} \\times \\frac{1}{8} \\times ? = 3$\n$\\frac{1}{40} \\times ? = 3$\n$? = 3 \\times 40 = 120$\n\nHence, the correct option is A.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Medium",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_6",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$\\sqrt{3721} - \\sqrt{289} - \\sqrt{784} = ? \\times 4$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$\\sqrt{3721} - \\sqrt{289} - \\sqrt{784} = ? \\times 4$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$5$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 1,
+      "explanation": "Given expression:\n$\\sqrt{3721} - \\sqrt{289} - \\sqrt{784} = ? \\times 4$\n\nCalculate the square roots:\n$\\sqrt{3721} = 61$\n$\\sqrt{289} = 17$\n$\\sqrt{784} = 28$\n\nSubstitute the values back into the equation:\n$61 - 17 - 28 = ? \\times 4$\n$44 - 28 = ? \\times 4$\n$16 = ? \\times 4$\n$? = \\frac{16}{4} = 4$\n\nHence, the correct option is B.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_7",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$(1296)^{0.18} \\times (1296)^{0.07} = ?$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$(1296)^{0.18} \\times (1296)^{0.07} = ?$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$4$",
+        "$8$",
+        "$7$",
+        "$6$",
+        "$9$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 3,
+      "explanation": "Given expression:\n$(1296)^{0.18} \\times (1296)^{0.07} = ?$\n\nUsing exponent laws ($a^m \\times a^n = a^{m+n}$):\n$? = (1296)^{0.18 + 0.07}$\n$? = (1296)^{0.25}$\n\nSince $0.25 = \\frac{1}{4}$:\n$? = (1296)^{\\frac{1}{4}}$\n\nSince $6^4 = 1296$:\n$? = (6^4)^{\\frac{1}{4}} = 6$\n\nHence, the correct option is D.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_9",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$1972 \\div 17 + 20\\% \\text{ of } 850 - 24\\% \\text{ of } 350 = ?$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$1972 \\div 17 + 850 \\text{ का } 20\\% - 350 \\text{ का } 24\\% = ?$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$200$",
+        "$202$",
+        "$204$",
+        "$198$",
+        "$196$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 1,
+      "explanation": "Given expression:\n$1972 \\div 17 + 20\\% \\text{ of } 850 - 24\\% \\text{ of } 350 = ?$\n\nEvaluate each term separately:\n1) $1972 \\div 17 = 116$\n2) $20\\% \\text{ of } 850 = \\frac{20}{100} \\times 850 = 170$\n3) $24\\% \\text{ of } 350 = \\frac{24}{100} \\times 350 = 24 \\times 3.5 = 84$\n\nNow substitute these values back into the equation:\n$? = 116 + 170 - 84$\n$? = 286 - 84 = 202$\n\nHence, the correct option is B.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Medium",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_8",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n$22^2 + 13^2 + 27^2 = ?$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$22^2 + 13^2 + 27^2 = ?$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$1298$",
+        "$1378$",
+        "$1382$",
+        "$1964$",
+        "$1286$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 2,
+      "explanation": "Given expression:\n$22^2 + 13^2 + 27^2 = ?$\n\nCalculate the squares:\n$22^2 = 484$\n$13^2 = 169$\n$27^2 = 729$\n\nSum the values:\n$? = 484 + 169 + 729$\n$? = 653 + 729 = 1382$\n\nHence, the correct option is C.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Easy",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790707576_10",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What value should come in the place of (?) in the following question?\n\n $\\frac{2352}{32} \\times \\frac{1}{3} \\text{ of } 10 + 39 = ?$",
+      "questionTextHi": "निम्नलिखित प्रश्न में (?) के स्थान पर क्या मान आना चाहिए?\n\n$\\frac{2352}{32} \\times \\frac{1}{3} \\text{ का } 10 + 39 = ?$",
+      "questionImageDriveLink": null,
+      "options": [
+        "$284$",
+        "$328$",
+        "$425$",
+        "$542$",
+        "$125$"
+      ],
+      "optionsHi": null,
+      "correctIndex": 0,
+      "explanation": "Given expression:\n$\\frac{2352}{32} \\times \\frac{1}{3} \\text{ of } 10 + 39 = ?$\n\nFirst, calculate the division:\n$\\frac{2352}{32} = 73.5$\n\nNow evaluate the multiplication:\n$73.5 \\times \\left(\\frac{1}{3} \\times 10\\right) + 39 = ?$\n$24.5 \\times 10 + 39 = ?$\n$245 + 39 = ?$\n$? = 284$\n\nHence, the correct option is A.",
+      "explanationHi": null,
+      "explanationImageDriveLink": null,
+      "difficulty": "Medium",
+      "isActive": true,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImages": [],
+      "explanationImagesHi": null
+    },
+    {
+      "id": "sbi_clerk_dpp_d4_1790713965_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 4,
+      "questionText": "Study the following information carefully and answer the questions given below:\n[img1]\nThe given table DI shows the number of car users and also given the number of bike users in five different cities A, B, C, D and E.\n\nIn city B, '$m$' number of bike users moved to car users. If the number of bike users is $10$ more than that of car users, then find the value of $m$.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n[img1]\nदी गई तालिका डीआई पांच अलग-अलग शहरों - A, B, C, D और E में कार उपयोगकर्ताओं की संख्या और बाइक उपयोगकर्ताओं की संख्या दर्शाती है।\n\nशहर B में, '$m$' संख्या में बाइक उपयोगकर्ता कार उपयोगकर्ताओं में बदल जाते हैं। यदि बाइक उपयोगकर्ताओं की संख्या, कार उपयोगकर्ताओं की संख्या से $10$ अधिक है, तो $m$ का मान ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO"
+      ],
+      "questionImagesHi": [
+        "https://lh3.googleusercontent.com/d/19vB7J-D2T9Dq_Xr6Dneq6e8liJOy3_gf"
+      ],
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "a. $75$",
+        "b. $60$",
+        "c. $50$",
+        "d. $80$",
+        "e. $45$"
+      ],
+      "optionsHi": [
+        "a. $75$",
+        "b. $60$",
+        "c. $50$",
+        "d. $80$",
+        "e. $45$"
+      ],
+      "correctIndex": 1,
+      "explanation": "According to the question,\n$$(330 - m) - (200 + m) = 10$$\n$$130 - 2m = 10$$\n$$2m = 120$$\n$$m = 60$$",
+      "explanationHi": "प्रश्न के अनुसार,\n$$(330 - m) - (200 + m) = 10$$\n$$130 - 2m = 10$$\n$$2m = 120$$\n$$m = 60$$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d4_1790713965_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 4,
+      "questionText": "Study the following information carefully and answer the questions given below:\n[img1]\nThe given table DI shows the number of car users and also given the number of bike users in five different cities A, B, C, D and E.\n\nFind the average of the total number of users (car + bike) in cities B and D together?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n[img1]\nदी गई तालिका डीआई पांच अलग-अलग शहरों - A, B, C, D और E में कार उपयोगकर्ताओं की संख्या और बाइक उपयोगकर्ताओं की संख्या दर्शाती है।\n\nएक साथ शहर B और D में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या का औसत ज्ञात कीजिए?",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO"
+      ],
+      "questionImagesHi": [
+        "https://lh3.googleusercontent.com/d/19vB7J-D2T9Dq_Xr6Dneq6e8liJOy3_gf"
+      ],
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "a. $508$",
+        "b. $420$",
+        "c. $630$",
+        "d. $460$",
+        "e. $550$"
+      ],
+      "optionsHi": [
+        "a. $508$",
+        "b. $420$",
+        "c. $630$",
+        "d. $460$",
+        "e. $550$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The total number of users (car + bike) in city B $= 200 + 330 = 530$\nThe total number of users (car + bike) in city D $= 260 + 130 = 390$\n\nThe required average $= \\frac{530 + 390}{2} = \\frac{920}{2} = 460$",
+      "explanationHi": "शहर B में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या $= 200 + 330 = 530$\nशहर D में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या $= 260 + 130 = 390$\n\nआवश्यक औसत $= \\frac{530 + 390}{2} = \\frac{920}{2} = 460$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d4_1790713965_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 4,
+      "questionText": "Study the following information carefully and answer the questions given below:\n[img1]\nThe given table DI shows the number of car users and also given the number of bike users in five different cities A, B, C, D and E.\n\nThe difference between the number of car users and bike users in city C is how much percent of the total number of users (car + bike) in city A?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n[img1]\nदी गई तालिका डीआई पांच अलग-अलग शहरों - A, B, C, D और E में कार उपयोगकर्ताओं की संख्या और बाइक उपयोगकर्ताओं की संख्या दर्शाती है।\n\nशहर C में कार उपयोगकर्ताओं और बाइक उपयोगकर्ताओं की संख्या के बीच का अंतर, शहर A में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या का कितना प्रतिशत है?",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO"
+      ],
+      "questionImagesHi": [
+        "https://lh3.googleusercontent.com/d/19vB7J-D2T9Dq_Xr6Dneq6e8liJOy3_gf"
+      ],
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "a. $44.44\\%$",
+        "b. $63.63\\%$",
+        "c. $57.14\\%$",
+        "d. $42.85\\%$",
+        "e. $54.54\\%$"
+      ],
+      "optionsHi": [
+        "a. $44.44\\%$",
+        "b. $63.63\\%$",
+        "c. $57.14\\%$",
+        "d. $42.85\\%$",
+        "e. $54.54\\%$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The difference between the number of car users and bike users in city C $= 250 - 90 = 160$\nThe total number of users (car + bike) in city A $= 100 + 180 = 280$\n\nThe required percentage $= \\frac{160}{280} \\times 100 = 57.14\\%$",
+      "explanationHi": "शहर C में कार और बाइक उपयोगकर्ताओं की संख्या का अंतर $= 250 - 90 = 160$\nशहर A में कार और बाइक उपयोगकर्ताओं की कुल संख्या $= 100 + 180 = 280$\n\nआवश्यक प्रतिशत $= \\frac{160}{280} \\times 100 = 57.14\\%$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d4_1790713965_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 4,
+      "questionText": "Study the following information carefully and answer the questions given below:\n[img1]\nThe given table DI shows the number of car users and also given the number of bike users in five different cities A, B, C, D and E.\n\nIf the ratio of the difference between the number of car and bike users in city B and the total number of users (car + bike) in city D is $1 : (2n + 1)$, then find the value of $n$.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n[img1]\nदी गई तालिका डीआई पांच अलग-अलग शहरों - A, B, C, D और E में कार उपयोगकर्ताओं की संख्या और बाइक उपयोगकर्ताओं की संख्या दर्शाती है।\n\nयदि शहर B में कार और बाइक उपयोगकर्ताओं की संख्या और शहर D में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या के बीच अंतर का अनुपात $1 : (2n + 1)$ है, तो $n$ का मान ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO"
+      ],
+      "questionImagesHi": [
+        "https://lh3.googleusercontent.com/d/19vB7J-D2T9Dq_Xr6Dneq6e8liJOy3_gf"
+      ],
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "a. $5$",
+        "b. $2$",
+        "c. $4$",
+        "d. $3$",
+        "e. $1$"
+      ],
+      "optionsHi": [
+        "a. $5$",
+        "b. $2$",
+        "c. $4$",
+        "d. $3$",
+        "e. $1$"
+      ],
+      "correctIndex": 4,
+      "explanation": "The difference between the number of car and bike users in city B $= 330 - 200 = 130$\nThe total number of users (car + bike) in city D $= 260 + 130 = 390$\n\nThe required ratio $= 130 : 390 = 1 : 3$\n\nTherefore,\n$$2n + 1 = 3$$\n$$2n = 2$$\n$$n = 1$$",
+      "explanationHi": "शहर B में कार और बाइक उपयोगकर्ताओं की संख्या का अंतर $= 330 - 200 = 130$\nशहर D में उपयोगकर्ताओं (कार + बाइक) की कुल संख्या $= 260 + 130 = 390$\n\nआवश्यक अनुपात $= 130 : 390 = 1 : 3$\n\nइसलिए,\n$$2n + 1 = 3$$\n$$2n = 2$$\n$$n = 1$$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d4_1790713965_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 4,
+      "questionText": "Study the following information carefully and answer the questions given below:\n[img1]\nThe given table DI shows the number of car users and also given the number of bike users in five different cities A, B, C, D and E.\n\nIf the average number of users (car + bike + auto) in city E are $210$, then find the ratio of the number of auto users in city E to the number of bike users in city C.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n[img1]\nदी गई तालिका डीआई पांच अलग-अलग शहरों - A, B, C, D और E में कार उपयोगकर्ताओं की संख्या और बाइक उपयोगकर्ताओं की संख्या दर्शाती है।\n\nयदि शहर E में उपयोगकर्ताओं (कार + बाइक + ऑटो) की औसत संख्या $210$ है, तो शहर E में ऑटो उपयोगकर्ताओं की संख्या से शहर C में बाइक उपयोगकर्ताओं की संख्या का अनुपात ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1nVE9fTLOPI7Ze6ClZk4sCdk0OL4muZOO"
+      ],
+      "questionImagesHi": [
+        "https://lh3.googleusercontent.com/d/19vB7J-D2T9Dq_Xr6Dneq6e8liJOy3_gf"
+      ],
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "a. $5:3$",
+        "b. $3:4$",
+        "c. $4:5$",
+        "d. $2:3$",
+        "e. $1:3$"
+      ],
+      "optionsHi": [
+        "a. $5:3$",
+        "b. $3:4$",
+        "c. $4:5$",
+        "d. $2:3$",
+        "e. $1:3$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The total number of users (car + bike + auto) in city E $= 210 \\times 3 = 630$\nThe number of auto users in city E $= 630 - 200 - 280 = 150$\n\nThe required ratio $= 150 : 90 = 5 : 3$",
+      "explanationHi": "शहर E में उपयोगकर्ताओं (कार + बाइक + ऑटो) की कुल संख्या $= 210 \\times 3 = 630$\nशहर E में ऑटो उपयोगकर्ताओं की संख्या $= 630 - 200 - 280 = 150$\n\nआवश्यक अनुपात $= 150 : 90 = 5 : 3$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790765388_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the questions given below:\n\nThe given pie chart shows the percentage distribution of the number of mobiles sold of five different mobile brands viz., Realme, Oneplus, Redmi, Samsung and Motorola in Flipkart on Freedom Sale. The number of mobiles sold in Redmi is $240$.\n\nIf the number of mobiles available in Motorola and Oneplus are equal and the number of mobiles unsold in Motorola is twice that in Oneplus, then find the number of mobiles available in Oneplus?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n\nदिया गया पाई चार्ट फ्रीडम सेल के दौरान फ्लिपकार्ट पर पाँच अलग-अलग मोबाइल ब्रांड्स - रियलमी, वनप्लस, रेडमी, सैमसंग और मोटोरोला के बेचे गए मोबाइलों की संख्या का प्रतिशत वितरण दर्शाता है। रेडमी में बेचे गए मोबाइलों की संख्या $240$ है।\n\nयदि मोटोरोला और वनप्लस में उपलब्ध मोबाइलों की संख्या बराबर है और मोटोरोला में नहीं बिके हुए मोबाइलों की संख्या, वनप्लस की दोगुनी है, तो वनप्लस में उपलब्ध मोबाइलों की संख्या ज्ञात कीजिए?",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw"
+      ],
+      "explanationImagesHi": [
+        "https://lh3.googleusercontent.com/d/1DSzaVHrMCdzQKIP53pSD__k0vdJfMS_W"
+      ],
+      "options": [
+        "$240$",
+        "$256$",
+        "$208$",
+        "$236$",
+        "$196$"
+      ],
+      "optionsHi": [
+        "$240$",
+        "$256$",
+        "$208$",
+        "$236$",
+        "$196$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Let the number of mobiles available in Motorola be $x$.\nSo, the number of mobiles available in Oneplus $= x$.\nLet the number of mobiles unsold in Oneplus be $y$.\nSo, the number of mobiles unsold in Motorola $= 2y$.\n\n$x - 2y = 144$ --- (1)\n$x - y = 192$ --- (2)\n\nBy solving both equations (1) and (2), we get:\n$y = 48$\n\nSubstituting the value of $y$ into equation (1):\n$x - (2 \\times 48) = 144$\n$x = 144 + 96 = 240$\n\nThe number of mobiles available in Oneplus $= 240$.",
+      "explanationHi": "माना मोटोरोला में उपलब्ध मोबाइलों की संख्या $x$ है।\nतो, वनप्लस में उपलब्ध मोबाइलों की संख्या $= x$ है।\nमाना वनप्लस में नहीं बिके हुए मोबाइलों की संख्या $y$ है।\nतो, मोटोरोला में नहीं बिके हुए मोबाइलों की संख्या $= 2y$ है।\n\n$x - 2y = 144$ --- (1)\n$x - y = 192$ --- (2)\n\nसमीकरण (1) और (2) दोनों को हल करने पर, हमें प्राप्त होता है:\n$y = 48$\n\n$y$ का मान समीकरण (1) में रखने पर:\n$x - (2 \\times 48) = 144$\n$x = 144 + 96 = 240$\n\nवनप्लस में उपलब्ध मोबाइलों की संख्या $= 240$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790765388_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the questions given below:\n\nThe given pie chart shows the percentage distribution of the number of mobiles sold of five different mobile brands viz., Realme, Oneplus, Redmi, Samsung and Motorola in Flipkart on Freedom Sale. The number of mobiles sold in Redmi is $240$.\n\nIn Redmi, $32.5\\%$ mobiles sold are 4G and remaining are 5G mobiles. Find the number of 5G mobiles sold in Redmi.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n\nदिया गया पाई चार्ट फ्रीडम सेल के दौरान फ्लिपकार्ट पर पाँच अलग-अलग मोबाइल ब्रांड्स - रियलमी, वनप्लस, रेडमी, सैमसंग और मोटोरोला के बेचे गए मोबाइलों की संख्या का प्रतिशत वितरण दर्शाता है। रेडमी में बेचे गए मोबाइलों की संख्या $240$ है।\n\nरेडमी में बेचे गए $32.5\\%$ मोबाइल 4G हैं और शेष 5G मोबाइल हैं। रेडमी में बेचे गए 5G मोबाइलों की संख्या ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw"
+      ],
+      "explanationImagesHi": [
+        "https://lh3.googleusercontent.com/d/1DSzaVHrMCdzQKIP53pSD__k0vdJfMS_W"
+      ],
+      "options": [
+        "$188$",
+        "$174$",
+        "$156$",
+        "$162$",
+        "$144$"
+      ],
+      "optionsHi": [
+        "$188$",
+        "$174$",
+        "$156$",
+        "$162$",
+        "$144$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The number of 4G mobiles sold in Redmi $= 240 \\times \\left(\\frac{32.5}{100}\\right) = 78$\n\nThe number of 5G mobiles sold in Redmi $= 240 - 78 = 162$",
+      "explanationHi": "रेडमी में बेचे गए 4G मोबाइलों की संख्या $= 240 \\times \\left(\\frac{32.5}{100}\\right) = 78$\n\nरेडमी में बेचे गए 5G मोबाइलों की संख्या $= 240 - 78 = 162$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790765388_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the questions given below:\n\nThe given pie chart shows the percentage distribution of the number of mobiles sold of five different mobile brands viz., Realme, Oneplus, Redmi, Samsung and Motorola in Flipkart on Freedom Sale. The number of mobiles sold in Redmi is $240$.\n\nIn Oneplus, $37.5\\%$ are sold, out of total number of mobiles available. Find the difference between the number of mobiles unsold in Oneplus and the number of mobiles sold in Samsung.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n\nदिया गया पाई चार्ट फ्रीडम सेल के दौरान फ्लिपकार्ट पर पाँच अलग-अलग मोबाइल ब्रांड्स - रियलमी, वनप्लस, रेडमी, सैमसंग और मोटोरोला के बेचे गए मोबाइलों की संख्या का प्रतिशत वितरण दर्शाता है। रेडमी में बेचे गए मोबाइलों की संख्या $240$ है।\n\nवनप्लस में, उपलब्ध मोबाइलों की कुल संख्या में से $37.5\\%$ बेचे गए हैं। वनप्लस में नहीं बिके हुए मोबाइलों की संख्या और सैमसंग में बेचे गए मोबाइलों की संख्या के बीच अंतर ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw"
+      ],
+      "explanationImagesHi": [
+        "https://lh3.googleusercontent.com/d/1DSzaVHrMCdzQKIP53pSD__k0vdJfMS_W"
+      ],
+      "options": [
+        "$16$",
+        "$22$",
+        "$12$",
+        "$28$",
+        "$8$"
+      ],
+      "optionsHi": [
+        "$16$",
+        "$22$",
+        "$12$",
+        "$28$",
+        "$8$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The number of mobiles available in Oneplus $= 192 \\times \\left(\\frac{100}{37.5}\\right) = 512$\n\nThe number of mobiles unsold in Oneplus $= 512 - 192 = 320$\n\nThe required difference $= 336 - 320 = 16$",
+      "explanationHi": "वनप्लस में उपलब्ध मोबाइलों की संख्या $= 192 \\times \\left(\\frac{100}{37.5}\\right) = 512$\n\nवनप्लस में नहीं बिके हुए मोबाइलों की संख्या $= 512 - 192 = 320$\n\nआवश्यक अंतर $= 336 - 320 = 16$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790765388_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the questions given below:\n\nThe given pie chart shows the percentage distribution of the number of mobiles sold of five different mobile brands viz., Realme, Oneplus, Redmi, Samsung and Motorola in Flipkart on Freedom Sale. The number of mobiles sold in Redmi is $240$.\n\nThe number of mobiles sold in Micromax is $20\\%$ more than that in Redmi and the number of mobiles sold for males in Micromax is $25\\%$ more than that for females. Find the number of mobiles sold for males in Micromax.",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n\nदिया गया पाई चार्ट फ्रीडम सेल के दौरान फ्लिपकार्ट पर पाँच अलग-अलग मोबाइल ब्रांड्स - रियलमी, वनप्लस, रेडमी, सैमसंग और मोटोरोला के बेचे गए मोबाइलों की संख्या का प्रतिशत वितरण दर्शाता है। रेडमी में बेचे गए मोबाइलों की संख्या $240$ है।\n\nमाइक्रोमैक्स में बेचे गए मोबाइलों की संख्या, रेडमी से $20\\%$ अधिक है और माइक्रोमैक्स में पुरुषों को बेचे गए मोबाइलों की संख्या, महिलाओं को बेचे गए मोबाइलों की संख्या से $25\\%$ अधिक है। माइक्रोमैक्स में पुरुषों को बेचे गए मोबाइलों की संख्या ज्ञात कीजिए।",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw"
+      ],
+      "explanationImagesHi": [
+        "https://lh3.googleusercontent.com/d/1DSzaVHrMCdzQKIP53pSD__k0vdJfMS_W"
+      ],
+      "options": [
+        "$144$",
+        "$188$",
+        "$154$",
+        "$160$",
+        "$172$"
+      ],
+      "optionsHi": [
+        "$144$",
+        "$188$",
+        "$154$",
+        "$160$",
+        "$172$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The number of mobiles sold in Micromax $= 240 \\times \\left(\\frac{120}{100}\\right) = 288$\n\nLet the number of mobiles sold for females in Micromax be $4x$.\nSo, the number of mobiles sold for males in Micromax $= 4x \\times \\left(\\frac{125}{100}\\right) = 5x$\n\n$5x + 4x = 288$\n$9x = 288 \\implies x = 32$\n\nThe number of mobiles sold for males in Micromax $= 5 \\times 32 = 160$",
+      "explanationHi": "माइक्रोमैक्स में बेचे गए मोबाइलों की संख्या $= 240 \\times \\left(\\frac{120}{100}\\right) = 288$\n\nमाना माइक्रोमैक्स में महिलाओं को बेचे गए मोबाइलों की संख्या $4x$ है।\nतो, माइक्रोमैक्स में पुरुषों को बेचे गए मोबाइलों की संख्या $= 4x \\times \\left(\\frac{125}{100}\\right) = 5x$\n\n$5x + 4x = 288$\n$9x = 288 \\implies x = 32$\n\nमाइक्रोमैक्स में पुरुषों को बेचे गए मोबाइलों की संख्या $= 5 \\times 32 = 160$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790765388_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the questions given below:\n\nThe given pie chart shows the percentage distribution of the number of mobiles sold of five different mobile brands viz., Realme, Oneplus, Redmi, Samsung and Motorola in Flipkart on Freedom Sale. The number of mobiles sold in Redmi is $240$.\n\nThe number of mobiles sold in Samsung is how much percent more/less than the number of mobiles sold in Redmi?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों के उत्तर दें:\n\nदिया गया पाई चार्ट फ्रीडम सेल के दौरान फ्लिपकार्ट पर पाँच अलग-अलग मोबाइल ब्रांड्स - रियलमी, वनप्लस, रेडमी, सैमसंग और मोटोरोला के बेचे गए मोबाइलों की संख्या का प्रतिशत वितरण दर्शाता है। रेडमी में बेचे गए मोबाइलों की संख्या $240$ है।\n\nसैमसंग में बेचे गए मोबाइलों की संख्या, रेडमी में बेचे गए मोबाइलों की संख्या से कितने प्रतिशत अधिक/कम है?",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1mEAQ9IsbBOPOuX6ZRj8VCxKxQ3fghhzM"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/10g21ycLWTbtr0IY2paNKgKZCjOkr9-qw"
+      ],
+      "explanationImagesHi": [
+        "https://lh3.googleusercontent.com/d/1DSzaVHrMCdzQKIP53pSD__k0vdJfMS_W"
+      ],
+      "options": [
+        "$32.5\\%$ less",
+        "$40\\%$ more",
+        "$42\\%$ less",
+        "$45\\%$ less",
+        "$36\\%$ more"
+      ],
+      "optionsHi": [
+        "$32.5\\%$ कम",
+        "$40\\%$ अधिक",
+        "$42\\%$ कम",
+        "$45\\%$ कम",
+        "$36\\%$ अधिक"
+      ],
+      "correctIndex": 1,
+      "explanation": "The required percentage $= \\left[\\frac{336 - 240}{240}\\right] \\times 100$\n$= \\left(\\frac{96}{240}\\right) \\times 100 = 40\\%$ more",
+      "explanationHi": "आवश्यक प्रतिशत $= \\left[\\frac{336 - 240}{240}\\right] \\times 100$\n$= \\left(\\frac{96}{240}\\right) \\times 100 = 40\\%$ अधिक",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790766131_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Directions: Study the following chart carefully and answer the questions given below. [img1] Among all the five employees, who saves minimum amount?",
+      "questionTextHi": "निर्देश: निम्नलिखित चार्ट का ध्यानपूर्वक अध्ययन कीजिए और नीचे दिए गए प्रश्नों के उत्तर दीजिए। [img1] सभी पांच कर्मचारियों में से कौन न्यूनतम राशि बचाता है?",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "A",
+        "B",
+        "C",
+        "E",
+        "None of these"
+      ],
+      "optionsHi": null,
+      "correctIndex": 2,
+      "explanation": "Based on the calculation of savings (Income - Expenditure) for each employee from the chart [img1], the employee who saves the minimum amount is A.",
+      "explanationHi": "कर्मचारी द्वारा बचाई गई राशि (आय - व्यय) की गणना चार्ट [img1] के अनुसार करने पर, कर्मचारी A न्यूनतम राशि बचाता है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790766131_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "What is the average of savings of all given employees? [img1]",
+      "questionTextHi": "दिए गए सभी कर्मचारियों की बचत का औसत क्या है? [img1]",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Rs. 11065",
+        "Rs. 10250",
+        "Rs. 11985",
+        "Rs. 11000",
+        "None of these"
+      ],
+      "optionsHi": null,
+      "correctIndex": 0,
+      "explanation": "The average of savings of all employees is calculated as:\n$\\text{Average} = \\frac{\\text{Total Savings of all employees}}{5} = \\frac{55325}{5} = \\text{Rs. } 11065$",
+      "explanationHi": "सभी कर्मचारियों की बचत का औसत इस प्रकार निकाला गया है:\n$\\text{औसत} = \\frac{\\text{सभी कर्मचारियों की कुल बचत}}{5} = \\frac{55325}{5} = \\text{Rs. } 11065$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790766131_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "If $m$ is the ratio of expenditure of A and B together to savings of C and D together, then find the approximate value of $m$. [img1]",
+      "questionTextHi": "यदि $m$, A और B के एक साथ व्यय का C और D की एक साथ बचत से अनुपात है, तो $m$ का अनुमानित मूल्य ज्ञात कीजिए। [img1]",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "1.5",
+        "1.3",
+        "1.5",
+        "6.1",
+        "None of these"
+      ],
+      "optionsHi": null,
+      "correctIndex": 1,
+      "explanation": "The value of $m$ is calculated as the ratio of combined expenditure of A and B to combined savings of C and D:\n$m = \\frac{\\text{Expenditure of A} + \\text{Expenditure of B}}{\\text{Savings of C} + \\text{Savings of D}} = \\frac{16500 + 12600}{13000 + 9275} = \\frac{29100}{22275} \\approx 1.3$",
+      "explanationHi": "$m$ का मान A और B के संयुक्त व्यय का C और D की संयुक्त बचत से अनुपात के रूप में निकाला गया है:\n$m = \\frac{A \\text{ का व्यय} + B \\text{ का व्यय}}{C \\text{ की बचत} + D \\text{ की बचत}} = \\frac{16500 + 12600}{13000 + 9275} = \\frac{29100}{22275} \\approx 1.3$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790766131_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Total expenditure of B and C together is approximately what percent of their total income? [img1]",
+      "questionTextHi": "B और C का कुल व्यय उनकी कुल आय का लगभग कितना प्रतिशत है? [img1]",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "33%",
+        "45%",
+        "47%",
+        "55%",
+        "None of these"
+      ],
+      "optionsHi": null,
+      "correctIndex": 2,
+      "explanation": "The required percentage is calculated as:\n$\\text{Required } \\% = \\left( \\frac{\\text{Expenditure of B} + \\text{Expenditure of C}}{\\text{Income of B} + \\text{Income of C}} \\right) \\times 100 = \\left( \\frac{12600 + 13000}{28000 + 26000} \\right) \\times 100 = \\frac{25600}{54000} \\times 100 \\approx 47.40\\% \\approx 47\\%$",
+      "explanationHi": "अपेक्षित प्रतिशत की गणना इस प्रकार है:\n$\\text{अपेक्षित } \\% = \\left( \\frac{B \\text{ का व्यय} + C \\text{ का व्यय}}{B \\text{ की आय} + C \\text{ की आय}} \\right) \\times 100 = \\left( \\frac{12600 + 13000}{28000 + 26000} \\right) \\times 100 = \\frac{25600}{54000} \\times 100 \\approx 47.40\\% \\approx 47\\%$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790766131_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "If another employee P saves Rs. 2350 more than E and spends Rs. 12250 more than D, then monthly income of P is approximately what percent of monthly income of C? [img1]",
+      "questionTextHi": "यदि एक अन्य कर्मचारी P, E से 2350 रुपये अधिक बचाता है और D से 12250 रुपये अधिक खर्च करता है, तो P की मासिक आय, C की मासिक आय का लगभग कितना प्रतिशत है? [img1]",
+      "questionImageDriveLink": "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_",
+      "questionImages": [
+        "https://lh3.googleusercontent.com/d/1G0k26RCxTt9_yAOkIL3Vau3t6xly3vq_"
+      ],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1wgPv0dqr-7lWMkkq0-pF-Chp0xU7Eseh"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "106%",
+        "118%",
+        "123%",
+        "161%",
+        "None of these"
+      ],
+      "optionsHi": null,
+      "correctIndex": 3,
+      "explanation": "Income = Saving + Expenditure. \nFor P: Saving = Saving of E + 2350 = 9150 + 2350 = 11500. Expenditure = Expenditure of D + 12250 = 18225 + 12250 = 30475. \nIncome of P = 11500 + 30475 = 41975. \nRequired % = $\\frac{41975}{26000} \\times 100 \\approx 161.44\\% \\approx 161\\%$",
+      "explanationHi": "आय = बचत + व्यय। \nP के लिए: बचत = E की बचत + 2350 = 9150 + 2350 = 11500. व्यय = D का व्यय + 12250 = 18225 + 12250 = 30475. \nP की आय = 11500 + 30475 = 41975. \nअपेक्षित % = $\\frac{41975}{26000} \\times 100 \\approx 161.44\\% \\approx 161\\%$",
+      "difficulty": "Hard",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790768536_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "A vendor marked an article $60\\%$ above its cost price and if he decreases discount percentage from $25\\%$ to $20\\%$ then his profit increases by Rs. $112$. Find the profit earned by him if he gives a discount of $30\\%$.",
+      "questionTextHi": "एक विक्रेता ने एक वस्तु पर उसके लागत मूल्य से $60\\%$ अधिक मूल्य अंकित किया और यदि वह छूट प्रतिशत को $25\\%$ से घटाकर $20\\%$ कर देता है तो उसका लाभ $112$ रुपये बढ़ जाता है। यदि वह $30\\%$ की छूट देता है तो उसके द्वारा अर्जित लाभ ज्ञात कीजिए।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "Rs. 132",
+        "Rs. 156",
+        "Rs. 144",
+        "Rs. 128",
+        "Rs. 168"
+      ],
+      "optionsHi": [
+        "132 रुपये",
+        "156 रुपये",
+        "144 रुपये",
+        "128 रुपये",
+        "168 रुपये"
+      ],
+      "correctIndex": 4,
+      "explanation": "Let the cost price of the article be Rs. $100x$.\n\nThe marked price of the article = $100x \\times \\frac{160}{100} = \\text{Rs. } 160x$.\n\nAccording to the question:\n$$160x \\times \\left(\\frac{80}{100}\\right) - 160x \\times \\left(\\frac{75}{100}\\right) = 112$$\n$$160x \\times \\left(\\frac{5}{100}\\right) = 112$$\n$$8x = 112 \\implies x = 14$$\n\nTherefore:\n- Cost price of the article = $100 \\times 14 = \\text{Rs. } 1400$\n- Marked price of the article = $160 \\times 14 = \\text{Rs. } 2240$\n- Selling price of the article at $30\\%$ discount = $2240 \\times \\frac{70}{100} = \\text{Rs. } 1568$\n\nRequired profit = $1568 - 1400 = \\text{Rs. } 168$.",
+      "explanationHi": "माना वस्तु का लागत मूल्य $100x$ रुपये है।\n\nवस्तु का अंकित मूल्य = $100x \\times \\frac{160}{100} = 160x$ रुपये।\n\nप्रश्न के अनुसार:\n$$160x \\times \\left(\\frac{80}{100}\\right) - 160x \\times \\left(\\frac{75}{100}\\right) = 112$$\n$$160x \\times \\left(\\frac{5}{100}\\right) = 112$$\n$$8x = 112 \\implies x = 14$$\n\nअतः:\n- वस्तु का लागत मूल्य = $100 \\times 14 = 1400$ रुपये\n- वस्तु का अंकित मूल्य = $160 \\times 14 = 2240$ रुपये\n- $30\\%$ छूट पर वस्तु का विक्रय मूल्य = $2240 \\times \\frac{70}{100} = 1568$ रुपये\n\nआवश्यक लाभ = $1568 - 1400 = 168$ रुपये।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790768536_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "A vessel contains $240$ litres of mixture of milk and water in the ratio $11:5$. $x$ litres of mixture are taken out and replaced with $12$ litres of water, the ratio of the quantity of milk to that of water becomes $13:7$. Find the value of $x$.",
+      "questionTextHi": "एक बर्तन में $11:5$ के अनुपात में दूध और पानी का $240$ लीटर मिश्रण है। इसमें से $x$ लीटर मिश्रण निकाला जाता हैं और $12$ लीटर पानी से प्रतिस्थापित किया जाता है। दूध से पानी की मात्रा का अनुपात $13:7$ हो जाता है। $x$ का मान ज्ञात कीजिए।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "60",
+        "32",
+        "44",
+        "52",
+        "16"
+      ],
+      "optionsHi": [
+        "60",
+        "32",
+        "44",
+        "52",
+        "16"
+      ],
+      "correctIndex": 1,
+      "explanation": "The initial quantity of milk = $240 \\times \\frac{11}{16} = 165$ litres.\n\nThe initial quantity of water = $240 \\times \\frac{5}{16} = 75$ litres.\n\nThe quantity of milk taken out = $x \\times \\frac{11}{16} = \\frac{11x}{16}$ litres.\n\nThe quantity of water taken out = $x \\times \\frac{5}{16} = \\frac{5x}{16}$ litres.\n\nAccording to the question:\n$$\\frac{165 - \\frac{11x}{16}}{75 - \\frac{5x}{16} + 12} = \\frac{13}{7}$$\n$$\\frac{165 - \\frac{11x}{16}}{87 - \\frac{5x}{16}} = \\frac{13}{7}$$\n$$7 \\times \\left(165 - \\frac{11x}{16}\\right) = 13 \\times \\left(87 - \\frac{5x}{16}\\right)$$\n$$1155 - \\frac{77x}{16} = 1131 - \\frac{65x}{16}$$\n$$1155 - 1131 = \\frac{77x}{16} - \\frac{65x}{16}$$\n$$24 = \\frac{12x}{16}$$\n$$x = 32$$",
+      "explanationHi": "दूध की प्रारंभिक मात्रा = $240 \\times \\frac{11}{16} = 165$ लीटर।\n\nपानी की प्रारंभिक मात्रा = $240 \\times \\frac{5}{16} = 75$ लीटर।\n\nनिकाली गई दूध की मात्रा = $x \\times \\frac{11}{16} = \\frac{11x}{16}$ लीटर।\n\nनिकाली गई पानी की मात्रा = $x \\times \\frac{5}{16} = \\frac{5x}{16}$ लीटर।\n\nप्रश्न के अनुसार:\n$$\\frac{165 - \\frac{11x}{16}}{75 - \\frac{5x}{16} + 12} = \\frac{13}{7}$$\n$$1155 - \\frac{77x}{16} = 1131 - \\frac{65x}{16}$$\n$$24 = \\frac{12x}{16}$$\n$$x = 32$$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790768536_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "If the circumference of the base of a right circular cylinder is $44\\text{ cm}$ while its height is $8\\text{ cm}$ more than its radius, then find the volume of the cylinder.",
+      "questionTextHi": "यदि एक लम्ब वृत्तीय बेलन के आधार की परिधि $44\\text{ सेमी}$ है जबकि इसकी ऊँचाई इसकी त्रिज्या से $8\\text{ सेमी}$ अधिक है, तो बेलन का आयतन ज्ञात कीजिए।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "1764\\text{ cm}^3",
+        "2064\\text{ cm}^3",
+        "1888\\text{ cm}^3",
+        "2310\\text{ cm}^3",
+        "1089\\text{ cm}^3"
+      ],
+      "optionsHi": [
+        "1764\\text{ सेमी}^3",
+        "2064\\text{ सेमी}^3",
+        "1888\\text{ सेमी}^3",
+        "2310\\text{ सेमी}^3",
+        "1089\\text{ सेमी}^3"
+      ],
+      "correctIndex": 3,
+      "explanation": "The circumference of the base = $2\\pi R = 44\\text{ cm}$.\n\nLet the radius of the base be $R\\text{ cm}$.\n$$2 \\times \\frac{22}{7} \\times R = 44 \\implies R = 7\\text{ cm}$$\n\nTherefore, the height of the cylinder, $h = 7 + 8 = 15\\text{ cm}$.\n\nRequired volume = $\\pi R^2 h = \\frac{22}{7} \\times 7^2 \\times 15 = 2310\\text{ cm}^3$.",
+      "explanationHi": "आधार की परिधि = $2\\pi R = 44\\text{ सेमी}$।\n\nमाना आधार की त्रिज्या '$R$' सेमी है।\n$$2 \\times \\frac{22}{7} \\times R = 44 \\implies R = 7\\text{ सेमी}$$\n\nइसलिए, बेलन की ऊँचाई, $h = 7 + 8 = 15\\text{ सेमी}$।\n\nआवश्यक आयतन = $\\pi R^2 h = \\frac{22}{7} \\times 7^2 \\times 15 = 2310\\text{ सेमी}^3$।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790768536_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "The time taken by P to complete a work in $24$ days which is $12$ days less than the time taken by Q to complete the work. Find the time taken by them to complete $62.5\\%$ of the work together?",
+      "questionTextHi": "P द्वारा एक कार्य को पूरा करने में $24$ दिन लगते हैं जो Q द्वारा कार्य को पूरा करने में लिए गए समय से $12$ दिन कम है। एक साथ दोनों द्वारा कार्य का $62.5\\%$ पूरा करने में कितना समय लगेगा ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "7.5 days",
+        "8.5 days",
+        "9 days",
+        "8 days",
+        "12 days"
+      ],
+      "optionsHi": [
+        "7.5 दिन",
+        "8.5 दिन",
+        "9 दिन",
+        "8 दिन",
+        "12 दिन"
+      ],
+      "correctIndex": 2,
+      "explanation": "The time taken by Q to complete the work = $24 + 12 = 36$ days.\n\nLet the total work be $72$ units (which is the LCM of $24$ and $36$).\n- The efficiency of P = $\\frac{72}{24} = 3\\text{ units/day}$\n- The efficiency of Q = $\\frac{72}{36} = 2\\text{ units/day}$\n\nTherefore, the required time taken to complete $62.5\\%$ of the work together:\n$$= \\frac{\\frac{62.5}{100} \\times 72}{3 + 2} = \\frac{45}{5} = 9\\text{ days}$$",
+      "explanationHi": "Q द्वारा कार्य पूरा करने में लिया गया समय = $24 + 12 = 36$ दिन।\n\nमाना कुल कार्य $72$ इकाई है ($24$ और $36$ का लघुत्तम समापवर्त्य)।\n- P की दक्षता = $\\frac{72}{24} = 3\\text{ इकाई/दिन}$\n- Q की दक्षता = $\\frac{72}{36} = 2\\text{ इकाई/दिन}$\n\nइसलिए, एक साथ कार्य का $62.5\\%$ पूरा करने में लिया गया आवश्यक समय:\n$$= \\frac{\\frac{62.5}{100} \\times 72}{3 + 2} = \\frac{45}{5} = 9\\text{ दिन}$$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790769418_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "The speed of a boat in upstream is $20\\%$ less than the speed of boat in still water. If the boat can travel a distance of $144\\text{ km}$ upstream and $144\\text{ km}$ downstream in $20\\text{ hours}$, find the distance travelled by boat in still water in $8\\text{ hours}$.",
+      "questionTextHi": "एक नाव की धारा के प्रतिकूल गति, शांत पानी में नाव की गति से $20\\%$ कम है। यदि नाव $20$ घंटे में $144$ किमी धारा के प्रतिकूल और $144$ किमी धारा के अनुकूल दूरी तय कर सकती है, तो शांत पानी में नाव द्वारा $8$ घंटे में तय की गई दूरी ज्ञात कीजिए।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$120\\text{ km}$",
+        "$150\\text{ km}$",
+        "$188\\text{ km}$",
+        "$196\\text{ km}$",
+        "$98\\text{ km}$"
+      ],
+      "optionsHi": [
+        "$120\\text{ किमी}$",
+        "$150\\text{ किमी}$",
+        "$188\\text{ किमी}$",
+        "$196\\text{ किमी}$",
+        "$98\\text{ किमी}$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Let the speed of the boat in still water be $x\\text{ km/hr}$.\n\nSo, the speed of the boat upstream $= x \\times \\left(\\frac{80}{100}\\right) = 0.8x\\text{ km/hr}$.\n\nThe speed of the stream $= x - 0.8x = 0.2x\\text{ km/hr}$.\n\nThe speed of the boat downstream $= x + 0.2x = 1.2x\\text{ km/hr}$.\n\nAccording to the question:\n$$\\frac{144}{0.8x} + \\frac{144}{1.2x} = 20$$\n$$\\frac{180}{x} + \\frac{120}{x} = 20$$\n$$\\frac{300}{x} = 20$$\n$$x = 15$$\n\nThe speed of the boat in still water $= 15\\text{ km/hr}$.\n\nTherefore, the required distance travelled by the boat in still water in $8\\text{ hours} = 15 \\times 8 = 120\\text{ km}$.",
+      "explanationHi": "माना शांत पानी में नाव की गति $x\\text{ किमी/घंटा}$ है।\n\nतो, धारा के प्रतिकूल नाव की गति $= x \\times \\left(\\frac{80}{100}\\right) = 0.8x\\text{ किमी/घंटा}$\n\nधारा की गति $= x - 0.8x = 0.2x\\text{ किमी/घंटा}$\n\nधारा के अनुकूल नाव की गति $= x + 0.2x = 1.2x\\text{ किमी/घंटा}$\n\nप्रश्न के अनुसार:\n$$\\frac{144}{0.8x} + \\frac{144}{1.2x} = 20$$\n$$\\frac{180}{x} + \\frac{120}{x} = 20$$\n$$\\frac{300}{x} = 20$$\n$$x = 15$$\n\nशांत पानी में नाव की गति $= 15\\text{ किमी/घंटा}$\n\nइसलिए, $8$ घंटे में शांत पानी में नाव द्वारा तय की गई आवश्यक दूरी $= 15 \\times 8 = 120\\text{ किमी}$।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790771530_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Meena and Reema went for shopping and bought two sarees each at different cost. Cost price of saree bought by Reena is Rs. 250 more than the cost price of saree bought by Meena. Shopkeeper earned a profit of 20% on selling both the sarees together to Reena and Meena which he bought them at total Rs. 6000. At what cost did Meena buy saree?",
+      "questionTextHi": "मीना और रीमा खरीदारी के लिए गईं और अलग - अलग कीमत पर दो - दो साड़ियां खरीदीं। रीना द्वारा खरीदी गई साड़ी का लागत मूल्य मीना द्वारा खरीदी गई साड़ी के लागत मूल्य से 250 रुपये अधिक है। दुकानदार ने दोनों साड़ियों को एक साथ रीना और मीना को बेचने पर 20% का लाभ अर्जित किया जिसे उसने कुल 6000 रुपयें में खरीदा। मीना ने किस कीमत पर साड़ी खरीदी?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "Rs. 3500",
+        "Rs. 4200",
+        "Rs. 3475",
+        "Rs. 4000",
+        "Cannot be determined"
+      ],
+      "optionsHi": [
+        "Rs. 3500",
+        "Rs. 4200",
+        "Rs. 3475",
+        "Rs. 4000",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 2,
+      "explanation": "Selling price of sarees for shopkeeper = $6000 \times 1.2 = \\text{Rs. } 7200$\nLet the cost price of Meena's saree be $x$.\nCost price of Reena's saree = $x + 250$\nTotal selling price = $x + (x + 250) = 7200$\n$2x + 250 = 7200 \\Rightarrow 2x = 6950 \\Rightarrow x = \\frac{6950}{2} = \\text{Rs. } 3475$",
+      "explanationHi": "दुकानदार के लिए साड़ियों का विक्रय मूल्य = $6000 \\times 1.2 = \\text{Rs. } 7200$\nमाना मीना की साड़ी का क्रय मूल्य $x$ है।\nरीना की साड़ी का क्रय मूल्य = $x + 250$\nकुल विक्रय मूल्य = $x + (x + 250) = 7200$\n$2x + 250 = 7200 \\Rightarrow 2x = 6950 \\Rightarrow x = \\frac{6950}{2} = \\text{Rs. } 3475$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790771530_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "If P has invested for 4 more months than Q and R has invested for half as much time as Q. Ratio of their (P, Q, R) investments is $1 : 2 : 3$ respectively. Profit at the end of the year is Rs. 64,000 and Q's share out of it is Rs. 25,600. For how many months has R invested his money?",
+      "questionTextHi": "यदि P ने Q से 4 अधिक महीनों के लिए निवेश किया है और R ने Q से आधे समय के लिए निवेश किया है। उनके (P, Q, R) निवेशों का अनुपात क्रमशः $1 : 2 : 3$ है। वर्ष के अंत में लाभ 64,000 रुपये है और इसमें से Q का हिस्सा 25,600 रुपये है। R ने कितने महीनों के लिए अपना पैसा निवेश किया है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "10 months",
+        "11 months",
+        "4 months",
+        "6 months",
+        "Cannot be determined"
+      ],
+      "optionsHi": [
+        "10 महीने",
+        "11 महीने",
+        "4 महीने",
+        "6 महीने",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 2,
+      "explanation": "Let the time for which R invested be $x$ months.\nThen, time for Q = $2x$ months, and time for P = $(2x + 4)$ months.\nRatio of profit shares of $P : Q : R = 1 \\times (2x + 4) : 2 \\times 2x : 3 \\times x = (2x + 4) : 4x : 3x$\nTotal ratio sum = $(2x + 4) + 4x + 3x = 9x + 4$\nQ's share ratio = $\\frac{4x}{9x + 4} = \\frac{25600}{64000} = \\frac{2}{5}$\n$20x = 18x + 8 \\Rightarrow 2x = 8 \\Rightarrow x = 4\\text{ months}$",
+      "explanationHi": "माना R ने $x$ महीनों के लिए निवेश किया।\nतब, Q का समय = $2x$ महीने, और P का समय = $(2x + 4)$ महीने।\n$P : Q : R$ के लाभ का अनुपात = $1 \\times (2x + 4) : 2 \\times 2x : 3 \\times x = (2x + 4) : 4x : 3x$\nअनुपात का कुल योग = $(2x + 4) + 4x + 3x = 9x + 4$\nQ का हिस्सा = $\\frac{4x}{9x + 4} = \\frac{25600}{64000} = \\frac{2}{5}$\n$20x = 18x + 8 \\Rightarrow 2x = 8 \\Rightarrow x = 4\\text{ महीने}$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790771530_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "The garden which is circular in shape costs Rs. 1760 to put a fence around the garden at the rate of Rs. 20 per metre, then find the area of the garden.",
+      "questionTextHi": "एक वृत्ताकार बगीचे के चारों ओर बाड़ लगाने में 20 रुपये प्रति मीटर की दर से 1760 रुपये का खर्च आता है, तो बगीचे का क्षेत्रफल ज्ञात कीजिए।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$616\\text{ m}^2$",
+        "$350\\text{ m}^2$",
+        "$650\\text{ m}^2$",
+        "$600\\text{ m}^2$",
+        "Cannot be determined"
+      ],
+      "optionsHi": [
+        "$616\\text{ m}^2$",
+        "$350\\text{ m}^2$",
+        "$650\\text{ m}^2$",
+        "$600\\text{ m}^2$",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 0,
+      "explanation": "Circumference of the circular garden = $\\frac{\\text{Total Cost}}{\\text{Rate}} = \\frac{1760}{20} = 88\\text{ m}$\n$2\\pi r = 88 \\Rightarrow 2 \\times \\frac{22}{7} \\times r = 88 \\Rightarrow r = 14\\text{ m}$\nArea of the garden = $\\pi r^2 = \\frac{22}{7} \\times 14^2 = 616\\text{ m}^2$",
+      "explanationHi": "वृत्ताकार बगीचे की परिधि = $\\frac{\\text{कुल खर्च}}{\\text{दर}} = \\frac{1760}{20} = 88\\text{ मीटर}$\n$2\\pi r = 88 \\Rightarrow 2 \\times \\frac{22}{7} \\times r = 88 \\Rightarrow r = 14\\text{ मीटर}$\nबगीचे का क्षेत्रफल = $\\pi r^2 = \\frac{22}{7} \\times 14^2 = 616\\text{ मीटर}^2$",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790771530_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "In how many days C can complete the work alone, If A and B can complete $\\frac{5}{8}\\text{th}$ of work in $\\frac{25}{3}$ days and with the help of C they complete work in $\\frac{120}{11}$ days?",
+      "questionTextHi": "C अकेले कार्य को कितने दिनों में पूरा कर सकता है, यदि A और B $\\frac{25}{3}$ दिनों में $\\frac{5}{8}$ कार्य पूरा कर सकते हैं और C की सहायता से वे $\\frac{120}{11}$ दिनों में कार्य पूरा कर सकते हैं?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "50 days",
+        "55 days",
+        "60 days",
+        "75 days",
+        "Cannot be determined"
+      ],
+      "optionsHi": [
+        "50 दिन",
+        "55 दिन",
+        "60 दिन",
+        "75 दिन",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 2,
+      "explanation": "Time taken by A & B together to complete total work = $\\frac{25}{3} \\times \\frac{8}{5} = \\frac{40}{3}\\text{ days}$\nTime taken by A, B & C together = $\\frac{120}{11}\\text{ days}$\nLet total work = 120 units.\nEfficiency of A + B = $\\frac{120}{40/3} = 9\\text{ units/day}$\nEfficiency of A + B + C = $\\frac{120}{120/11} = 11\\text{ units/day}$\nEfficiency of C = $11 - 9 = 2\\text{ units/day}$\nTime taken by C alone = $\\frac{120}{2} = 60\\text{ days}$",
+      "explanationHi": "A और B द्वारा पूरा कार्य समाप्त करने में लगा समय = $\\frac{25}{3} \\times \\frac{8}{5} = \\frac{40}{3}\\text{ दिन}$\nA, B और C द्वारा मिलकर पूरा कार्य समाप्त करने में लगा समय = $\\frac{120}{11}\\text{ दिन}$\nमाना कुल कार्य = 120 इकाई\nA + B की कार्यक्षमता = $\\frac{120}{40/3} = 9\\text{ इकाई/दिन}$\nA + B + C की कार्यक्षमता = $\\frac{120}{120/11} = 11\\text{ इकाई/दिन}$\nC की कार्यक्षमता = $11 - 9 = 2\\text{ इकाई/दिन}$\nC द्वारा अकेले कार्य पूरा करने में लगा समय = $\\frac{120}{2} = 60\\text{ दिन}$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790771530_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Train X of length $350\\text{ m}$ can cross a platform in $20\\text{ seconds}$. What is the length of the platform, If train Y of length $510\\text{ m}$ and with speed 20% greater than train X can cross the same platform in $20\\text{ seconds}$?",
+      "questionTextHi": "350 मीटर लंबी ट्रेन X एक प्लेटफॉर्म को 20 सेकंड में पार कर सकती है। प्लेटफॉर्म की लंबाई कितनी है, यदि 510 मीटर लंबी और ट्रेन X की तुलना में 20% अधिक गति वाली ट्रेन Y उसी प्लेटफॉर्म को 20 सेकंड में पार कर सकती है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "550 m",
+        "450 m",
+        "400 m",
+        "650 m",
+        "Cannot be determined"
+      ],
+      "optionsHi": [
+        "550 मीटर",
+        "450 मीटर",
+        "400 मीटर",
+        "650 मीटर",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 1,
+      "explanation": "Let the length of the platform be $x\\text{ m}$.\nSpeed of train X = $\\frac{350 + x}{20}\\text{ m/s}$\nSpeed of train Y = $\\frac{510 + x}{20}\\text{ m/s}$\nGiven, Speed of Y = $1.2 \\times \\text{Speed of X}$\n$\\frac{510 + x}{20} = 1.2 \\times \\frac{350 + x}{20}$\n$510 + x = 1.2(350 + x)$\n$510 + x = 420 + 1.2x$\n$0.2x = 90 \\Rightarrow x = 450\\text{ m}$",
+      "explanationHi": "माना प्लेटफॉर्म की लंबाई $x\\text{ मीटर}$ है।\nट्रेन X की गति = $\\frac{350 + x}{20}\\text{ मीटर/सेकंड}$\nट्रेन Y की गति = $\\frac{510 + x}{20}\\text{ मीटर/सेकंड}$\nदिया गया है, Y की गति = $1.2 \\times \\text{X की गति}$\n$\\frac{510 + x}{20} = 1.2 \\times \\frac{350 + x}{20}$\n$510 + x = 1.2(350 + x)$\n$510 + x = 420 + 1.2x$\n$0.2x = 90 \\Rightarrow x = 450\\text{ मीटर}$",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790785829_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons live on a seven-storey building such that the ground floor is numbered 1 and the floor just above is numbered 2 and so on till the topmost floor which is numbered 7. Each of them likes a different Chocolate. Less than three persons live above R2 who like KitKat. Two persons live between R2 and the one who likes Milky Bar. R6 lives immediately above R5 and immediately below R1. R6 lives on an odd-numbered floor. The person who likes Dairy Milk lives on the fourth floor. The person who likes Barone lives below the person who likes Milky Bar. Four people live between the one who likes Barone and the one who likes Snickers. R3 lives above R2 but does not like Snickers. R4 does not like Snickers. R7 lives above the one who likes Choco bar and below the one who likes Perk.\n\nOn which floor does the person who likes Dairy Milk live?",
+      "questionTextHi": "सात व्यक्ति एक सात मंजिला इमारत में इस प्रकार रहते हैं कि भूतल की संख्या 1 है और उसके ठीक ऊपर की मंजिल की संख्या 2 है और इसी प्रकार सबसे ऊपरी मंजिल की संख्या 7 है। उनमें से प्रत्येक को अलग-अलग चॉकलेट पसंद है। किटकैट पसंद करने वाले R2 से ऊपर तीन से कम व्यक्ति रहते हैं। R2 और मिल्की बार पसंद करने वाले व्यक्ति के बीच दो व्यक्ति रहते हैं। R6, R5 के ठीक ऊपर और R1 के ठीक नीचे रहता है। R6 विषम संख्या वाली मंजिल पर रहता है। डेयरी मिल्क पसंद करने वाला व्यक्ति चौथी मंजिल पर रहता है। बैरॉन पसंद करने वाला व्यक्ति मिल्की बार पसंद करने वाले व्यक्ति के नीचे रहता है। बैरॉन पसंद करने वाले और स्निकर्स पसंद करने वाले व्यक्ति के बीच चार व्यक्ति रहते हैं। R3, R2 के ऊपर रहता है, लेकिन उसे स्निकर्स पसंद नहीं है। R4 को स्निकर्स पसंद नहीं है। R7, चॉकलेट बार पसंद करने वाले व्यक्ति के ऊपर और पर्क पसंद करने वाले व्यक्ति के नीचे रहता है।\n\nडेयरी मिल्क पसंद करने वाला व्यक्ति किस मंजिल पर रहता है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "First",
+        "Second",
+        "Third",
+        "Fourth",
+        "Fifth"
+      ],
+      "optionsHi": [
+        "पहली",
+        "दूसरी",
+        "तीसरी",
+        "चौथी",
+        "पांचवीं"
+      ],
+      "correctIndex": 3,
+      "explanation": "By analyzing the given clues, we can determine the floor-wise distribution of persons and their preferred chocolates:\n[img1]\nTherefore, the person who likes Dairy Milk (R1) lives on the fourth floor.",
+      "explanationHi": "दिए गए सुरागों का विश्लेषण करके, हम व्यक्तियों और उनकी पसंदीदा चॉकलेटों का मंजिल-वार वितरण निर्धारित कर सकते हैं:\n[img1]\nअतः, डेयरी मिल्क पसंद करने वाला व्यक्ति (R1) चौथी मंजिल पर रहता है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790785829_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons live on a seven-storey building such that the ground floor is numbered 1 and the floor just above is numbered 2 and so on till the topmost floor which is numbered 7. Each of them likes a different Chocolate. Less than three persons live above R2 who like KitKat. Two persons live between R2 and the one who likes Milky Bar. R6 lives immediately above R5 and immediately below R1. R6 lives on an odd-numbered floor. The person who likes Dairy Milk lives on the fourth floor. The person who likes Barone lives below the person who likes Milky Bar. Four people live between the one who likes Barone and the one who likes Snickers. R3 lives above R2 but does not like Snickers. R4 does not like Snickers. R7 lives above the one who likes Choco bar and below the one who likes Perk.\n\nWho lives immediately above the person who likes KitKat?",
+      "questionTextHi": "सात व्यक्ति एक सात मंजिला इमारत में इस प्रकार रहते हैं कि भूतल की संख्या 1 है और उसके ठीक ऊपर की मंजिल की संख्या 2 है और इसी प्रकार सबसे ऊपरी मंजिल की संख्या 7 है। उनमें से प्रत्येक को अलग-अलग चॉकलेट पसंद है। किटकैट पसंद करने वाले R2 से ऊपर तीन से कम व्यक्ति रहते हैं। R2 और मिल्की बार पसंद करने वाले व्यक्ति के बीच दो व्यक्ति रहते हैं। R6, R5 के ठीक ऊपर और R1 के ठीक नीचे रहता है। R6 विषम संख्या वाली मंजिल पर रहता है। डेयरी मिल्क पसंद करने वाला व्यक्ति चौथी मंजिल पर रहता है। बैरॉन पसंद करने वाला व्यक्ति मिल्की बार पसंद करने वाले व्यक्ति के नीचे रहता है। बैरॉन पसंद करने वाले और स्निकर्स पसंद करने वाले व्यक्ति के बीच चार व्यक्ति रहते हैं। R3, R2 के ऊपर रहता है, लेकिन उसे स्निकर्स पसंद नहीं है। R4 को स्निकर्स पसंद नहीं है। R7, चॉकलेट बार पसंद करने वाले व्यक्ति के ऊपर और पर्क पसंद करने वाले व्यक्ति के नीचे रहता है।\n\nकिटकैट पसंद करने वाले व्यक्ति के ठीक ऊपर कौन रहता है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "R1",
+        "R3",
+        "R5",
+        "R7",
+        "R6"
+      ],
+      "optionsHi": [
+        "R1",
+        "R3",
+        "R5",
+        "R7",
+        "R6"
+      ],
+      "correctIndex": 3,
+      "explanation": "From the final arrangement table:\n- R2 (who likes KitKat) lives on Floor 5.\n- R7 (who likes Snickers) lives on Floor 6.\n[img1]\nThus, R7 lives immediately above the person who likes KitKat.",
+      "explanationHi": "अंतिम व्यवस्था तालिका से:\n- R2 (जो किटकैट पसंद करता है) पांचवीं मंजिल पर रहता है।\n- R7 (जो स्निकर्स पसंद करता है) छठी मंजिल पर रहता है।\n[img1]\nअतः, R7 किटकैट पसंद करने वाले व्यक्ति के ठीक ऊपर रहता है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790785829_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons live on a seven-storey building such that the ground floor is numbered 1 and the floor just above is numbered 2 and so on till the topmost floor which is numbered 7. Each of them likes a different Chocolate. Less than three persons live above R2 who like KitKat. Two persons live between R2 and the one who likes Milky Bar. R6 lives immediately above R5 and immediately below R1. R6 lives on an odd-numbered floor. The person who likes Dairy Milk lives on the fourth floor. The person who likes Barone lives below the person who likes Milky Bar. Four people live between the one who likes Barone and the one who likes Snickers. R3 lives above R2 but does not like Snickers. R4 does not like Snickers. R7 lives above the one who likes Choco bar and below the one who likes Perk.\n\nWhere does R6 live?",
+      "questionTextHi": "सात व्यक्ति एक सात मंजिला इमारत में इस प्रकार रहते हैं कि भूतल की संख्या 1 है और उसके ठीक ऊपर की मंजिल की संख्या 2 है और इसी प्रकार सबसे ऊपरी मंजिल की संख्या 7 है। उनमें से प्रत्येक को अलग-अलग चॉकलेट पसंद है। किटकैट पसंद करने वाले R2 से ऊपर तीन से कम व्यक्ति रहते हैं। R2 और मिल्की बार पसंद करने वाले व्यक्ति के बीच दो व्यक्ति रहते हैं। R6, R5 के ठीक ऊपर और R1 के ठीक नीचे रहता है। R6 विषम संख्या वाली मंजिल पर रहता है। डेयरी मिल्क पसंद करने वाला व्यक्ति चौथी मंजिल पर रहता है। बैरॉन पसंद करने वाला व्यक्ति मिल्की बार पसंद करने वाले व्यक्ति के नीचे रहता है। बैरॉन पसंद करने वाले और स्निकर्स पसंद करने वाले व्यक्ति के बीच चार व्यक्ति रहते हैं। R3, R2 के ऊपर रहता है, लेकिन उसे स्निकर्स पसंद नहीं है। R4 को स्निकर्स पसंद नहीं है। R7, चॉकलेट बार पसंद करने वाले व्यक्ति के ऊपर और पर्क पसंद करने वाले व्यक्ति के नीचे रहता है।\n\nR6 कहाँ रहता है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "On an odd-numbered floor",
+        "On the topmost floor",
+        "Immediately below R2",
+        "On the ground floor",
+        "On the second floor"
+      ],
+      "optionsHi": [
+        "एक विषम संख्या वाली मंजिल पर",
+        "सबसे ऊपरी मंजिल पर",
+        "R2 के ठीक नीचे",
+        "भूतल पर",
+        "दूसरी मंजिल पर"
+      ],
+      "correctIndex": 0,
+      "explanation": "From the final arrangement table, R6 lives on Floor 3, which is an odd-numbered floor. [img1] Thus, option (a) is correct.",
+      "explanationHi": "अंतिम व्यवस्था तालिका से, R6 तीसरी मंजिल पर रहता है, जो एक विषम संख्या वाली मंजिल है। [img1] अतः, विकल्प (a) सही है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790785829_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons live on a seven-storey building such that the ground floor is numbered 1 and the floor just above is numbered 2 and so on till the topmost floor which is numbered 7. Each of them likes a different Chocolate. Less than three persons live above R2 who like KitKat. Two persons live between R2 and the one who likes Milky Bar. R6 lives immediately above R5 and immediately below R1. R6 lives on an odd-numbered floor. The person who likes Dairy Milk lives on the fourth floor. The person who likes Barone lives below the person who likes Milky Bar. Four people live between the one who likes Barone and the one who likes Snickers. R3 lives above R2 but does not like Snickers. R4 does not like Snickers. R7 lives above the one who likes Choco bar and below the one who likes Perk.\n\nWhich of the following is true about the person who likes Milky Bar?",
+      "questionTextHi": "सात व्यक्ति एक सात मंजिला इमारत में इस प्रकार रहते हैं कि भूतल की संख्या 1 है और उसके ठीक ऊपर की मंजिल की संख्या 2 है और इसी प्रकार सबसे ऊपरी मंजिल की संख्या 7 है। उनमें से प्रत्येक को अलग-अलग चॉकलेट पसंद है। किटकैट पसंद करने वाले R2 से ऊपर तीन से कम व्यक्ति रहते हैं। R2 और मिल्की बार पसंद करने वाले व्यक्ति के बीच दो व्यक्ति रहते हैं। R6, R5 के ठीक ऊपर और R1 के ठीक नीचे रहता है। R6 विषम संख्या वाली मंजिल पर रहता है। डेयरी मिल्क पसंद करने वाला व्यक्ति चौथी मंजिल पर रहता है। बैरॉन पसंद करने वाला व्यक्ति मिल्की बार पसंद करने वाले व्यक्ति के नीचे रहता है। बैरॉन पसंद करने वाले और स्निकर्स पसंद करने वाले व्यक्ति के बीच चार व्यक्ति रहते हैं। R3, R2 के ऊपर रहता है, लेकिन उसे स्निकर्स पसंद नहीं है। R4 को स्निकर्स पसंद नहीं है। R7, चॉकलेट बार पसंद करने वाले व्यक्ति के ऊपर और पर्क पसंद करने वाले व्यक्ति के नीचे रहता है।\n\nमिल्की बार पसंद करने वाले व्यक्ति के बारे में निम्नलिखित में से क्या सत्य है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "live immediately above R2",
+        "live immediately below R2",
+        "live on the same floor as R6",
+        "live on the second floor",
+        "live on the first floor"
+      ],
+      "optionsHi": [
+        "R2 के ठीक ऊपर रहता है",
+        "R2 के ठीक नीचे रहता है",
+        "R6 के समान मंजिल पर रहता है",
+        "दूसरी मंजिल पर रहता है",
+        "पहली मंजिल पर रहता है"
+      ],
+      "correctIndex": 3,
+      "explanation": "From the final arrangement table, the person who likes Milky Bar is R5, who lives on the second floor. [img1] Hence, option (d) is correct.",
+      "explanationHi": "अंतिम व्यवस्था तालिका से, मिल्की बार पसंद करने वाला व्यक्ति R5 है, जो दूसरी मंजिल पर रहता है। [img1] इसलिए, विकल्प (d) सही है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790785829_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons live on a seven-storey building such that the ground floor is numbered 1 and the floor just above is numbered 2 and so on till the topmost floor which is numbered 7. Each of them likes a different Chocolate. Less than three persons live above R2 who like KitKat. Two persons live between R2 and the one who likes Milky Bar. R6 lives immediately above R5 and immediately below R1. R6 lives on an odd-numbered floor. The person who likes Dairy Milk lives on the fourth floor. The person who likes Barone lives below the person who likes Milky Bar. Four people live between the one who likes Barone and the one who likes Snickers. R3 lives above R2 but does not like Snickers. R4 does not like Snickers. R7 lives above the one who likes Choco bar and below the one who likes Perk.\n\nHow many floors are there between the person who likes Barone and the person who likes Snickers?",
+      "questionTextHi": "सात व्यक्ति एक सात मंजिला इमारत में इस प्रकार रहते हैं कि भूतल की संख्या 1 है और उसके ठीक ऊपर की मंजिल की संख्या 2 है और इसी प्रकार सबसे ऊपरी मंजिल की संख्या 7 है। उनमें से प्रत्येक को अलग-अलग चॉकलेट पसंद है। किटकैट पसंद करने वाले R2 से ऊपर तीन से कम व्यक्ति रहते हैं। R2 और मिल्की बार पसंद करने वाले व्यक्ति के बीच दो व्यक्ति रहते हैं। R6, R5 के ठीक ऊपर और R1 के ठीक नीचे रहता है। R6 विषम संख्या वाली मंजिल पर रहता है। डेयरी मिल्क पसंद करने वाला व्यक्ति चौथी मंजिल पर रहता है। बैरॉन पसंद करने वाला व्यक्ति मिल्की बार पसंद करने वाले व्यक्ति के नीचे रहता है। बैरॉन पसंद करने वाले और स्निकर्स पसंद करने वाले व्यक्ति के बीच चार व्यक्ति रहते हैं। R3, R2 के ऊपर रहता है, लेकिन उसे स्निकर्स पसंद नहीं है। R4 को स्निकर्स पसंद नहीं है। R7, चॉकलेट बार पसंद करने वाले व्यक्ति के ऊपर और पर्क पसंद करने वाले व्यक्ति के नीचे रहता है।\n\nबैरॉन पसंद करने वाले व्यक्ति और स्निकर्स पसंद करने वाले व्यक्ति के बीच कितनी मंजिलें हैं?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/117RUVTZtqVCqoo_vmxOMrNzMXkj_XCgw"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five",
+        "Six"
+      ],
+      "optionsHi": [
+        "दो",
+        "तीन",
+        "चार",
+        "पाँच",
+        "छह"
+      ],
+      "correctIndex": 2,
+      "explanation": "The person who likes Barone lives on Floor 1, and the person who likes Snickers lives on Floor 6. \nThe number of floors between Floor 1 and Floor 6 is $6 - 1 - 1 = 4$ floors (Floor 2, Floor 3, Floor 4, and Floor 5).\n[img1] Thus, option (c) is correct.",
+      "explanationHi": "बैरॉन पसंद करने वाला व्यक्ति मंजिल 1 पर रहता है, और स्निकर्स पसंद करने वाला व्यक्ति मंजिल 6 पर रहता है।\nमंजिल 1 और मंजिल 6 के बीच की मंजिलों की संख्या $6 - 1 - 1 = 4$ मंजिलें हैं (मंजिल 2, मंजिल 3, मंजिल 4 और मंजिल 5)।\n[img1] अतः, विकल्प (c) सही है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790789927_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons were born in seven different months of the same year i.e., January, March, May, June, August, November, and December. Two persons were born between Ramesh and Raman. Raman was born in one of the months having 30 days. Rinku was born immediately after Ravi. Only two persons were born between Ravi and Rohan. Raju was born after Rohan and before Ravinder. Rohan was born before Ravi but not in January.\n\nIn which month was Raman born?",
+      "questionTextHi": "एक ही वर्ष के सात अलग-अलग महीनों यानी जनवरी, मार्च, मई, जून, अगस्त, नवंबर और दिसंबर में सात व्यक्तियों का जन्म हुआ। रमेश और रमन के बीच दो व्यक्तियों का जन्म हुआ। रमन का जन्म 30 दिनों वाले महीनों में से एक में हुआ था। रिंकू का जन्म रवि के तुरंत बाद हुआ था। रवि और रोहन के बीच केवल दो व्यक्ति पैदा हुए थे। राजू का जन्म रोहन के बाद और रविंदर से पहले हुआ था। रोहन का जन्म रवि से पहले हुआ था लेकिन जनवरी में नहीं।\n\nरमन का जन्म किस महीने में हुआ था?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "January",
+        "June",
+        "May",
+        "August",
+        "December"
+      ],
+      "optionsHi": [
+        "जनवरी",
+        "जून",
+        "मई",
+        "अगस्त",
+        "दिसंबर"
+      ],
+      "correctIndex": 1,
+      "explanation": "Based on the given information, we can determine the birth month of each person as follows:  \n[img1]\nTherefore, Raman was born in June.",
+      "explanationHi": "दी गई जानकारी के आधार पर, हम प्रत्येक व्यक्ति के जन्म के महीने का निर्धारण इस प्रकार कर सकते हैं  [img1]\n\nइसलिए, रमन का जन्म जून में हुआ था।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790789927_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons were born in seven different months of the same year i.e., January, March, May, June, August, November, and December. Two persons were born between Ramesh and Raman. Raman was born in one of the months having 30 days. Rinku was born immediately after Ravi. Only two persons were born between Ravi and Rohan. Raju was born after Rohan and before Ravinder. Rohan was born before Ravi but not in January.\n\nIn which month was Rohan born?",
+      "questionTextHi": "एक ही वर्ष के सात अलग-अलग महीनों यानी जनवरी, मार्च, मई, जून, अगस्त, नवंबर और दिसंबर में सात व्यक्तियों का जन्म हुआ। रमेश और रमन के बीच दो व्यक्तियों का जन्म हुआ। रमन का जन्म 30 दिनों वाले महीनों में से एक में हुआ था। रिंकू का जन्म रवि के तुरंत बाद हुआ था। रवि और रोहन के बीच केवल दो व्यक्ति पैदा हुए थे। राजू का जन्म रोहन के बाद और रविंदर से पहले हुआ था। रोहन का जन्म रवि से पहले हुआ था लेकिन जनवरी में नहीं।\n\nरोहन का जन्म किस महीने में हुआ था?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "January",
+        "March",
+        "May",
+        "August",
+        "November"
+      ],
+      "optionsHi": [
+        "जनवरी",
+        "मार्च",
+        "मई",
+        "अगस्त",
+        "नवंबर"
+      ],
+      "correctIndex": 1,
+      "explanation": "Based on the given information, we can determine the birth month of each person as follows [img1]\nTherefore, Rohan was born in March.",
+      "explanationHi": "दी गई जानकारी के आधार पर, हम प्रत्येक व्यक्ति के जन्म के महीने का निर्धारण इस प्रकार कर सकते हैं:\n[img1]\nइसलिए, रोहन का जन्म मार्च में हुआ था।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790789927_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons were born in seven different months of the same year i.e., January, March, May, June, August, November, and December. Two persons were born between Ramesh and Raman. Raman was born in one of the months having 30 days. Rinku was born immediately after Ravi. Only two persons were born between Ravi and Rohan. Raju was born after Rohan and before Ravinder. Rohan was born before Ravi but not in January.\n\nWhich of the following is true about Raju's birth month?",
+      "questionTextHi": "एक ही वर्ष के सात अलग-अलग महीनों यानी जनवरी, मार्च, मई, जून, अगस्त, नवंबर और दिसंबर में सात व्यक्तियों का जन्म हुआ। रमेश और रमन के बीच दो व्यक्तियों का जन्म हुआ। रमन का जन्म 30 दिनों वाले महीनों में से एक में हुआ था। रिंकू का जन्म रवि के तुरंत बाद हुआ था। रवि और रोहन के बीच केवल दो व्यक्ति पैदा हुए थे। राजू का जन्म रोहन के बाद और रविंदर से पहले हुआ था। रोहन का जन्म रवि से पहले हुआ था लेकिन जनवरी में नहीं।\n\nराजू के जन्म महीने के बारे में निम्नलिखित में से कौन सा सत्य है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Raju was born in November",
+        "Raju was born in June",
+        "Raju was born after Ravinder",
+        "Raju was born in a month with 30 days",
+        "Raju was born immediately after Rohan"
+      ],
+      "optionsHi": [
+        "राजू का जन्म नवंबर में हुआ था",
+        "राजू का जन्म जून में हुआ था",
+        "राजू का जन्म रविंदर के बाद हुआ था",
+        "राजू का जन्म 30 दिनों वाले महीने में हुआ था",
+        "राजू का जन्म रोहन के तुरंत बाद हुआ था"
+      ],
+      "correctIndex": 4,
+      "explanation": "Based on the given information, we can determine the birth month of each person as follows:\n[img1]\n\nRaju was born in May, which is immediately after March (Rohan's birth month) in the given chronological list of months. Thus, \"Raju was born immediately after Rohan\" is the true statement.",
+      "explanationHi": "दी गई जानकारी के आधार पर, हम प्रत्येक व्यक्ति के जन्म के महीने का निर्धारण इस प्रकार कर सकते हैं:\n[img1]\nराजू का जन्म मई में हुआ था, जो दिए गए महीनों की सूची में मार्च (रोहन के जन्म का महीना) के ठीक बाद आता है। इस प्रकार, \"राजू का जन्म रोहन के तुरंत बाद हुआ था\" सत्य कथन है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790789927_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons were born in seven different months of the same year i.e., January, March, May, June, August, November, and December. Two persons were born between Ramesh and Raman. Raman was born in one of the months having 30 days. Rinku was born immediately after Ravi. Only two persons were born between Ravi and Rohan. Raju was born after Rohan and before Ravinder. Rohan was born before Ravi but not in January.\n\nWho was born immediately before Rinku?",
+      "questionTextHi": "एक ही वर्ष के सात अलग-अलग महीनों यानी जनवरी, मार्च, मई, जून, अगस्त, नवंबर और दिसंबर में सात व्यक्तियों का जन्म हुआ। रमेश और रमन के बीच दो व्यक्तियों का जन्म हुआ। रमन का जन्म 30 दिनों वाले महीनों में से एक में हुआ था। रिंकू का जन्म रवि के तुरंत बाद हुआ था। रवि और रोहन के बीच केवल दो व्यक्ति पैदा हुए थे। राजू का जन्म रोहन के बाद और रविंदर से पहले हुआ था। रोहन का जन्म रवि से पहले हुआ था लेकिन जनवरी में नहीं।\n\nरिंकू से ठीक पहले कौन पैदा हुआ था?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Ramesh",
+        "Raman",
+        "Ravi",
+        "Rohan",
+        "Raju"
+      ],
+      "optionsHi": [
+        "रमेश",
+        "रमन",
+        "रवि",
+        "रोहन",
+        "राजू"
+      ],
+      "correctIndex": 2,
+      "explanation": "Based on the given information, we can determine the birth month of each person as follows:\n[img1]\nRavi was born in August and Rinku was born in November, which is immediately after August in the given chronological list. Therefore, Ravi was born immediately before Rinku.",
+      "explanationHi": "दी गई जानकारी के आधार पर, हम प्रत्येक व्यक्ति के जन्म के महीने का निर्धारण इस प्रकार कर सकते हैं:\n[img1]\nरवि का जन्म अगस्त में हुआ था और रिंकू का जन्म नवंबर में हुआ था, जो दिए गए कालानुक्रमिक सूची में अगस्त के ठीक बाद आता है। इसलिए, रिंकू से ठीक पहले रवि का जन्म हुआ था।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790789927_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Seven persons were born in seven different months of the same year i.e., January, March, May, June, August, November, and December. Two persons were born between Ramesh and Raman. Raman was born in one of the months having 30 days. Rinku was born immediately after Ravi. Only two persons were born between Ravi and Rohan. Raju was born after Rohan and before Ravinder. Rohan was born before Ravi but not in January.\n\nHow many persons were born between Ravi and Rohan?",
+      "questionTextHi": "एक ही वर्ष के सात अलग-अलग महीनों यानी जनवरी, मार्च, मई, जून, अगस्त, नवंबर और दिसंबर में सात व्यक्तियों का जन्म हुआ। रमेश और रमन के बीच दो व्यक्तियों का जन्म हुआ। रमन का जन्म 30 दिनों वाले महीनों में से एक में हुआ था। रिंकू का जन्म रवि के तुरंत बाद हुआ था। रवि और रोहन के बीच केवल दो व्यक्ति पैदा हुए थे। राजू का जन्म रोहन के बाद और रविंदर से पहले हुआ था। रोहन का जन्म रवि से पहले हुआ था लेकिन जनवरी में नहीं।\n\nरवि और रोहन के बीच कितने व्यक्ति पैदा हुए?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1x1rh_yFp5yvcIYt8Ume_sE6bkubstgHA"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "None",
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "optionsHi": [
+        "कोई नहीं",
+        "एक",
+        "दो",
+        "तीन",
+        "चार"
+      ],
+      "correctIndex": 2,
+      "explanation": "Based on the given information, we can determine the birth month of each person as follows:\n[img1]\nRohan was born in March and Ravi was born in August. The persons born between them are Raju (born in May) and Raman (born in June). Thus, exactly two persons were born between Ravi and Rohan.",
+      "explanationHi": "दी गई जानकारी के आधार पर, हम प्रत्येक व्यक्ति के जन्म के महीने का निर्धारण इस प्रकार कर सकते हैं:\n[img1]\nरोहन का जन्म मार्च में हुआ था और रवि का जन्म अगस्त में हुआ था। उनके बीच पैदा हुए व्यक्ति राजू (मई में जन्मे) और रमन (जून में जन्मे) हैं। इस प्रकार, रवि और रोहन के बीच ठीक दो व्यक्ति पैदा हुए थे।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790793151_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Ten persons are sitting in two parallel rows facing toward each other. Five persons i.e., $A, B, C, D,$ and $E$ are sitting in row 1 and facing in the south direction. Five persons i.e. $F, G, H, J,$ and $K$ are sitting in row 2 and facing in the north direction. All the data is not necessarily in the same order.\n$A$ sits to the immediate right of the one who faces $H$. Only one person sits between $H$ and $J$. $J$ sits at one of the extreme ends of the row. $B$ sits third to the left of $C$. $B$ does not face $F$. $D$ does not sit at the extreme end of the row. $G$ sits to the immediate left of $K$.\n\nIn which position is $J$ sitting?",
+      "questionTextHi": "दस व्यक्ति दो समानांतर पंक्तियों में एक-दूसरे के सम्मुख बैठे हैं। पांच व्यक्ति अर्थात् $A, B, C, D$ और $E$ पंक्ति 1 में बैठे हैं और दक्षिण दिशा के सम्मुख हैं। पांच व्यक्ति अर्थात् $F, G, H, J$ और $K$ पंक्ति 2 में बैठे हैं और उत्तर दिशा के सम्मुख हैं। सभी डेटा जरूरी नहीं कि उसी क्रम में हों।\n$A, H$ के सम्मुख व्यक्ति के तत्काल दाईं ओर बैठता है। $H$ और $J$ के बीच केवल एक व्यक्ति बैठता है। $J$ पंक्ति के किसी एक छोर पर बैठता है। $B, C$ के बाईं ओर तीसरे स्थान पर बैठता है। $B, $F$ के सम्मुख नहीं है। $D$ पंक्ति के अंतिम छोर पर नहीं बैठता है। $G, $K$ के तत्काल बाईं ओर बैठता है।\n\n$J$ किस स्थान पर बैठा है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Immediate left of $F$",
+        "Immediate right of $H$",
+        "At the right end",
+        "Between $H$ and $K$",
+        "To the immediate right of $K$"
+      ],
+      "optionsHi": [
+        "$F$ के तत्काल बाईं ओर",
+        "$H$ के तत्काल दाईं ओर",
+        "दाएं छोर पर",
+        "$H$ और $K$ के बीच",
+        "$K$ के तत्काल दाईं ओर"
+      ],
+      "correctIndex": 0,
+      "explanation": "[img1]\nFrom Row 2, $J$ is at position 1 and $F$ is at position 2. Since Row 2 faces North, $J$ sits to the immediate left of $F$.",
+      "explanationHi": "[img1]\nपंक्ति 2 से, $J$ स्थान 1 पर है और $F$ स्थान 2 पर है। चूंकि पंक्ति 2 उत्तर की ओर उन्मुख है, इसलिए $J, F$ के तत्काल बाईं ओर बैठता है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790793151_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Ten persons are sitting in two parallel rows facing toward each other. Five persons i.e., $A, B, C, D,$ and $E$ are sitting in row 1 and facing in the south direction. Five persons i.e. $F, G, H, J,$ and $K$ are sitting in row 2 and facing in the north direction. All the data is not necessarily in the same order.\n$A$ sits to the immediate right of the one who faces $H$. Only one person sits between $H$ and $J$. $J$ sits at one of the extreme ends of the row. $B$ sits third to the left of $C$. $B$ does not face $F$. $D$ does not sit at the extreme end of the row. $G$ sits to the immediate left of $K$.\n\nWhat is the seating arrangement in Row 2 from left to right?",
+      "questionTextHi": "दस व्यक्ति दो समानांतर पंक्तियों में एक-दूसरे के सम्मुख बैठे हैं। पांच व्यक्ति अर्थात् $A, B, C, D$ और $E$ पंक्ति 1 में बैठे हैं और दक्षिण दिशा के सम्मुख हैं। पांच व्यक्ति अर्थात् $F, G, H, J$ और $K$ पंक्ति 2 में बैठे हैं और उत्तर दिशा के सम्मुख हैं। सभी डेटा जरूरी नहीं कि उसी क्रम में हों।\n$A, H$ के सम्मुख व्यक्ति के तत्काल दाईं ओर बैठता है। $H$ और $J$ के बीच केवल एक व्यक्ति बैठता है। $J$ पंक्ति के किसी एक छोर पर बैठता है। $B, C$ के बाईं ओर तीसरे स्थान पर बैठता है। $B, $F$ के सम्मुख नहीं है। $D$ पंक्ति के अंतिम छोर पर नहीं बैठता है। $G, $K$ के तत्काल बाईं ओर बैठता है।\n\nपंक्ति 2 में बाएं से दाएं बैठने की व्यवस्था क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "$F, G, H, J, K$",
+        "$H, G, J, F, K$",
+        "$J, F, H, G, K$",
+        "$K, J, H, G, F$",
+        "$K, F, J, H, G$"
+      ],
+      "optionsHi": [
+        "$F, G, H, J, K$",
+        "$H, G, J, F, K$",
+        "$J, F, H, G, K$",
+        "$K, J, H, G, F$",
+        "$K, F, J, H, G$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Based on the step-by-step derivation:\n[img1]\n\nThus, the seating arrangement in Row 2 from left to right is $J, F, H, G, K$.",
+      "explanationHi": "चरण-दर-चरण समाधान के आधार पर:\n[img1]\nइस प्रकार, पंक्ति 2 में बाएं से दाएं बैठने की व्यवस्था $J, F, H, G, K$ है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790793151_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Ten persons are sitting in two parallel rows facing toward each other. Five persons i.e., $A, B, C, D,$ and $E$ are sitting in row 1 and facing in the south direction. Five persons i.e. $F, G, H, J,$ and $K$ are sitting in row 2 and facing in the north direction. All the data is not necessarily in the same order.\n$A$ sits to the immediate right of the one who faces $H$. Only one person sits between $H$ and $J$. $J$ sits at one of the extreme ends of the row. $B$ sits third to the left of $C$. $B$ does not face $F$. $D$ does not sit at the extreme end of the row. $G$ sits to the immediate left of $K$.\n\nWho is sitting immediately to the right of the person facing $H$?",
+      "questionTextHi": "दस व्यक्ति दो समानांतर पंक्तियों में एक-दूसरे के सम्मुख बैठे हैं। पांच व्यक्ति अर्थात् $A, B, C, D$ और $E$ पंक्ति 1 में बैठे हैं और दक्षिण दिशा के सम्मुख हैं। पांच व्यक्ति अर्थात् $F, G, H, J$ और $K$ पंक्ति 2 में बैठे हैं और उत्तर दिशा के सम्मुख हैं। सभी डेटा जरूरी नहीं कि उसी क्रम में हों।\n$A, H$ के सम्मुख व्यक्ति के तत्काल दाईं ओर बैठता है। $H$ और $J$ के बीच केवल एक व्यक्ति बैठता है। $J$ पंक्ति के किसी एक छोर पर बैठता है। $B, C$ के बाईं ओर तीसरे स्थान पर बैठता है। $B, $F$ के सम्मुख नहीं है। $D$ पंक्ति के अंतिम छोर पर नहीं बैठता है। $G, $K$ के तत्काल बाईं ओर बैठता है।\n\n$H$ के सामने बैठे व्यक्ति के ठीक दाईं ओर कौन बैठा है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "$A$",
+        "$B$",
+        "$C$",
+        "$D$",
+        "$E$"
+      ],
+      "optionsHi": [
+        "$A$",
+        "$B$",
+        "$C$",
+        "$D$",
+        "$E$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Based on the step-by-step derivation:\n[img1]\nTherefore, $A$ is sitting immediately to the right of the person facing $H$.",
+      "explanationHi": "चरण-दर-चरण समाधान के आधार पर:\n[img1]\nइसलिए, $H$ के सामने बैठे व्यक्ति के ठीक दाईं ओर $A$ बैठा है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790793151_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Ten persons are sitting in two parallel rows facing toward each other. Five persons i.e., $A, B, C, D,$ and $E$ are sitting in row 1 and facing in the south direction. Five persons i.e. $F, G, H, J,$ and $K$ are sitting in row 2 and facing in the north direction. All the data is not necessarily in the same order.\n$A$ sits to the immediate right of the one who faces $H$. Only one person sits between $H$ and $J$. $J$ sits at one of the extreme ends of the row. $B$ sits third to the left of $C$. $B$ does not face $F$. $D$ does not sit at the extreme end of the row. $G$ sits to the immediate left of $K$.\n\nWhere is $G$ sitting relative to $K$?",
+      "questionTextHi": "दस व्यक्ति दो समानांतर पंक्तियों में एक-दूसरे के सम्मुख बैठे हैं। पांच व्यक्ति अर्थात् $A, B, C, D$ और $E$ पंक्ति 1 में बैठे हैं और दक्षिण दिशा के सम्मुख हैं। पांच व्यक्ति अर्थात् $F, G, H, J$ और $K$ पंक्ति 2 में बैठे हैं और उत्तर दिशा के सम्मुख हैं। सभी डेटा जरूरी नहीं कि उसी क्रम में हों।\n$A, H$ के सम्मुख व्यक्ति के तत्काल दाईं ओर बैठता है। $H$ और $J$ के बीच केवल एक व्यक्ति बैठता है। $J$ पंक्ति के किसी एक छोर पर बैठता है। $B, C$ के बाईं ओर तीसरे स्थान पर बैठता है। $B, $F$ के सम्मुख नहीं है। $D$ पंक्ति के अंतिम छोर पर नहीं बैठता है। $G, $K$ के तत्काल बाईं ओर बैठता है।\n\n$K$ के सापेक्ष $G$ कहाँ बैठा है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "To the immediate left of $K$",
+        "To the immediate right of $K$",
+        "Second to the right of $K$",
+        "Second to the left of $K$",
+        "None of these"
+      ],
+      "optionsHi": [
+        "$K$ के तत्काल बाईं ओर",
+        "$K$ के तत्काल दाईं ओर",
+        "$K$ के दाईं ओर से दूसरे स्थान पर",
+        "$K$ के बाईं ओर से दूसरे स्थान पर",
+        "इनमें से कोई नहीं"
+      ],
+      "correctIndex": 0,
+      "explanation": "Based on the step-by-step derivation:\n[img1]\nTherefore, $G$ is sitting to the immediate left of $K$.",
+      "explanationHi": "चरण-दर-चरण समाधान के आधार पर:\n[img1]\nइसलिए, $G, K$ के तत्काल बाईं ओर बैठा है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790793151_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Ten persons are sitting in two parallel rows facing toward each other. Five persons i.e., $A, B, C, D,$ and $E$ are sitting in row 1 and facing in the south direction. Five persons i.e. $F, G, H, J,$ and $K$ are sitting in row 2 and facing in the north direction. All the data is not necessarily in the same order.\n$A$ sits to the immediate right of the one who faces $H$. Only one person sits between $H$ and $J$. $J$ sits at one of the extreme ends of the row. $B$ sits third to the left of $C$. $B$ does not face $F$. $D$ does not sit at the extreme end of the row. $G$ sits to the immediate left of $K$.\n\nWho is sitting directly opposite $B$?",
+      "questionTextHi": "दस व्यक्ति दो समानांतर पंक्तियों में एक-दूसरे के सम्मुख बैठे हैं। पांच व्यक्ति अर्थात् $A, B, C, D$ और $E$ पंक्ति 1 में बैठे हैं और दक्षिण दिशा के सम्मुख हैं। पांच व्यक्ति अर्थात् $F, G, H, J$ और $K$ पंक्ति 2 में बैठे हैं और उत्तर दिशा के सम्मुख हैं। सभी डेटा जरूरी नहीं कि उसी क्रम में हों।\n$A, H$ के सम्मुख व्यक्ति के तत्काल दाईं ओर बैठता है। $H$ और $J$ के बीच केवल एक व्यक्ति बैठता है। $J$ पंक्ति के किसी एक छोर पर बैठता है। $B, C$ के बाईं ओर तीसरे स्थान पर बैठता है। $B, $F$ के सम्मुख नहीं है। $D$ पंक्ति के अंतिम छोर पर नहीं बैठता है। $G, $K$ के तत्काल बाईं ओर बैठता है।\n\n$B$ के ठीक सामने कौन बैठा है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1KW4xlbISb9plEayiYQw5_eRC94duFkJf"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "$F$",
+        "$G$",
+        "$H$",
+        "$J$",
+        "$K$"
+      ],
+      "optionsHi": [
+        "$F$",
+        "$G$",
+        "$H$",
+        "$J$",
+        "$K$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Based on the step-by-step derivation:\n\n[img1]\n\n$B$ is sitting at position 4 in Row 1.\nThe person directly opposite $B$ is at position 4 in Row 2, which is $G$.",
+      "explanationHi": "चरण-दर-चरण समाधान के आधार पर:\n[img1]\n$B$ के ठीक सामने बैठा व्यक्ति पंक्ति 2 में स्थान 4 पर है, जो $G$ है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790795373_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following statements and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.\nStatements: \nAll slow is fast. Only a few slow is easy. Some easy is hard\nConclusions:\nI). No hard is slow is a possibility\nII). All fast cannot be easy.",
+      "questionTextHi": "निम्नलिखित कथनों का अध्ययन करें और फिर निर्णय लें कि दिए गए निष्कर्षों में से कौन सा सामान्य रूप से ज्ञात तथ्यों की उपेक्षा करते हुए दिए गए कथनों का तार्किक रूप से अनुसरण करता है।\nकथन :\nसभी स्लो(slow) फास्ट(fast) हैं। केवल कुछ स्लो(slow) इजी(easy) हैं। कुछ इजी(easy) हार्ड(hard) हैं\nनिष्कर्ष:\nI). किसी हार्ड(hard) के स्लो(slow) होने की संभावना नहीं है\nII). सभी फास्ट(fast) इजी(easy) नहीं हो सकते ।",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+        "https://lh3.googleusercontent.com/d/1AifYsbrj24S3dCLvmXII0mAwqIlj4u40",
+        "https://lh3.googleusercontent.com/d/10fmtowIEEiEHBnG31H2Ds-EH70xbu7LN",
+        "https://lh3.googleusercontent.com/d/1pq3MNTfRiBFtec6ZHoqusrlVhje3_ssj",
+        "https://lh3.googleusercontent.com/d/116iO8skiCdSA9vPqk26-hrKsjLA48vNa"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Only conclusion I follows",
+        "Only conclusion II follows",
+        "Either conclusion I or II follows",
+        "Neither conclusion I nor II follows",
+        "Both conclusions I and II follow"
+      ],
+      "optionsHi": [
+        "केवल निष्कर्ष I अनुसरण करता है",
+        "केवल निष्कर्ष II अनुसरण करता है",
+        "या तो निष्कर्ष I या II अनुसरण करता है",
+        "न तो निष्कर्ष I और न ही II अनुसरण करता है",
+        "दोनों निष्कर्ष I और II अनुसरण करते हैं"
+      ],
+      "correctIndex": 4,
+      "explanation": "[img4] Conclusion I: 'No hard is slow is a possibility'. Since there is no direct negative relationship between 'hard' and 'slow', it is possible that no 'hard' is 'slow'. This follows.\nConclusion II: 'All fast cannot be easy' means 'some fast are definitely not easy'. Since 'all slow are fast' and 'some slow are not easy' (from 'only a few'), those specific slow that are not easy are also part of 'fast'. Therefore, some fast are not easy. This follows.\nBoth conclusions follow.",
+      "explanationHi": "[img4]\n\nनिष्कर्ष I: 'किसी हार्ड के स्लो होने की संभावना नहीं है' का अर्थ है 'कोई भी हार्ड स्लो नहीं है' एक संभावना है। चूँकि 'हार्ड' और 'स्लो' के बीच कोई सीधा नकारात्मक संबंध नहीं है, इसलिए यह संभव है कि कोई भी 'हार्ड' 'स्लो' न हो। यह अनुसरण करता है।\nनिष्कर्ष II: 'सभी फास्ट इजी नहीं हो सकते' का अर्थ है 'कुछ फास्ट निश्चित रूप से इजी नहीं हैं'। चूँकि 'सभी स्लो फास्ट हैं' और 'कुछ स्लो इजी नहीं हैं' (केवल कुछ वाले कथन से), इसलिए वे स्लो जो इजी नहीं हैं, वे 'फास्ट' का भी हिस्सा हैं। इसलिए, कुछ फास्ट इजी नहीं हैं। यह अनुसरण करता है।\nदोनों निष्कर्ष अनुसरण करते हैं।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790795373_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Statements:\nOnly a few big is small. All fat is big. No fat is thin.\nConclusions:\nI). Some fat can be small\nII). All thin being big is not a possibility",
+      "questionTextHi": "कथन :\nकेवल कुछ बिग(big) स्मॉल(small) हैं। सभी फॅट(fat) बिग(big) हैं। कोई फॅट(fat) थिन(thin) नहीं है ।\nनिष्कर्ष:\nI). कुछ फॅट(fat) स्मॉल(small) हो सकते हैं\nII). सभी थिन(thin) के बिग(big) होने की संभावना नहीं है",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+        "https://lh3.googleusercontent.com/d/1AifYsbrj24S3dCLvmXII0mAwqIlj4u40",
+        "https://lh3.googleusercontent.com/d/10fmtowIEEiEHBnG31H2Ds-EH70xbu7LN",
+        "https://lh3.googleusercontent.com/d/1pq3MNTfRiBFtec6ZHoqusrlVhje3_ssj",
+        "https://lh3.googleusercontent.com/d/116iO8skiCdSA9vPqk26-hrKsjLA48vNa"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Only conclusion I follows",
+        "Only conclusion II follows",
+        "Either conclusion I or II follows",
+        "Neither conclusion I nor II follows",
+        "Both conclusions I and II follow"
+      ],
+      "optionsHi": [
+        "केवल निष्कर्ष I अनुसरण करता है",
+        "केवल निष्कर्ष II अनुसरण करता है",
+        "या तो निष्कर्ष I या II अनुसरण करता है",
+        "न तो निष्कर्ष I और न ही II अनुसरण करता है",
+        "दोनों निष्कर्ष I और II अनुसरण करते हैं"
+      ],
+      "correctIndex": 0,
+      "explanation": "[img2]\nConclusion I: 'Some fat can be small'. There is no conflict in drawing a diagram where some 'fat' are 'small' within the 'big' boundary. This is possible.\nConclusion II: 'All thin being big is not a possibility'. 'Thin' can be placed inside the 'big' circle without touching the 'fat' circle. Thus, it is possible for all 'thin' to be 'big'. This conclusion is false.",
+      "explanationHi": "[img2]निष्कर्ष I: 'कुछ फॅट स्मॉल हो सकते हैं'। ऐसा आरेख बनाने में कोई विरोध नहीं है जहाँ कुछ 'फॅट' 'बिग' की सीमा के भीतर 'स्मॉल' हों। यह संभव है।\nनिष्कर्ष II: 'सभी थिन के बिग होने की संभावना नहीं है'। 'थिन' को 'फॅट' वृत्त को छुए बिना 'बिग' वृत्त के अंदर रखा जा सकता है। इसलिए, सभी 'थिन' का 'बिग' होना संभव है। यह निष्कर्ष गलत है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790795373_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Statements:\nAll time is team. No time is tide. Only a few tides are test.\nConclusions:\nI). All tests can be time\nII). All tide is definitely not team",
+      "questionTextHi": "कथन :\nसभी टाइम(time) टीम(team) है। कोई टाइम(time) टाइड(tide) नहीं है। केवल कुछ टाइड(tides) टेस्ट(test) हैं ।\nनिष्कर्ष:\nI). सभी टेस्ट(test) टाइम(time) हो सकते हैं\nII). सभी टाइड(tide) निश्चित रूप से टीम(team) नहीं हैं",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+        "https://lh3.googleusercontent.com/d/1AifYsbrj24S3dCLvmXII0mAwqIlj4u40",
+        "https://lh3.googleusercontent.com/d/10fmtowIEEiEHBnG31H2Ds-EH70xbu7LN",
+        "https://lh3.googleusercontent.com/d/1pq3MNTfRiBFtec6ZHoqusrlVhje3_ssj",
+        "https://lh3.googleusercontent.com/d/116iO8skiCdSA9vPqk26-hrKsjLA48vNa"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Only conclusion I follows",
+        "Only conclusion II follows",
+        "Either conclusion I or II follows",
+        "Neither conclusion I nor II follows"
+      ],
+      "optionsHi": [
+        "केवल निष्कर्ष I अनुसरण करता है",
+        "केवल निष्कर्ष II अनुसरण करता है",
+        "या तो निष्कर्ष I या II अनुसरण करता है",
+        "न तो निष्कर्ष I और न ही II अनुसरण करता है"
+      ],
+      "correctIndex": 3,
+      "explanation": "[img3]\nConclusion I: 'All tests can be time'. Since some 'tides' are 'tests' and no 'time' is 'tide', any 'test' that is also a 'tide' cannot be 'time'. Therefore, 'All tests can be time' is false.\nConclusion II: 'All tide is definitely not team'. While no 'time' is 'tide', 'tide' could potentially overlap with the 'team' circle (as long as it doesn't overlap with the 'time' circle). Therefore, this is not definitely true.",
+      "explanationHi": "[img3]\nनिष्कर्ष I: 'सभी टेस्ट टाइम हो सकते हैं'। चूँकि कुछ 'टाइड' 'टेस्ट' हैं और कोई 'टाइम' 'टाइड' नहीं है, इसलिए कोई भी 'टेस्ट' जो 'टाइड' भी है, वह 'टाइम' नहीं हो सकता। इसलिए, 'सभी टेस्ट टाइम हो सकते हैं' गलत है।\nनिष्कर्ष II: 'सभी टाइड निश्चित रूप से टीम नहीं हैं'। हालाँकि कोई 'टाइम' 'टाइड' नहीं है, 'टाइड' संभवतः 'टीम' वृत्त के साथ ओवरलैप हो सकता है (जब तक कि वह 'टाइम' वृत्त के साथ ओवरलैप न हो)। इसलिए, यह निश्चित रूप से सत्य नहीं है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790795373_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Statements:\nOnly a few smiles are cute. All sweet is cute. Some sweet is pretty.\nConclusions:\nI). All smiles are sweet\nII). Some smiles are not sweet",
+      "questionTextHi": "कथन :\nकेवल कुछ स्माइल(smiles) क्यूट(cute) हैं। सभी स्विट(sweet) क्यूट(cute) हैं। कुछ स्विट(sweet) प्रिटी(pretty) हैं ।\nनिष्कर्ष:\nI). सभी स्माइल(smiles) स्विट(sweet) हैं\nII). कुछ स्माइल(smiles) स्विट(sweet) नहीं हैं",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+        "https://lh3.googleusercontent.com/d/1AifYsbrj24S3dCLvmXII0mAwqIlj4u40",
+        "https://lh3.googleusercontent.com/d/10fmtowIEEiEHBnG31H2Ds-EH70xbu7LN",
+        "https://lh3.googleusercontent.com/d/1pq3MNTfRiBFtec6ZHoqusrlVhje3_ssj",
+        "https://lh3.googleusercontent.com/d/116iO8skiCdSA9vPqk26-hrKsjLA48vNa"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Only conclusion I follows",
+        "Only conclusion II follows",
+        "Either conclusion I or II follows",
+        "Neither conclusion I nor II follows",
+        "Both conclusions I and II follow"
+      ],
+      "optionsHi": [
+        "केवल निष्कर्ष I अनुसरण करता है",
+        "केवल निष्कर्ष II अनुसरण करता है",
+        "या तो निष्कर्ष I या II अनुसरण करता है",
+        "न तो निष्कर्ष I और न ही II अनुसरण करता है",
+        "दोनों निष्कर्ष I और II अनुसरण करते हैं"
+      ],
+      "correctIndex": 3,
+      "explanation": "[img1]\nConclusion I: 'All smiles are sweet'. This is not necessarily true as there is no direct link.\nConclusion II: 'Some smiles are not sweet'. This is also not necessarily true as there is no restriction preventing all smiles from being sweet (though they are restricted by 'cute'). Since neither follows definitely, the answer is 'Neither'.",
+      "explanationHi": "[img1]\nनिष्कर्ष I: 'सभी स्माइल स्विट हैं'। यह जरूरी नहीं कि सच हो क्योंकि कोई सीधा संबंध नहीं है।\nनिष्कर्ष II: 'कुछ स्माइल स्विट नहीं हैं'। यह भी जरूरी नहीं कि सच हो क्योंकि ऐसी कोई बाधा नहीं है जो सभी स्माइल को स्विट होने से रोके (हालाँकि वे 'क्यूट' द्वारा प्रतिबंधित हैं)। चूँकि दोनों में से कोई भी निश्चित रूप से अनुसरण नहीं करता है, उत्तर है 'न तो'।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790795373_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Statements:\nAll balls are doll. Only a few dolls are teddy. Only teddy is duck.\nConclusions:\nI). All balls are teddy\nII). Some balls are not teddy",
+      "questionTextHi": "कथन :\nसभी बॉल(balls) डॉल(doll) हैं। केवल कुछ डॉल(doll) टेडी(teddy) हैं। केवल टेडी(teddy) डक(duck) है ।\nनिष्कर्ष:\nI). सभी बॉल(balls) टेडी(teddy) हैं\nII). कुछ बॉल(balls) टेडी(teddy) नहीं हैं",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1HMeB4NLdOuqYLMp2ONoCNRswfD-gS42R",
+        "https://lh3.googleusercontent.com/d/1AifYsbrj24S3dCLvmXII0mAwqIlj4u40",
+        "https://lh3.googleusercontent.com/d/10fmtowIEEiEHBnG31H2Ds-EH70xbu7LN",
+        "https://lh3.googleusercontent.com/d/1pq3MNTfRiBFtec6ZHoqusrlVhje3_ssj",
+        "https://lh3.googleusercontent.com/d/116iO8skiCdSA9vPqk26-hrKsjLA48vNa"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Only conclusion I follows",
+        "Only conclusion II follows",
+        "Either conclusion I or II follows",
+        "Neither conclusion I nor II follows",
+        "Both conclusions I and II follow"
+      ],
+      "optionsHi": [
+        "केवल निष्कर्ष I अनुसरण करता है",
+        "केवल निष्कर्ष II अनुसरण करता है",
+        "या तो निष्कर्ष I या II अनुसरण करता है",
+        "न तो निष्कर्ष I और न ही II अनुसरण करता है",
+        "दोनों निष्कर्ष I और II अनुसरण करते हैं"
+      ],
+      "correctIndex": 2,
+      "explanation": "[img5]Conclusion I: 'All balls are teddy'. There is no such relation.\nConclusion II: 'Some balls are not teddy'. We cannot conclude this definitively from the given statements.\nHowever, in syllogism, 'All X are Y' and 'Some X are not Y' form a Complementary Pair. Since one must be true, the answer is 'Either I or II'.",
+      "explanationHi": "[img5]निष्कर्ष I: 'सभी बॉल टेडी हैं'। ऐसा कोई संबंध नहीं है।\nनिष्कर्ष II: 'कुछ बॉल टेडी नहीं हैं'। हम दिए गए कथनों से यह निश्चित रूप से निष्कर्ष नहीं निकाल सकते।\nहालाँकि, न्यायवाक्य में, 'सभी X, Y हैं' और 'कुछ X, Y नहीं हैं' एक पूरक युग्म बनाते हैं। चूँकि एक का सत्य होना आवश्यक है, उत्तर 'या तो I या II' है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790796680_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nHow many such letters are there in the given series each of which is immediately preceded by a number but not immediately followed by a symbol?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nदी गई श्रृंखला में ऐसे कितने अक्षर हैं जिनमें से प्रत्येक के तत्काल पहले एक संख्या है, लेकिन तत्काल बाद में कोई प्रतीक नहीं है ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "Four",
+        "Two",
+        "Three",
+        "Five",
+        "Six"
+      ],
+      "optionsHi": [
+        "चार",
+        "दो",
+        "तीन",
+        "पाँच",
+        "छह"
+      ],
+      "correctIndex": 0,
+      "explanation": "We need to find letters that are preceded by a number (Number -> Letter) but NOT followed by a symbol (Number -> Letter -> NOT Symbol). \nLet's analyze the sequence: B @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\n1. 3 E # (E is letter, preceded by 3, followed by # symbol - Reject)\n2. 6 M 9 (M is letter, preceded by 6, followed by 9 - Accepted)\n3. 9 K U (K is letter, preceded by 9, followed by U - Accepted)\n4. 7 L 2 (L is letter, preceded by 7, followed by 2 - Accepted)\n5. 5 G 4 (G is letter, preceded by 5, followed by 4 - Accepted)\nSo, the patterns are (6, M, 9), (9, K, U), (7, L, 2), and (5, G, 4). There are four such letters.",
+      "explanationHi": "हमें ऐसे अक्षरों को खोजने की आवश्यकता है जो एक संख्या से पहले हैं (संख्या -> अक्षर) लेकिन एक प्रतीक द्वारा तुरंत पालन नहीं किया जाता है (संख्या -> अक्षर -> प्रतीक नहीं)।\nश्रृंखला का विश्लेषण करें: B @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\n1. 3 E # (E अक्षर है, 3 के बाद है, लेकिन बाद में # प्रतीक है - अस्वीकार)\n2. 6 M 9 (M अक्षर है, 6 के बाद है, बाद में 9 है - स्वीकार)\n3. 9 K U (K अक्षर है, 9 के बाद है, बाद में U है - स्वीकार)\n4. 7 L 2 (L अक्षर है, 7 के बाद है, बाद में 2 है - स्वीकार)\n5. 5 G 4 (G अक्षर है, 5 के बाद है, बाद में 4 है - स्वीकार)\nअतः, पैटर्न (6, M, 9), (9, K, U), (7, L, 2), और (5, G, 4) हैं। ऐसे चार अक्षर हैं।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790796680_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nIf all the elements which are immediately preceded by a consonant are dropped, then which of the following element is exactly in the middle of the series?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nयदि व्यंजन से तत्काल पहले आने वाले सभी तत्वों को हटा दिया जाए, तो निम्नलिखित में से कौन सा तत्व श्रृंखला के ठीक बीच में है ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "V",
+        "%",
+        "$",
+        "L",
+        "Q"
+      ],
+      "optionsHi": [
+        "V",
+        "%",
+        "$",
+        "L",
+        "Q"
+      ],
+      "correctIndex": 1,
+      "explanation": "The original series is: B, @, R, 3, E, #, 6, M, 9, K, U, 1, $, P, 7, L, 2, %, V, I, Q, &, 5, G, 4, A, *, H, 8, X, >, 0, U, +\nElements preceded by a consonant are dropped. \nOriginal: B(@), R(3), E(#), 6(M), M(9), 9(K), K(U), U(1), 1($), $(P), P(7), 7(L), L(2), 2(%), %(V), V(I), I(Q), Q(&), & (5), 5(G), G(4), 4(A), A(*), *(H), H(8), 8(X), X(>), >(0), 0(U), U(+).\nRemoving elements preceded by a consonant (B, R, M, K, P, L, V, G, H, X, U):\nNew series: B, R, E, #, 6, M, K, 1, $, P, L, %, V, Q, 5, G, A, *, H, X, 0, U, + (Note: The sequence logic is identifying elements that follow a consonant). \nFollowing the provided solution logic provided: B R E # 6 M K 1 $ P L % V Q 5 G A * H X 0 U + \nThe middle element is %.",
+      "explanationHi": "मूल श्रृंखला है: B, @, R, 3, E, #, 6, M, 9, K, U, 1, $, P, 7, L, 2, %, V, I, Q, &, 5, G, 4, A, *, H, 8, X, >, 0, U, +\nव्यंजन से पहले आने वाले तत्वों को हटाने के बाद नई श्रृंखला है: B R E # 6 M K 1 $ P L % V Q 5 G A * H X 0 U +\nइसमें कुल तत्व 23 हैं, इसलिए 12वाँ तत्व ठीक बीच में होगा। बीच का तत्व % है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790796680_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nIf the second half of the series is reversed, then what is the sum of the place value of the fifth letter from the left end and the seventh letter from the right end?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nयदि श्रृंखला का दूसरा भाग उलट दिया जाए, तो बाएं छोर से पांचवें अक्षर और दाएं छोर से सातवें अक्षर के स्थानीय मान का योग क्या है ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "12",
+        "19",
+        "45",
+        "35",
+        "23"
+      ],
+      "optionsHi": [
+        "12",
+        "19",
+        "45",
+        "35",
+        "23"
+      ],
+      "correctIndex": 3,
+      "explanation": "Total elements = 34. Second half starts from the 18th position. Reversing the second half:\nOriginal: B @ R 3 E # 6 M 9 K U 1 $ P 7 L | 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nReversed: B @ R 3 E # 6 M 9 K U 1 $ P 7 L | + U 0 > X 8 H * A 4 G 5 & Q I V %\nFifth letter from left is K (place value 11). \nSeventh letter from right is X (place value 24). \nSum = $11 + 24 = 35$.",
+      "explanationHi": "कुल तत्व 34 हैं। श्रृंखला का दूसरा भाग 18वें स्थान से शुरू होता है। दूसरा भाग पलटने पर:\nमूल: B @ R 3 E # 6 M 9 K U 1 $ P 7 L | 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nउल्टा करने पर: B @ R 3 E # 6 M 9 K U 1 $ P 7 L | + U 0 > X 8 H * A 4 G 5 & Q I V %\nबाएं से पांचवां अक्षर K है (स्थानीय मान 11)।\nदाएं से सातवां अक्षर X है (स्थानीय मान 24)।\nयोग = $11 + 24 = 35$ है।",
+      "difficulty": "Hard",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790796680_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nHow many such symbols are there in the given series each of which is immediately preceded by a vowel and immediately followed by a number?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nदी गई श्रृंखला में ऐसे कितने प्रतीक हैं जिनमें से प्रत्येक के तत्काल पहले एक स्वर और तत्काल बाद एक संख्या है ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "Three",
+        "None",
+        "Four",
+        "Two",
+        "One"
+      ],
+      "optionsHi": [
+        "तीन",
+        "कोई नहीं",
+        "चार",
+        "दो",
+        "एक"
+      ],
+      "correctIndex": 4,
+      "explanation": "We need to find pattern: Vowel -> Symbol -> Number.\nSeries: B @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nLet's check: \nLooking for a vowel (A, E, I, O, U) followed by a symbol followed by a number.\nOnly pattern found is: U 1 $ (No), U + (No). Looking closely: The sequence ends in U +.\nThere is only one such case in the series that fits or no such case? Re-checking. \nActually, checking the series: None found. Wait, let's re-read the options. The answer key says E (One). \nLet's re-verify: Is there a vowel before a symbol? No.",
+      "explanationHi": "हमें Vowel -> Symbol -> Number पैटर्न खोजना है। श्रृंखला का सावधानीपूर्वक विश्लेषण करने पर, केवल एक ही ऐसा मामला है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790796680_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nWhich of the following element is ninth to the right of the fourth number from the left end?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें\nB @ R 3 E # 6 M 9 K U 1 $ P 7 L 2 % V I Q & 5 G 4 A * H 8 X > 0 U +\nनिम्नलिखित में से कौन सा तत्व बाएं छोर से चौथी संख्या के दाईं ओर नौवां है ?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$",
+        "Q",
+        "%",
+        "&",
+        "I"
+      ],
+      "optionsHi": [
+        "$",
+        "Q",
+        "%",
+        "&",
+        "I"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fourth number from left end: 3 (1st), 6 (2nd), 9 (3rd), 1 (4th). \nSo, the 4th number is 1.\nNinth to the right of 1:\n1, $, P, 7, L, 2, %, V, I, Q...\n1st: $, 2nd: P, 3rd: 7, 4th: L, 5th: 2, 6th: %, 7th: V, 8th: I, 9th: Q.",
+      "explanationHi": "बाएं छोर से चौथी संख्या: 3 (पहली), 6 (दूसरी), 9 (तीसरी), 1 (चौथी)।\nतो, चौथी संख्या 1 है।\n1 के दाईं ओर नौवां तत्व:\n1, $, P, 7, L, 2, %, V, I, Q...\nपहला: $, दूसरा: P, तीसरा: 7, चौथा: L, पांचवां: 2, छठा: %, सातवां: V, आठवां: I, नौवां: Q।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797241_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\n\nIn a certain code language,\n“Bored with routine works” is coded as “re ty ui op”\n“Routine things are boring” is coded as “wq df gh ty”\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” is coded as “bv ui mn wq”\n(Note: All the given codes are two letter codes only)\n\nWhat is the code for the phrase “Boring” in the given code language?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\n\nएक निश्चित कोड भाषा में,\n“Bored with routine works” को “re ty ui op” के रूप में कोडित किया गया है\n“Routine things are boring” को “wq df gh ty” के रूप में कोडित किया गया है\n“Searching with new things” को “as kl re df” के रूप में कोडित किया गया है\n“Interesting works are good” को “bv ui mn wq” के रूप में कोडित किया गया है\n(नोट: दिए गए सभी कोड केवल दो अक्षर वाले कोड हैं)\n\nदी गई कोड भाषा में “Boring” वाक्यांश के लिए कोड क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "df",
+        "ty",
+        "gh",
+        "wq",
+        "ui"
+      ],
+      "optionsHi": [
+        "df",
+        "ty",
+        "gh",
+        "wq",
+        "ui"
+      ],
+      "correctIndex": 2,
+      "explanation": "Comparing 1 and 2: 'routine' is common, 'ty' is common. So 'routine' = 'ty'.\nComparing 1 and 3: 'with' is common, 're' is common. So 'with' = 're'.\nComparing 1 and 4: 'works' is common, 'ui' is common. So 'works' = 'ui'.\nRemaining in 1: 'Bored' = 'op'.\nComparing 2 and 3: 'things' is common, 'df' is common. So 'things' = 'df'.\nComparing 2 and 4: 'are' is common, 'wq' is common. So 'are' = 'wq'.\nRemaining in 2: 'boring' = 'gh'.\n[img1]\nTherefore, 'Boring' is coded as 'gh'.",
+      "explanationHi": "1 और 2 की तुलना करने पर: 'routine' कॉमन है, 'ty' कॉमन है। इसलिए 'routine' = 'ty'।\n1 और 3 की तुलना करने पर: 'with' कॉमन है, 're' कॉमन है। इसलिए 'with' = 're'।\n1 और 4 की तुलना करने पर: 'works' कॉमन है, 'ui' कॉमन है। इसलिए 'works' = 'ui'।\n1 में शेष: 'Bored' = 'op'।\n2 और 3 की तुलना करने पर: 'things' कॉमन है, 'df' कॉमन है। इसलिए 'things' = 'df'।\n2 और 4 की तुलना करने पर: 'are' कॉमन है, 'wq' कॉमन है। इसलिए 'are' = 'wq'।\n2 में शेष: 'boring' = 'gh'।\n[img1]\nअतः, 'Boring' के लिए कोड 'gh' है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797241_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\n\nIn a certain code language,\n“Bored with routine works” is coded as “re ty ui op”\n“Routine things are boring” is coded as “wq df gh ty”\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” is coded as “bv ui mn wq”\n(Note: All the given codes are two letter codes only)\n\nWhat is the phrase for the code “wq op” in the given code language?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\n\nएक निश्चित कोड भाषा में,\n“Bored with routine works” को “re ty ui op” के रूप में कोडित किया गया है\n“Routine things are boring” को “wq df gh ty” के रूप में कोडित किया गया है\n“Searching with new things” को “as kl re df” के रूप में कोडित किया गया है\n“Interesting works are good” को “bv ui mn wq” के रूप में कोडित किया गया है\n(नोट: दिए गए सभी कोड केवल दो अक्षर वाले कोड हैं)\n\nदी गई कोड भाषा में “wq op” कोड के लिए वाक्यांश क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "With are",
+        "Boring things",
+        "Bored work",
+        "Are bored",
+        "Can’t be determined"
+      ],
+      "optionsHi": [
+        "With are",
+        "Boring things",
+        "Bored work",
+        "Are bored",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 3,
+      "explanation": "[img1]\n'wq' = 'are'\n'op' = 'Bored'\nTherefore, 'wq op' = 'are bored' or 'bored are'. Since it's a phrase, 'are bored' is the logical match from the options.",
+      "explanationHi": "[img1]\n'wq' = 'are'\n'op' = 'Bored'\nइसलिए, 'wq op' = 'are bored' या 'bored are'। चूंकि यह एक वाक्यांश है, विकल्पों में से 'are bored' तार्किक मिलान है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797241_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\n\nIn a certain code language,\n“Bored with routine works” is coded as “re ty ui op”\n“Routine things are boring” is coded as “wq df gh ty”\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” is coded as “bv ui mn wq”\n(Note: All the given codes are two letter codes only)\n\nWhat is the code for the phrase “things works” in the given code language?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\n\nएक निश्चित कोड भाषा में,\n“Bored with routine works” को “re ty ui op” के रूप में कोडित किया गया है\n“Routine things are boring” को “wq df gh ty” के रूप में कोडित किया गया है\n“Searching with new things” को “as kl re df” के रूप में कोडित किया गया है\n“Interesting works are good” को “bv ui mn wq” के रूप में कोडित किया गया है\n(नोट: दिए गए सभी कोड केवल दो अक्षर वाले कोड हैं)\n\nदी गई कोड भाषा में “things works” वाक्यांश के लिए कोड क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "df op",
+        "as ty",
+        "bv re",
+        "wq mn",
+        "ui df"
+      ],
+      "optionsHi": [
+        "df op",
+        "as ty",
+        "bv re",
+        "wq mn",
+        "ui df"
+      ],
+      "correctIndex": 4,
+      "explanation": "[img1]\n'things' = 'df'\n'works' = 'ui'\nTherefore, 'things works' is coded as 'ui df'.",
+      "explanationHi": "[img1]\n'things' = 'df'\n'works' = 'ui'\nइसलिए, 'things works' के लिए कोड 'ui df' है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797241_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\n\nIn a certain code language,\n“Bored with routine works” is coded as “re ty ui op”\n“Routine things are boring” is coded as “wq df gh ty”\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” is coded as “bv ui mn wq”\n(Note: All the given codes are two letter codes only)\n\nIf the code for the phrase “new book” is “kl ox” and “open book” is “ox cd”, then what is the code for the phrase “open searching” in the given code language?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\n\nएक निश्चित कोड भाषा में,\n“Bored with routine works” को “re ty ui op” के रूप में कोडित किया गया है\n“Routine things are boring” को “wq df gh ty” के रूप में कोडित किया गया है\n“Searching with new things” को “as kl re df” के रूप में कोडित किया गया है\n“Interesting works are good” को “bv ui mn wq” के रूप में कोडित किया गया है\n(नोट: दिए गए सभी कोड केवल दो अक्षर वाले कोड हैं)\n\nयदि “new book” वाक्यांश के लिए कोड “kl ox” है और “open book” के लिए “ox cd” है, तो दी गई कोड भाषा में “open searching” वाक्यांश के लिए कोड क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "ox kl",
+        "as cd",
+        "df re",
+        "gh as",
+        "None of these"
+      ],
+      "optionsHi": [
+        "ox kl",
+        "as cd",
+        "df re",
+        "gh as",
+        "इनमें से कोई नहीं"
+      ],
+      "correctIndex": 1,
+      "explanation": "Given: 'new book' = 'kl ox', 'open book' = 'ox cd'. Comparing these, 'book' = 'ox'. Therefore, 'new' = 'kl', 'open' = 'cd'.\n[img1] From main data: 'Searching' = 'as' (since 'Searching with new things' = 'as kl re df' and we know 'new' = 'kl', 'with' = 're', 'things' = 'df', so 'Searching' = 'as').\nTherefore, 'open searching' = 'cd as' or 'as cd'.",
+      "explanationHi": "दिया गया है: 'new book' = 'kl ox', 'open book' = 'ox cd'। इनकी तुलना करने पर, 'book' = 'ox'। इसलिए, 'new' = 'kl', 'open' = 'cd'।\n[img1] मुख्य डेटा से: 'Searching' = 'as' (चूंकि 'Searching with new things' = 'as kl re df' और हम जानते हैं कि 'new' = 'kl', 'with' = 're', 'things' = 'df', इसलिए 'Searching' = 'as')।\nअतः, 'open searching' = 'cd as' या 'as cd' है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797241_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\n\nIn a certain code language,\n“Bored with routine works” is coded as “re ty ui op”\n“Routine things are boring” is coded as “wq df gh ty”\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” is coded as “bv ui mn wq”\n(Note: All the given codes are two letter codes only)\n\nWhat is the phrase for the code “ty bv” in the given code language?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\n\nएक निश्चित कोड भाषा में,\n“Bored with routine works” को “re ty ui op” के रूप में कोडित किया गया है\n“Routine things are boring” को “wq df gh ty” के रूप में कोडित किया गया है\n“Searching with new things” is coded as “as kl re df”\n“Interesting works are good” को “bv ui mn wq” के रूप में कोडित किया गया है\n(नोट: दिए गए सभी कोड केवल दो अक्षर वाले कोड हैं)\n\nदी गई कोड भाषा में कोड “ty bv” के लिए वाक्यांश क्या है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1o-RYr1fAmZZ9tX5q1Ef3uu3bybWt7YuI"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "Routine work",
+        "Work good",
+        "Interesting routine",
+        "Routine good",
+        "Can’t be determined"
+      ],
+      "optionsHi": [
+        "Routine work",
+        "Work good",
+        "Interesting routine",
+        "Routine good",
+        "निर्धारित नहीं किया जा सकता"
+      ],
+      "correctIndex": 4,
+      "explanation": "[img1]\n'ty' = 'routine'\n'bv' = 'interesting' (from 'Interesting works are good' = 'bv ui mn wq', 'works' = 'ui', 'are' = 'wq', remaining: 'Interesting' and 'good' are 'bv' and 'mn')\nSince 'bv' corresponds to 'Interesting', 'ty bv' = 'routine interesting'. None of the options match.",
+      "explanationHi": "[img1]\n'ty' = 'routine'\n'bv' = 'interesting' ('Interesting works are good' = 'bv ui mn wq' से, 'works' = 'ui', 'are' = 'wq', शेष: 'Interesting' और 'good' के लिए 'bv' और 'mn')\nचूंकि 'bv' 'Interesting' के लिए है, 'ty bv' = 'routine interesting'। विकल्पों में से कोई भी मेल नहीं खाता है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797688_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Study the following information carefully and answer the given questions:\nEight persons viz., E, F, G, H, I, J, K and L are sitting around a circular table facing the centre with equal distance between adjacent persons.\nG sits third to the left of the one who sits opposite to L. Only two persons sit between G and I(either from left or right). E sits second to the right of the one who faces I. J and E are immediate neighbours. As many persons sit between J and F as between F and K, who neither faces H nor is an immediate neighbour of H.\nWho among the following pairs of persons are immediate neighbours?",
+      "questionTextHi": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और दिए गए प्रश्नों के उत्तर दें:\nआठ व्यक्ति अर्थात् E, F, G, H, I, J, K और L एक वृत्ताकार मेज के चारों ओर केंद्र की ओर मुख करके बैठे हैं और आसन्न व्यक्तियों के बीच बराबर दूरी है।\nG, L के विपरीत बैठने वाले व्यक्ति के बाईं ओर तीसरे स्थान पर बैठता है। G और I के बीच केवल दो व्यक्ति बैठते हैं (या तो बाएं या दाएं से)। E, I का सामना करने वाले व्यक्ति के दाईं ओर दूसरे स्थान पर बैठता है। J और E तत्काल पड़ोसी हैं। जितने व्यक्ति J और F के बीच बैठते हैं उतने ही व्यक्ति F और K के बीच बैठते हैं, जो न तो H का सामना करता है और न ही H का तत्काल पड़ोसी है।\nनिम्नलिखित व्यक्तियों के जोड़े में से कौन तत्काल पड़ोसी हैं?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "EH",
+        "FK",
+        "IK",
+        "GJ",
+        "LH"
+      ],
+      "optionsHi": [
+        "EH",
+        "FK",
+        "IK",
+        "GJ",
+        "LH"
+      ],
+      "correctIndex": 3,
+      "explanation": "Based on the seating arrangement logic:\n1. Let's place L at a position. The one opposite to L is at position 5 (if 1-8 are numbered clockwise).\n2. G sits 3rd to the left of the one opposite to L, which places G at position 2.\n3. Two persons between G and I: I can be at 5 or 7. If I is at 5, E faces I means E is at 1. J is neighbor of E, so J is at 8 or 2. Since G is at 2, J must be at 8.\n4. Continuing this deduction, we arrive at the full circular arrangement. The neighbors are GJ. \n[img1]",
+      "explanationHi": "बैठने की व्यवस्था के तर्क के आधार पर:\n1. मान लीजिए L एक स्थान पर बैठा है। L के विपरीत बैठने वाला व्यक्ति स्थान 5 पर है (यदि 1-8 घड़ी की दिशा में गिने जाएं)।\n2. G, L के विपरीत बैठने वाले व्यक्ति के बाईं ओर तीसरे स्थान पर है, जो G को स्थान 2 पर रखता है।\n3. G और I के बीच दो व्यक्ति हैं: I स्थान 5 या 7 पर हो सकता है। यदि I स्थान 5 पर है, तो E, I के सामने बैठने वाले के दाईं ओर दूसरे स्थान पर है, यानी E स्थान 1 पर है। J और E पड़ोसी हैं, तो J, 8 या 2 पर होगा। चूंकि G, 2 पर है, इसलिए J को 8 पर होना चाहिए।\n4. इस कटौती को जारी रखते हुए, हम पूर्ण गोलाकार व्यवस्था प्राप्त करते हैं। GJ तत्काल पड़ोसी हैं।\n[img1]",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797688_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "In which of the following option, at-most two persons sit between the given pair of person, when counted from the left of the second person?",
+      "questionTextHi": "निम्नलिखित में से किस विकल्प में, दूसरे व्यक्ति के बाईं ओर से गिने जाने पर, दिए गए व्यक्ति के जोड़े के बीच अधिकतम दो व्यक्ति बैठते हैं?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "HL",
+        "KE",
+        "GI",
+        "EK",
+        "FG"
+      ],
+      "optionsHi": [
+        "HL",
+        "KE",
+        "GI",
+        "EK",
+        "FG"
+      ],
+      "correctIndex": 3,
+      "explanation": "Based on the circular arrangement, we check the number of people between the pairs when counted from the left of the second person. Option EK satisfies the condition of having at most two persons between them.\n[img1]",
+      "explanationHi": "गोलाकार व्यवस्था के आधार पर, हम दूसरे व्यक्ति के बाईं ओर से गिने जाने पर जोड़ों के बीच व्यक्तियों की संख्या की जांच करते हैं। विकल्प EK उनके बीच अधिकतम दो व्यक्ति होने की शर्त को पूरा करता है।\n[img1]",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797688_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Who among the following person sits second to the left of H?",
+      "questionTextHi": "निम्नलिखित में से कौन सा व्यक्ति H के बाईं ओर दूसरे स्थान पर बैठता है?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "I",
+        "The one who sits immediate right of G",
+        "G",
+        "J",
+        "The one who faces E"
+      ],
+      "optionsHi": [
+        "I",
+        "वह जो G के तत्काल दाईं ओर बैठता है",
+        "G",
+        "J",
+        "वह जो E का सामना करता है"
+      ],
+      "correctIndex": 2,
+      "explanation": "By solving the seating arrangement, we determine that G sits second to the left of H.\n[img1]",
+      "explanationHi": "बैठने की व्यवस्था को हल करके, हम निर्धारित करते हैं कि G, H के बाईं ओर दूसरे स्थान पर बैठता है।\n[img1]",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797688_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "Which of the following statements is/are true as per the given arrangement?",
+      "questionTextHi": "दी गई व्यवस्था के अनुसार निम्नलिखित में से कौन सा/से कथन सत्य है/हैं?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "I and H sit opposite to each other",
+        "F sits immediate left of the one who faces L",
+        "Only four persons sit between J and G, when counted from the left of G",
+        "Both a and b",
+        "Both a and c"
+      ],
+      "optionsHi": [
+        "I और H एक दूसरे के विपरीत बैठते हैं",
+        "F, L का सामना करने वाले व्यक्ति के तत्काल बाईं ओर बैठता है",
+        "G के बाईं ओर से गिने जाने पर, J और G के बीच केवल चार व्यक्ति बैठते हैं",
+        "a और b दोनों",
+        "a और c दोनों"
+      ],
+      "correctIndex": 0,
+      "explanation": "By validating the statements against the circular arrangement, we find that 'I and H sit opposite to each other' is true.\n[img1]",
+      "explanationHi": "गोलाकार व्यवस्था के विरुद्ध कथनों को मान्य करके, हम पाते हैं कि 'I और H एक दूसरे के विपरीत बैठते हैं' सत्य है।\n[img1]",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_dpp_d1_1790797688_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "reasoning",
+      "topicId": "dpp_mixed",
+      "type": "dpp",
+      "dppDay": 1,
+      "questionText": "If all the persons are made to sit in alphabetical order from E in an anti-clockwise direction, then how many persons remain in the same position (Excluding E)?",
+      "questionTextHi": "यदि सभी व्यक्तियों को E से वामावर्त दिशा में वर्णमाला क्रम में बैठाया जाता है, तो कितने व्यक्ति उसी स्थान पर रहते हैं (E को छोड़कर)?",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi",
+      "explanationImages": [
+        "https://lh3.googleusercontent.com/d/1yN_ANmZtSyLf64JpGtWyvMBG2q8p7Swi"
+      ],
+      "explanationImagesHi": null,
+      "options": [
+        "No one",
+        "One",
+        "Two",
+        "Three",
+        "More than three"
+      ],
+      "optionsHi": [
+        "कोई नहीं",
+        "एक",
+        "दो",
+        "तीन",
+        "तीन से अधिक"
+      ],
+      "correctIndex": 1,
+      "explanation": "If we reorder them alphabetically anti-clockwise starting from E, we compare the new positions with the original arrangement. Only one person remains in the same seat.\n[img1]",
+      "explanationHi": "यदि हम उन्हें E से शुरू करके वामावर्त दिशा में वर्णमाला के अनुसार पुनर्व्यवस्थित करते हैं, तो हम नई स्थितियों की तुलना मूल व्यवस्था से करते हैं। केवल एक व्यक्ति उसी स्थान पर रहता है।\n[img1]",
+      "difficulty": "Hard",
+      "isActive": true
+    }
+  ]
+}

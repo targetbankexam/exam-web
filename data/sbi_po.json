@@ -1,0 +1,96 @@
+{
+  "exam": {
+    "id": "sbi_po",
+    "name": "SBI PO",
+    "organization": "sbi",
+    "post": "po"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": [
+            {
+              "id": "di",
+              "name": "Data Interpretation",
+              "timerMinutes": null
+            },
+            {
+              "id": "quadratic",
+              "name": "Quadratic Equations",
+              "timerMinutes": 10
+            },
+            {
+              "id": "number_series",
+              "name": "Missing & Wrong Number Series",
+              "timerMinutes": 12
+            }
+          ]
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": [
+            {
+              "id": "puzzles",
+              "name": "Puzzles & Seating Arrangement",
+              "timerMinutes": 20
+            },
+            {
+              "id": "syllogism",
+              "name": "Syllogism (Only a few)",
+              "timerMinutes": 8
+            }
+          ]
+        },
+        {
+          "id": "english",
+          "name": "English Language",
+          "topics": [
+            {
+              "id": "reading_comprehension",
+              "name": "Reading Comprehension",
+              "timerMinutes": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "ga",
+          "name": "General & Banking Awareness",
+          "topics": [
+            {
+              "id": "banking_awareness",
+              "name": "Banking & Financial Awareness",
+              "timerMinutes": 15
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "sbi_po",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 20
+    },
+    {
+      "examId": "sbi_po",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 25
+    }
+  ],
+  "questions": []
+}

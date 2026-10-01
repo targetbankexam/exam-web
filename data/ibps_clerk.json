@@ -1,0 +1,57 @@
+{
+  "exam": {
+    "id": "ibps_clerk",
+    "name": "IBPS Clerk",
+    "organization": "ibps",
+    "post": "clerk"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        },
+        {
+          "id": "english",
+          "name": "English Language",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "ga",
+          "name": "General & Financial Awareness",
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "ibps_clerk",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 15
+    },
+    {
+      "examId": "ibps_clerk",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 15
+    }
+  ],
+  "questions": []
+}

@@ -1,0 +1,67 @@
+{
+  "exam": {
+    "id": "rrb_clerk",
+    "name": "RRB Clerk",
+    "organization": "rrb",
+    "post": "clerk"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Numerical Ability",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Numerical Ability",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        },
+        {
+          "id": "ga",
+          "name": "General Awareness",
+          "topics": []
+        },
+        {
+          "id": "computer",
+          "name": "Computer Knowledge",
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "rrb_clerk",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 15
+    },
+    {
+      "examId": "rrb_clerk",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 15
+    }
+  ],
+  "questions": []
+}

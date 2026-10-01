@@ -1,0 +1,67 @@
+{
+  "exam": {
+    "id": "rrb_po",
+    "name": "RRB PO",
+    "organization": "rrb",
+    "post": "po"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        },
+        {
+          "id": "ga",
+          "name": "General Awareness",
+          "topics": []
+        },
+        {
+          "id": "computer",
+          "name": "Computer Knowledge",
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "rrb_po",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 22
+    },
+    {
+      "examId": "rrb_po",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 25
+    }
+  ],
+  "questions": []
+}

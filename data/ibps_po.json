@@ -1,0 +1,57 @@
+{
+  "exam": {
+    "id": "ibps_po",
+    "name": "IBPS PO",
+    "organization": "ibps",
+    "post": "po"
+  },
+  "stages": [
+    {
+      "id": "prelims",
+      "name": "Prelims",
+      "sections": [
+        {
+          "id": "quant",
+          "name": "Quantitative Aptitude",
+          "topics": []
+        },
+        {
+          "id": "reasoning",
+          "name": "Reasoning Ability",
+          "topics": []
+        },
+        {
+          "id": "english",
+          "name": "English Language",
+          "topics": []
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "sections": [
+        {
+          "id": "ga",
+          "name": "General & Banking Awareness",
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "dppMeta": [
+    {
+      "examId": "ibps_po",
+      "day": 1,
+      "publishedDate": "2026-09-20",
+      "timerMinutes": 20
+    },
+    {
+      "examId": "ibps_po",
+      "day": 2,
+      "publishedDate": "2026-09-21",
+      "timerMinutes": 22
+    }
+  ],
+  "questions": []
+}
