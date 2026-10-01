@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Target Bank Exam — PC Web CBT Portal</title>
+  <title>Target Bank Exam — PC Web Examination Portal</title>
   
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
 
   <!-- KaTeX CSS & JS for Math Equation Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-  <!-- Top App Header -->
+  <!-- Top App Header (Shown on Auth & Pairing screens) -->
   <header class="app-header" id="appHeader">
     <div class="brand">
       <div class="brand-icon">🏛️</div>
@@ -96,7 +96,7 @@
       <div class="pairing-card">
         <div class="card-icon">📲 ➡️ 🖥️</div>
         <h2 class="card-title">Connect to PC</h2>
-        <p class="card-desc">Enter the 6-digit code shown in your Target Bank Exam mobile app to begin the exam on this screen.</p>
+        <p class="card-desc">Enter the 6-digit code shown in your Target Bank Exam mobile app to begin on this screen.</p>
 
         <!-- Status / Error Banner -->
         <div id="pairingAlert" class="status-alert"></div>
@@ -112,221 +112,433 @@
           <input type="text" maxlength="1" class="code-box" id="digit6" inputmode="numeric" autocomplete="off">
         </div>
 
-        <button id="connectCodeBtn" class="btn-primary" disabled>Start Test on PC</button>
+        <button id="connectCodeBtn" class="btn-primary" disabled>Start on PC</button>
 
-        <div class="instructions-box">
-          <div class="instructions-title">Quick Steps:</div>
-          <ol>
-            <li>Open <strong>Target Bank Exam</strong> on your Android device.</li>
-            <li>Navigate to any DPP Day or Practice Test.</li>
-            <li>Tap <strong>"🖥️ Connect to PC"</strong>.</li>
-            <li>Enter the 6-digit code above and click Start!</li>
+        <div style="margin-top: 20px; font-size: 12px; color: #5f6368; text-align: left; background: #f8f9fa; padding: 12px; border-radius: 8px;">
+          <strong>Quick Steps:</strong>
+          <ol style="margin-top: 6px; padding-left: 18px; line-height: 1.6;">
+            <li>Open Target Bank Exam on your phone.</li>
+            <li>Go to DPP Calendar & tap <strong>"PC"</strong>.</li>
+            <li>Enter the 6-digit code above!</li>
           </ol>
         </div>
       </div>
     </section>
 
-    <!-- SCREEN 3: Authentic TCS iON CBT Exam Screen -->
+    <!-- SCREEN 3: Instructions Page 1 (Matching Photo 1) -->
+    <section id="instructionsScreen1" class="screen instructions-screen">
+      <div class="inst-top-bar" id="instTitle1">SBI Clerk 2026 Prelims Daily Practice Paper</div>
+      <div class="inst-content">
+        <div class="inst-heading">Instructions</div>
+        <div class="inst-point">1. Total duration of examination is <span id="instTotalDuration">60</span> minutes.</div>
+        <div class="inst-point">2. The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</div>
+        <div class="inst-point">3. Examination contains following sections:</div>
+
+        <table class="inst-table">
+          <thead>
+            <tr>
+              <th>SL. No.</th>
+              <th>Name of the Section</th>
+              <th>No. of Question</th>
+              <th>Marks</th>
+              <th>Duration (Min)</th>
+            </tr>
+          </thead>
+          <tbody id="instSectionsTableBody">
+            <tr>
+              <td>1</td>
+              <td>Numerical Ability</td>
+              <td>35</td>
+              <td>35</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Reasoning Ability</td>
+              <td>35</td>
+              <td>35</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>English Language</td>
+              <td>30</td>
+              <td>30</td>
+              <td>20</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="inst-point">4. Examination contains Total <span id="instTotalQuestions">100</span> questions. Each correct answer you will be given <strong>+ve marks (+1.00)</strong> and for each wrong answer you may get <strong>-ve marks (-0.25)</strong>, based on Examination scheme.</div>
+      </div>
+      <div class="inst-bottom-bar">
+        <button class="inst-btn" id="btnInstNext">Next &gt;</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: Instructions Page 2 (Matching Photo 2) -->
+    <section id="instructionsScreen2" class="screen instructions-screen">
+      <div class="inst-top-bar" id="instTitle2">SBI Clerk 2026 Prelims Daily Practice Paper</div>
+      <div class="inst-content">
+        <div class="inst-point">7. The Question Palette displayed on the right side of screen will show the status of each question using one of the following symbols:</div>
+
+        <div class="symbol-guide-grid">
+          <div class="symbol-guide-item">
+            <div class="sym-badge sym-not-visited">1</div>
+            <div>You have not visited the question yet.</div>
+          </div>
+          <div class="symbol-guide-item">
+            <div class="sym-badge sym-marked">1</div>
+            <div>You have NOT answered the question, but have marked the question for review.</div>
+          </div>
+          <div class="symbol-guide-item">
+            <div class="sym-badge sym-not-answered">1</div>
+            <div>You have not answered the question.</div>
+          </div>
+          <div class="symbol-guide-item">
+            <div class="sym-badge sym-marked-answered">1</div>
+            <div>The question(s) "Answered and Marked for Review" will be considered for evaluation.</div>
+          </div>
+          <div class="symbol-guide-item">
+            <div class="sym-badge sym-answered">1</div>
+            <div>You have answered the question.</div>
+          </div>
+        </div>
+
+        <div class="inst-point">8. Procedure for answering a multiple choice type question:</div>
+        <div style="padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #374151;">
+          <p>a. To select your answer, click on the button of one of the options.</p>
+          <p>b. To deselect your chosen answer, click on the button of the chosen option again or click on the <strong>Clear Response</strong> button.</p>
+          <p>c. To change your chosen answer, click on the button of another option.</p>
+          <p>d. To save your answer, you MUST click on the <strong>Save & Next</strong> button.</p>
+          <p>e. To mark the question for review, click on the <strong>Mark for Review & Next</strong> button. <em>If an answer is selected for a question that is Marked for Review, that answer will be considered in the evaluation.</em></p>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <label style="font-weight: 600; font-size: 13.5px;">Choose your default language: </label>
+          <select id="defaultLangSelect" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ced4da; font-size: 13.5px;">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+          </select>
+        </div>
+
+        <div class="declaration-box">
+          <input type="checkbox" id="declarationCheck" style="margin-top: 3px; cursor: pointer;">
+          <label for="declarationCheck" style="cursor: pointer;">
+            I have read and understood the instructions. All computer hardware allotted to me is in proper working condition. I declare that I am not in possession of / not wearing / not carrying any prohibited gadgets. I agree that in case of not adhering to the instructions, I shall be liable to disciplinary action.
+          </label>
+        </div>
+      </div>
+      <div class="inst-bottom-bar">
+        <button class="inst-btn" id="btnInstPrev">&lt; Previous</button>
+        <button class="inst-btn btn-ready" id="btnReadyToBegin">I am ready to begin</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: CBT Examination Screen (Matching Photo 3 & 4) -->
     <section id="cbtScreen" class="screen cbt-screen">
       
-      <!-- Top Bar -->
+      <!-- Top Blue Bar -->
       <div class="cbt-top-bar">
-        <div class="cbt-exam-info">
-          <div class="cbt-exam-name" id="cbtExamTitle">SBI Clerk Prelims 2026</div>
-          <div class="cbt-lang-selector">
-            <span>View in:</span>
-            <select id="cbtLangSelect">
-              <option value="en">English</option>
-              <option value="hi">हिन्दी</option>
-            </select>
-          </div>
+        <div class="cbt-exam-branding">
+          <span>🏛️</span>
+          <span id="cbtExamTitle">SBI Clerk 2026 Prelims Daily Practice Paper</span>
         </div>
 
-        <div class="cbt-timer-container">
-          <div class="cbt-timer-badge" id="cbtTimerBadge">
-            <span>⏱️ Time Left:</span>
-            <span id="cbtTimerDisplay">20:00</span>
+        <div class="cbt-top-right">
+          <div class="cbt-timer-box">
+            <span style="font-size: 12px; font-weight: 600; color: #4b5563;">Time Left:</span>
+            <span id="cbtTimerDisplay">00 : 20 : 00</span>
+          </div>
+          <button class="cbt-top-action-btn" id="btnPauseExam">Pause</button>
+          <button class="cbt-top-action-btn" id="btnFullscreenToggle" title="Toggle Fullscreen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-Header Bar (Section Tabs + Question Meta) -->
+      <div class="cbt-sub-header">
+        <div class="cbt-section-tabs" id="cbtSectionTabs">
+          <!-- Quant first, then Reasoning, then English -->
+        </div>
+
+        <div class="cbt-meta-right">
+          <div class="cbt-qn-time">
+            <span>Qn. Time :</span>
+            <span id="cbtQnTimeDisplay">00:00</span>
+          </div>
+          <div class="cbt-marks">
+            <span>Marks : </span>
+            <span class="pos">+1</span> | <span class="neg">-0.25</span>
           </div>
         </div>
       </div>
 
-      <!-- Sections Bar -->
-      <div class="cbt-sections-bar" id="cbtSectionsBar">
-        <!-- Dynamically populated sections (e.g. Quants, Reasoning, English) -->
-      </div>
-
-      <!-- Main Workspace -->
-      <div class="cbt-workspace">
+      <!-- Main Examination Workspace Split -->
+      <div class="cbt-main-workspace">
         
         <!-- Left: Question & Options View -->
-        <div class="cbt-question-area">
-          <div class="cbt-question-header">
-            <span class="cbt-q-number" id="cbtQuestionNumberLabel">Question No. 1</span>
-            <span class="cbt-marks-badge">Marks: +1.00 &nbsp;|&nbsp; -0.25</span>
+        <div class="cbt-question-panel">
+          <div class="cbt-q-number-bar" id="cbtQuestionNumberLabel">
+            Q: 1 / 35
           </div>
 
-          <div class="cbt-question-body" id="cbtQuestionBody">
-            <div class="question-text" id="cbtQuestionText">Loading question...</div>
-            <div id="cbtQuestionImages"></div>
-            <div class="options-list" id="cbtOptionsList"></div>
+          <div class="cbt-q-content-split">
+            <!-- Left passage / problem context (if present) -->
+            <div class="cbt-passage-column" id="cbtPassageCol" style="display: none;">
+              <div id="cbtPassageText"></div>
+            </div>
+
+            <!-- Right: Question and options -->
+            <div class="cbt-question-column" id="cbtQuestionCol">
+              <div id="cbtQuestionText" style="margin-bottom: 16px;"></div>
+              <div id="cbtQuestionImages"></div>
+              <div class="cbt-options-group" id="cbtOptionsGroup"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Right: TCS iON Palette Sidebar -->
-        <div class="cbt-palette-sidebar">
+        <!-- Right: Candidate Profile & Palette Sidebar -->
+        <div class="cbt-right-sidebar">
           
           <!-- Candidate Box -->
-          <div class="cbt-candidate-info">
-            <div class="candidate-photo" id="cbtCandidatePhoto">👤</div>
-            <div class="candidate-meta">
-              <div class="candidate-name" id="cbtCandidateName">Candidate Name</div>
-              <div class="candidate-id" id="cbtCandidateId">ID: Roll No / User</div>
+          <div class="cbt-profile-box">
+            <div class="candidate-avatar" id="cbtCandidateAvatar">👤</div>
+            <div>
+              <div class="candidate-name-label" id="cbtCandidateName">AdwipKashyap</div>
             </div>
           </div>
 
-          <!-- Legend -->
-          <div class="cbt-legend-box">
-            <div class="legend-item">
-              <div class="legend-badge badge-answered" id="countAnswered">0</div>
+          <!-- Section Time Countdown -->
+          <div class="cbt-sidebar-timer">
+            Time Left: <span id="cbtSidebarTimerDisplay">00 : 20 : 00</span>
+          </div>
+
+          <!-- Palette Legend -->
+          <div class="cbt-palette-legend">
+            <div class="legend-chip">
+              <div class="legend-num leg-answered" id="legCountAnswered">0</div>
               <span>Answered</span>
             </div>
-            <div class="legend-item">
-              <div class="legend-badge badge-not-answered" id="countNotAnswered">0</div>
+            <div class="legend-chip">
+              <div class="legend-num leg-not-answered" id="legCountNotAnswered">0</div>
               <span>Not Answered</span>
             </div>
-            <div class="legend-item">
-              <div class="legend-badge badge-not-visited" id="countNotVisited">0</div>
+            <div class="legend-chip">
+              <div class="legend-num leg-not-visited" id="legCountNotVisited">0</div>
               <span>Not Visited</span>
             </div>
-            <div class="legend-item">
-              <div class="legend-badge badge-marked" id="countMarked">0</div>
+            <div class="legend-chip">
+              <div class="legend-num leg-marked" id="legCountMarked">0</div>
               <span>Marked for Review</span>
             </div>
-            <div class="legend-item" style="grid-column: span 2;">
-              <div class="legend-badge badge-marked-answered" id="countMarkedAnswered">0</div>
-              <span>Ans & Marked for Review</span>
+            <div class="legend-chip" style="grid-column: span 2;">
+              <div class="legend-num leg-marked-answered" id="legCountMarkedAnswered">0</div>
+              <span>Answered &amp; Marked for Review</span>
             </div>
           </div>
 
-          <!-- Palette Question Buttons -->
-          <div class="cbt-palette-grid-container">
-            <div class="palette-title">Question Palette:</div>
-            <div class="cbt-palette-grid" id="cbtPaletteGrid"></div>
-          </div>
+          <!-- Active Section Name -->
+          <div class="palette-section-title" id="paletteSectionTitle">Numerical Ability</div>
+
+          <!-- Palette Buttons Grid -->
+          <div class="cbt-palette-grid" id="cbtPaletteGrid"></div>
         </div>
       </div>
 
-      <!-- Bottom Actions Bar -->
+      <!-- Bottom Action Bar -->
       <footer class="cbt-bottom-bar">
-        <div class="bottom-left-actions">
-          <button class="cbt-btn btn-review" id="btnMarkReview">Mark for Review & Next</button>
-          <button class="cbt-btn btn-secondary" id="btnClearResponse">Clear Response</button>
+        <div class="bottom-left">
+          <button class="cbt-nav-btn btn-nav-soft" id="btnMarkReviewNext">Mark for review &amp; next</button>
+          <button class="cbt-nav-btn btn-nav-soft" id="btnClearResponse">Clear Response</button>
         </div>
-        <div class="bottom-right-actions">
-          <button class="cbt-btn btn-secondary" id="btnPrevious">Previous</button>
-          <button class="cbt-btn btn-save-next" id="btnSaveNext">Save & Next</button>
-          <button class="cbt-btn btn-submit" id="btnSubmitTest">Submit Test</button>
+        <div class="bottom-right">
+          <button class="cbt-nav-btn btn-nav-save" id="btnSaveNext">Save &amp; Next</button>
+          <button class="cbt-nav-btn btn-nav-submit" id="btnSubmitSection">Submit section</button>
         </div>
       </footer>
     </section>
 
-    <!-- SCREEN 4: Scorecard & Solutions Review -->
-    <section id="resultsScreen" class="screen results-screen">
+    <!-- SCREEN 6: Submission Result Screen (Matching Photo 5) -->
+    <section id="resultsScreen" class="screen result-screen-wrapper">
       
-      <!-- Celebration Banner -->
-      <div class="results-banner">
-        <div>
-          <h2>🎉 Test Submitted Successfully!</h2>
-          <p>Your performance has been synchronized with your mobile app and updated on the leaderboard.</p>
+      <!-- Top Title & Cutoff Banner -->
+      <div class="result-top-banner">
+        <div class="result-heading-box">
+          <h2>Range!</h2>
+          <div class="cutoff-text">Your Score: <strong id="resScoreText">0</strong> | Cut-off: <strong id="resCutoffText">62</strong></div>
+          <div class="sub-msg">Practice more to get desired cut-off!</div>
         </div>
-        <div class="sync-status-pill">
-          <span>☁️ Synced to App</span>
+        <div class="trophy-badge">🏆</div>
+      </div>
+
+      <!-- Stat Cards Row 1 (Photo 5) -->
+      <div class="stat-cards-row">
+        <div class="photo-card card-score">
+          <div class="card-top">
+            <div class="card-icon-round">🏅</div>
+            <span>Score</span>
+          </div>
+          <div class="card-value" id="resCardScore">0/100</div>
+        </div>
+
+        <div class="photo-card card-attempted">
+          <div class="card-top">
+            <div class="card-icon-round">🔔</div>
+            <span>Attempted</span>
+          </div>
+          <div class="card-value" id="resCardAttempted">0/100</div>
+        </div>
+
+        <div class="photo-card card-correct">
+          <div class="card-top">
+            <div class="card-icon-round">✓</div>
+            <span>Correct</span>
+          </div>
+          <div class="card-value" id="resCardCorrect">0/100</div>
+        </div>
+
+        <div class="photo-card card-incorrect">
+          <div class="card-top">
+            <div class="card-icon-round">✗</div>
+            <span>InCorrect</span>
+          </div>
+          <div class="card-value" id="resCardIncorrect">0/100</div>
+        </div>
+
+        <div class="photo-card card-skipped">
+          <div class="card-top">
+            <div class="card-icon-round">↗</div>
+            <span>Skipped</span>
+          </div>
+          <div class="card-value" id="resCardSkipped">0/100</div>
+        </div>
+
+        <div class="photo-card card-unseen">
+          <div class="card-top">
+            <div class="card-icon-round">👁</div>
+            <span>Unseen</span>
+          </div>
+          <div class="card-value" id="resCardUnseen">0/100</div>
         </div>
       </div>
 
-      <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card stat-score">
-          <div class="stat-value" id="resScore">0.00</div>
-          <div class="stat-label">Total Score</div>
+      <!-- Stat Cards Row 2 (Photo 5) -->
+      <div class="stat-cards-row-2">
+        <div class="photo-card card-accuracy">
+          <div class="card-top">
+            <div class="card-icon-round">🎯</div>
+            <span>Accuracy</span>
+          </div>
+          <div class="card-value" id="resCardAccuracy">0%</div>
         </div>
-        <div class="stat-card stat-accuracy">
-          <div class="stat-value" id="resAccuracy">0%</div>
-          <div class="stat-label">Accuracy</div>
+
+        <div class="photo-card card-time">
+          <div class="card-top">
+            <div class="card-icon-round">⏱</div>
+            <span>Total Time</span>
+          </div>
+          <div class="card-value" id="resCardTotalTime">0m 00s</div>
         </div>
-        <div class="stat-card stat-time">
-          <div class="stat-value" id="resTime">00:00</div>
-          <div class="stat-label">Time Taken</div>
+
+        <div class="photo-card card-utilized">
+          <div class="card-top">
+            <div class="card-icon-round">⏰</div>
+            <span>Utilized Time</span>
+          </div>
+          <div class="card-value" id="resCardUtilizedTime">0s</div>
         </div>
-        <div class="stat-card stat-correct">
-          <div class="stat-value" id="resCorrect">0</div>
-          <div class="stat-label">Correct</div>
-        </div>
-        <div class="stat-card stat-wrong">
-          <div class="stat-value" id="resIncorrect">0</div>
-          <div class="stat-label">Incorrect</div>
+
+        <div class="photo-card card-wasted">
+          <div class="card-top">
+            <div class="card-icon-round">⏳</div>
+            <span>Wasted Time</span>
+          </div>
+          <div class="card-value" id="resCardWastedTime">0s</div>
         </div>
       </div>
 
-      <!-- Solutions Section -->
-      <div class="solutions-section">
-        <div class="solutions-header">
-          <div class="solutions-title">Detailed Solutions & Explanations</div>
-          <div class="solution-filters">
-            <button class="filter-btn active" data-filter="all" id="filterAll">All (<span id="cntFilterAll">0</span>)</button>
-            <button class="filter-btn" data-filter="correct" id="filterCorrect">Correct (<span id="cntFilterCorrect">0</span>)</button>
-            <button class="filter-btn" data-filter="incorrect" id="filterIncorrect">Incorrect (<span id="cntFilterIncorrect">0</span>)</button>
-            <button class="filter-btn" data-filter="unattempted" id="filterUnattempted">Skipped (<span id="cntFilterUnattempted">0</span>)</button>
+      <!-- ONLY View Solutions Button (NO View Analysis button as requested) -->
+      <div class="result-btn-center">
+        <button class="btn-view-solutions-magenta" id="btnGoToSolutions">View Solutions</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 7: Solutions & Reattempt Mode Screen -->
+    <section id="solutionsScreen" class="screen solutions-view-screen">
+      <div class="sol-top-bar">
+        <div style="font-weight: 700; font-size: 15px;">Solutions &amp; Explanations</div>
+        
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <!-- Reattempt Mode Toggle -->
+          <div class="sol-mode-toggle" id="toggleReattemptMode">
+            <span>🔄 Reattempt Mode</span>
+          </div>
+
+          <button class="cbt-top-action-btn" id="btnBackToResultSummary">Back to Summary</button>
+        </div>
+      </div>
+
+      <div class="sol-main-split">
+        <!-- Left: Question and Detailed Solution -->
+        <div class="sol-content-area">
+          <div class="sol-q-meta">
+            <div>
+              <span style="font-weight: 800; font-size: 15px;" id="solQNumberLabel">Question 1</span>
+              <span style="color: #64748b; font-size: 13px; margin-left: 8px;" id="solSectionLabel">(Numerical Ability)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 12px; font-weight: 600; color: #475569;" id="solQTimeSpent">⏱ Time Taken: 0s</span>
+              <span class="sol-status-tag" id="solStatusTag">Correct</span>
+            </div>
+          </div>
+
+          <div id="solQuestionText" style="font-size: 15px; line-height: 1.6; margin-bottom: 16px;"></div>
+          <div id="solQuestionImages"></div>
+
+          <!-- Options View -->
+          <div id="solOptionsGroup" class="cbt-options-group"></div>
+
+          <!-- Reattempt Action (Only in Reattempt Mode) -->
+          <div id="reattemptActionBox" style="display: none; margin-top: 16px;">
+            <button class="cbt-nav-btn btn-nav-save" id="btnCheckReattemptAnswer">Check Answer</button>
+          </div>
+
+          <!-- Detailed Step-by-Step Explanation Box (Hidden during Reattempt Mode until checked) -->
+          <div class="sol-box-card" id="solExplanationBox">
+            <div class="sol-box-title">💡 Step-by-Step Solution:</div>
+            <div id="solExplanationText"></div>
+            <div id="solExplanationImages"></div>
           </div>
         </div>
 
-        <div class="solutions-list" id="solutionsList">
-          <!-- Dynamically populated solution items -->
-        </div>
-
-        <div style="margin-top: 32px; text-align: center;">
-          <button class="btn-primary" id="btnBackToHome" style="width: auto; padding: 12px 32px;">Back to Home</button>
+        <!-- Right: Solutions Palette with Time Taken Under Each Question -->
+        <div class="sol-right-sidebar">
+          <div style="font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 10px; text-transform: uppercase;">
+            Question Palette:
+          </div>
+          <div class="sol-palette-grid" id="solPaletteGrid">
+            <!-- Populated dynamically with question number + green/red badge + time taken below -->
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Submit Confirmation Modal -->
+  <!-- Submit Section / Examination Confirmation Modal -->
   <div class="modal-overlay" id="submitModal">
     <div class="modal-dialog">
-      <div class="modal-header">Submit Test Confirmation</div>
-      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">
-        Here is the summary of your test attempt:
-      </p>
-      <table class="summary-table">
-        <tr>
-          <th>Status</th>
-          <th>Count</th>
-        </tr>
-        <tr>
-          <td>Answered</td>
-          <td id="modalAnswered" style="font-weight: bold; color: var(--cbt-answered);">0</td>
-        </tr>
-        <tr>
-          <td>Not Answered</td>
-          <td id="modalNotAnswered" style="font-weight: bold; color: var(--cbt-not-answered);">0</td>
-        </tr>
-        <tr>
-          <td>Marked for Review</td>
-          <td id="modalMarked" style="font-weight: bold; color: var(--cbt-marked);">0</td>
-        </tr>
-        <tr>
-          <td>Not Visited</td>
-          <td id="modalNotVisited" style="font-weight: bold; color: var(--cbt-not-visited);">0</td>
-        </tr>
-      </table>
-      <p style="font-size: 13px; color: #d32f2f; font-weight: 500;">
-        Are you sure you want to finalize and submit this test? You will not be able to change your answers after submission.
+      <div class="modal-header" id="submitModalTitle">Submit Section Confirmation</div>
+      <p id="submitModalPrompt" style="font-size: 14px; color: #4b5563; line-height: 1.5; margin-bottom: 14px;">
+        Are you sure you want to submit this section? Once submitted, you cannot revisit these questions and the next section will begin.
       </p>
       <div class="modal-actions">
-        <button class="cbt-btn btn-secondary" id="btnCancelSubmit">Continue Test</button>
-        <button class="cbt-btn btn-submit" id="btnConfirmSubmit">Yes, Submit Now</button>
+        <button class="cbt-nav-btn btn-nav-soft" id="btnCancelSubmitModal">Resume</button>
+        <button class="cbt-nav-btn btn-nav-submit" id="btnConfirmSubmitModal">Yes, Submit</button>
       </div>
     </div>
   </div>
