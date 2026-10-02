@@ -123,9 +123,6 @@ const resCandidateName = document.getElementById('resCandidateName');
 const resTestDate = document.getElementById('resTestDate');
 const resScoreText = document.getElementById('resScoreText');
 const resTotalQText = document.getElementById('resTotalQText');
-const resCutoffText = document.getElementById('resCutoffText');
-const resStatusBadge = document.getElementById('resStatusBadge');
-const resEncouragementMsg = document.getElementById('resEncouragementMsg');
 const resCardScore = document.getElementById('resCardScore');
 const resCardAttempted = document.getElementById('resCardAttempted');
 const resCardCorrect = document.getElementById('resCardCorrect');
@@ -144,7 +141,6 @@ const solBtnBackToOTP = document.getElementById('solBtnBackToOTP');
 
 // Solutions Screen Elements (Matching Photos 1, 2, 3, 4)
 const solExamTitle = document.getElementById('solExamTitle');
-const solBtnAnalytics = document.getElementById('solBtnAnalytics');
 const solBtnResults = document.getElementById('solBtnResults');
 const solCandidateName = document.getElementById('solCandidateName');
 const solSectionTabs = document.getElementById('solSectionTabs');
@@ -153,10 +149,7 @@ const solTimeBadgeText = document.getElementById('solTimeBadgeText');
 const solLangSelect = document.getElementById('solLangSelect');
 
 const solQNumberGlobal = document.getElementById('solQNumberGlobal');
-const solStatCorrect = document.getElementById('solStatCorrect');
-const solStatIncorrect = document.getElementById('solStatIncorrect');
-const solStatSkipped = document.getElementById('solStatSkipped');
-const solStatLevel = document.getElementById('solStatLevel');
+const solSectionBadge = document.getElementById('solSectionBadge');
 const solBtnBookmark = document.getElementById('solBtnBookmark');
 const solBtnReport = document.getElementById('solBtnReport');
 
@@ -370,36 +363,38 @@ btnFullscreenToggle.addEventListener('click', () => {
 auth.onAuthStateChanged((user) => {
   state.currentUser = user;
   if (user) {
-    const name = user.displayName || user.email.split('@')[0];
-    userName.textContent = name;
-    if (user.photoURL) {
+    const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Candidate');
+    if (userName) userName.textContent = name;
+    if (user.photoURL && userAvatar) {
       userAvatar.src = user.photoURL;
       userAvatar.style.display = 'block';
     }
-    userBadge.style.display = 'flex';
-    localStorage.setItem('target_bank_exam_pc_user', user.uid);
-
-    if (authScreen.classList.contains('active')) {
-      showScreen(pairingScreen);
-      digitInputs[0].focus();
-    }
+    if (userBadge) userBadge.style.display = 'flex';
   } else {
-    userBadge.style.display = 'none';
-    localStorage.removeItem('target_bank_exam_pc_user');
-    showScreen(authScreen);
+    if (userBadge) userBadge.style.display = 'none';
+    // Ensure anonymous auth for Firestore permissions without showing any login UI
+    firebase.auth().signInAnonymously().catch(() => {});
   }
+  // The web exam portal is strictly OTP-based: always start on the pairing/PIN screen
+  showScreen(pairingScreen);
+  if (digitInputs[0]) digitInputs[0].focus();
 });
 
-document.getElementById('googleSignInBtn').addEventListener('click', async () => {
-  try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
-  } catch (err) {
-    showAlert(document.getElementById('authAlert'), err.message || 'Google sign in failed');
-  }
-});
+const googleSignInBtn = document.getElementById('googleSignInBtn');
+if (googleSignInBtn) {
+  googleSignInBtn.addEventListener('click', async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+    } catch (err) {
+      showAlert(document.getElementById('authAlert'), err.message || 'Google sign in failed');
+    }
+  });
+}
 
-signOutBtn.addEventListener('click', () => auth.signOut());
+if (signOutBtn) {
+  signOutBtn.addEventListener('click', () => auth.signOut());
+}
 
 // ==========================================
 // 4. 6-Digit Pairing Logic
@@ -1114,36 +1109,10 @@ function renderResultScreen(score, totalQ, attempted, correct, incorrect, skippe
     resTestDate.textContent = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
-  // Score & Cut-off
+  // Score
   const scoreFormatted = Number.isInteger(score) ? score.toString() : score.toFixed(2).replace(/\.00$/, '');
   if (resScoreText) resScoreText.textContent = scoreFormatted;
   if (resTotalQText) resTotalQText.textContent = totalQ;
-
-  // Expected cut-off (proportional to total questions: approx 62% of test total)
-  const proportionalCutoff = Math.round(totalQ * 0.62 * 10) / 10;
-  if (resCutoffText) resCutoffText.textContent = proportionalCutoff.toFixed(2).replace(/\.00$/, '');
-
-  // Status Badge & Encouragement Message
-  const isQualified = score >= proportionalCutoff;
-  if (resStatusBadge) {
-    if (isQualified) {
-      resStatusBadge.innerHTML = '<i class="fa-solid fa-trophy" style="color: #fde68a;"></i> Target Achieved!';
-      resStatusBadge.style.background = 'rgba(34, 197, 94, 0.35)';
-      resStatusBadge.style.borderColor = 'rgba(74, 222, 128, 0.5)';
-    } else {
-      resStatusBadge.innerHTML = '<i class="fa-solid fa-chart-line"></i> Keep Practicing!';
-      resStatusBadge.style.background = 'rgba(255, 255, 255, 0.18)';
-      resStatusBadge.style.borderColor = 'rgba(255, 255, 255, 0.25)';
-    }
-  }
-
-  if (resEncouragementMsg) {
-    if (isQualified) {
-      resEncouragementMsg.textContent = 'Excellent attempt! Your score is above the expected category cut-off!';
-    } else {
-      resEncouragementMsg.textContent = 'Review your step-by-step solutions to strengthen your weak areas!';
-    }
-  }
 
   // 10 Cards
   if (resCardScore) resCardScore.textContent = `${scoreFormatted}/${totalQ}`;
@@ -1324,99 +1293,19 @@ function getSectionStats(secIdx) {
   };
 }
 
-// Pre-populates realistic attempts matching Photos 1 & 4 when no previous submission exists
-function initMockPerformanceIfEmpty() {
-  if (Object.keys(state.selectedAnswers).length > 0) return;
-
-  state.sections.forEach(sec => {
-    const qCount = sec.questions.length;
-    const isEng = (sec.id || '').toLowerCase().includes('eng');
-    const isQuant = (sec.id || '').toLowerCase().includes('quant') || (sec.id || '').toLowerCase().includes('num');
-    const isReas = (sec.id || '').toLowerCase().includes('reason');
-
-    if (qCount === 35 && isQuant) {
-      // Photo 4 standard 35Q Quant: 19 correct, 3 wrong, 13 skipped -> Mark: 18.25/35
-      const correctIndices = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 27]);
-      const incorrectIndices = new Set([18, 19, 20]);
-      sec.questions.forEach((q, idx) => {
-        if (correctIndices.has(idx)) {
-          state.selectedAnswers[q.id] = q.correctIndex;
-          state.questionTimeSpent[q.id] = (idx === 27) ? 74 : (52 + (idx % 6));
-        } else if (incorrectIndices.has(idx)) {
-          state.selectedAnswers[q.id] = (q.correctIndex + 1) % q.options.length;
-          state.questionTimeSpent[q.id] = 40;
-        } else {
-          state.questionTimeSpent[q.id] = 0;
-        }
-      });
-    } else if (qCount === 35 && isReas) {
-      // 35Q Reasoning: 23 correct, 1 wrong, 11 skipped -> Mark: 22.75/35
-      const correctIndices = new Set(Array.from({length: 23}, (_, i) => i));
-      const incorrectIndices = new Set([23]);
-      sec.questions.forEach((q, idx) => {
-        if (correctIndices.has(idx)) {
-          state.selectedAnswers[q.id] = q.correctIndex;
-          state.questionTimeSpent[q.id] = 48 + (idx % 6);
-        } else if (incorrectIndices.has(idx)) {
-          state.selectedAnswers[q.id] = (q.correctIndex + 1) % q.options.length;
-          state.questionTimeSpent[q.id] = 35;
-        } else {
-          state.questionTimeSpent[q.id] = 0;
-        }
-      });
-    } else if (qCount === 30 && isEng) {
-      // Photo 1 standard 30Q English: 12 correct, 13 wrong, 5 skipped -> Mark: 8.75/30
-      const correctIndices = new Set([0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-      const incorrectIndices = new Set([1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
-      sec.questions.forEach((q, idx) => {
-        if (correctIndices.has(idx)) {
-          state.selectedAnswers[q.id] = q.correctIndex;
-          if (idx === 0) state.questionTimeSpent[q.id] = 180;
-          else if (idx === 2) state.questionTimeSpent[q.id] = 23;
-          else if (idx === 3) state.questionTimeSpent[q.id] = 32;
-          else if (idx === 4) state.questionTimeSpent[q.id] = 18;
-          else state.questionTimeSpent[q.id] = 42 + (idx % 8);
-        } else if (incorrectIndices.has(idx)) {
-          state.selectedAnswers[q.id] = (q.correctIndex + 1) % q.options.length;
-          state.questionTimeSpent[q.id] = (idx === 1) ? 5 : (44 + (idx % 6));
-        } else {
-          state.questionTimeSpent[q.id] = 0;
-        }
-      });
-    } else {
-      // Dynamic mock distribution for any DPP day (5 Qs, 10 Qs, 20 Qs, etc.)
-      const numCorrect = Math.max(1, Math.round(qCount * 0.65));
-      const numIncorrect = Math.max(0, Math.min(Math.round(qCount * 0.2), qCount - numCorrect));
-
-      sec.questions.forEach((q, idx) => {
-        if (idx < numCorrect) {
-          state.selectedAnswers[q.id] = q.correctIndex;
-          state.questionTimeSpent[q.id] = 50 + ((idx * 13) % 40);
-        } else if (idx < numCorrect + numIncorrect) {
-          state.selectedAnswers[q.id] = (q.correctIndex + 1) % q.options.length;
-          state.questionTimeSpent[q.id] = 35 + ((idx * 7) % 20);
-        } else {
-          state.questionTimeSpent[q.id] = 0; // Skipped
-        }
-      });
-    }
-  });
-}
-
 function renderSolutionsScreen() {
   if (!state.allQuestions || state.allQuestions.length === 0) {
     console.warn('No questions loaded in state.allQuestions!');
     return;
   }
 
-  initMockPerformanceIfEmpty();
   showScreen(solutionsScreen);
 
   // Set candidate name & title
   if (solCandidateName) {
     const cName = state.currentUser 
       ? (state.currentUser.displayName || state.currentUser.email.split('@')[0]) 
-      : 'AdwipKashyap';
+      : ((state.activeSession && state.activeSession.candidateName) || 'Candidate');
     solCandidateName.textContent = cName;
   }
   if (solExamTitle) {
@@ -1546,26 +1435,13 @@ function renderSolutionQuestion() {
     buildSolutionsPalette();
   }
 
-  // Update Question Info Bar (Q: 1/100, Correct %, Incorrect %, Skipped %, Level)
+  // Update Question Info Bar (Question N of Total, Section Badge)
   if (solQNumberGlobal) {
-    solQNumberGlobal.textContent = `Q: ${globalNum}/${state.allQuestions.length}`;
+    solQNumberGlobal.textContent = `Question ${globalNum} of ${state.allQuestions.length}`;
   }
-
-  // Set realistic question statistics
-  if (solStatCorrect) {
-    const cPct = q.statCorrect || (globalNum === 58 ? '71%' : (globalNum === 1 ? '53%' : `${45 + (globalNum * 7) % 35}%`));
-    solStatCorrect.textContent = cPct;
-  }
-  if (solStatIncorrect) {
-    const iPct = q.statIncorrect || (globalNum === 58 ? '18%' : (globalNum === 1 ? '33%' : `${20 + (globalNum * 5) % 25}%`));
-    solStatIncorrect.textContent = iPct;
-  }
-  if (solStatSkipped) {
-    const sPct = q.statSkipped || (globalNum === 58 ? '11%' : (globalNum === 1 ? '14%' : `${10 + (globalNum * 3) % 15}%`));
-    solStatSkipped.textContent = sPct;
-  }
-  if (solStatLevel) {
-    solStatLevel.textContent = q.difficulty === 'easy' ? '1' : (q.difficulty === 'hard' ? '3' : '2');
+  if (solSectionBadge) {
+    const curSec = state.sections[solActiveSectionIdx];
+    solSectionBadge.textContent = curSec ? curSec.name : (q.sectionId || 'General');
   }
 
   const isHi = (solLangSelect && solLangSelect.value === 'hi') || state.defaultLanguage === 'hi';
@@ -1852,22 +1728,14 @@ if (solBtnResults) {
     if (state.examResult) {
       showScreen(resultsScreen);
     } else {
-      // Show results screen with mock performance
-      renderResultScreen(49, 100, 71, 54, 17, 29, 0, 76, 3600, 2700, 900);
+      calculateResults();
     }
   });
 }
 
-if (solBtnAnalytics) {
-  solBtnAnalytics.addEventListener('click', () => {
-    alert('Analytics Summary: 76% Accuracy across 100 questions. Strong performance in Reasoning Ability (22.75/35) and Numerical Ability (18.25/35).');
-  });
-}
-
-// Quick Demo Functions for offline preview and immediate testing
+// Helpers for Direct / Query Param Testing (e.g. ?day=8&solutions=1 or ?code=123456)
 function startExamWithData(sessionMeta = {}, examId = 'sbi_clerk') {
-  const selectEl = document.getElementById('demoDppDaySelect');
-  const dDay = sessionMeta.dppDay || (state.activeSession ? state.activeSession.dppDay : (selectEl ? parseInt(selectEl.value, 10) : 8));
+  const dDay = sessionMeta.dppDay || (state.activeSession ? state.activeSession.dppDay : 8);
   const autoTitle = (dDay && dDay > 1) 
     ? `SBI Clerk Prelims DPP Day ${dDay}` 
     : (dDay === 1 ? 'SBI Clerk Prelims DPP Day 1' : 'SBI Clerk 2026 Prelims Daily Practice Paper');
@@ -1878,7 +1746,7 @@ function startExamWithData(sessionMeta = {}, examId = 'sbi_clerk') {
     dppDay: dDay,
     title: sessionMeta.title || autoTitle,
     timerMinutes: sessionMeta.timerMinutes || (state.sections.length === 1 ? 20 : 40),
-    candidateName: (state.currentUser && (state.currentUser.displayName || state.currentUser.email.split('@')[0])) || 'AdwipKashyap'
+    candidateName: (state.currentUser && (state.currentUser.displayName || state.currentUser.email.split('@')[0])) || 'Candidate'
   };
 
   const titleClean = state.activeSession.title;
@@ -1909,26 +1777,14 @@ function startExamWithData(sessionMeta = {}, examId = 'sbi_clerk') {
   showScreen(instructionsScreen1);
 }
 
-async function loadDemoExamData(targetDay = null) {
+async function loadDemoExamData(targetDay = 8) {
   try {
     const res = await fetch(`data/sbi_clerk.json?_v=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load sbi_clerk.json');
     const examData = await res.json();
     const allQ = examData.questions || [];
 
-    // Determine target day from parameter, UI dropdown, or URL query parameters
     let chosenDay = targetDay;
-    if (chosenDay === null || chosenDay === undefined || isNaN(chosenDay)) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const dayParam = urlParams.get('day') || urlParams.get('dppDay') || urlParams.get('dpp');
-      if (dayParam) {
-        chosenDay = parseInt(dayParam, 10);
-      } else {
-        const selectEl = document.getElementById('demoDppDaySelect');
-        chosenDay = selectEl ? parseInt(selectEl.value, 10) : 8;
-      }
-    }
-
     if (isNaN(chosenDay) || chosenDay < 1) chosenDay = 8;
 
     // Filter questions for chosen DPP Day
@@ -1946,7 +1802,7 @@ async function loadDemoExamData(targetDay = null) {
       dppDay: chosenDay,
       title: (chosenDay === 1) ? 'SBI Clerk Prelims DPP Day 1' : `SBI Clerk Prelims DPP Day ${chosenDay}`,
       timerMinutes: (chosenDay === 1 ? 40 : 20),
-      candidateName: (state.currentUser && (state.currentUser.displayName || state.currentUser.email.split('@')[0])) || 'AdwipKashyap'
+      candidateName: (state.currentUser && (state.currentUser.displayName || state.currentUser.email.split('@')[0])) || 'Candidate'
     };
 
     const englishQuestions = questions.filter(q => (q.sectionId || '').toLowerCase().includes('eng'));
@@ -1983,78 +1839,27 @@ async function loadDemoExamData(targetDay = null) {
 
     return true;
   } catch (err) {
-    console.error('Error loading demo exam data:', err);
+    console.error('Error loading exam data:', err);
     return false;
   }
 }
 
-// Wire DPP Day Selector Dropdown & Badge
-const demoDppDaySelect = document.getElementById('demoDppDaySelect');
-const demoDppCountBadge = document.getElementById('demoDppCountBadge');
-const dppCountsMap = {
-  '1': 'Day 1 (70 Qs)',
-  '2': 'Day 2 (20 Qs)',
-  '3': 'Day 3 (10 Qs)',
-  '4': 'Day 4 (5 Qs)',
-  '5': 'Day 5 (10 Qs)',
-  '6': 'Day 6 (10 Qs)',
-  '7': 'Day 7 (5 Qs)',
-  '8': 'Day 8 (5 Qs)'
-};
-
-if (demoDppDaySelect && demoDppCountBadge) {
-  demoDppDaySelect.addEventListener('change', () => {
-    const val = demoDppDaySelect.value;
-    demoDppCountBadge.textContent = dppCountsMap[val] || `Day ${val}`;
-  });
-}
-
-if (btnQuickDemoSolutions) {
-  btnQuickDemoSolutions.addEventListener('click', async () => {
-    btnQuickDemoSolutions.disabled = true;
-    btnQuickDemoSolutions.textContent = 'Loading Solutions...';
-    const targetDay = demoDppDaySelect ? parseInt(demoDppDaySelect.value, 10) : 8;
-    const ok = await loadDemoExamData(targetDay);
-    btnQuickDemoSolutions.disabled = false;
-    btnQuickDemoSolutions.innerHTML = '<i class="fa-solid fa-square-poll-vertical"></i> View Solutions (Interactive Demo)';
-    if (ok) {
-      state.solCurrentQIdx = 0;
-      renderSolutionsScreen();
-    }
-  });
-}
-
-if (btnQuickDemoCBT) {
-  btnQuickDemoCBT.addEventListener('click', async () => {
-    btnQuickDemoCBT.disabled = true;
-    btnQuickDemoCBT.textContent = 'Loading CBT Exam...';
-    const targetDay = demoDppDaySelect ? parseInt(demoDppDaySelect.value, 10) : 8;
-    const ok = await loadDemoExamData(targetDay);
-    btnQuickDemoCBT.disabled = false;
-    btnQuickDemoCBT.innerHTML = '<i class="fa-solid fa-desktop"></i> Start CBT Exam (Interactive Demo)';
-    if (ok) {
-      startExamWithData({ 
-        title: (targetDay === 1) ? 'SBI Clerk Prelims DPP Day 1' : `SBI Clerk Prelims DPP Day ${targetDay}`, 
-        dppDay: targetDay,
-        timerMinutes: (targetDay === 1 ? 40 : 20) 
-      }, 'sbi_clerk');
-    }
-  });
-}
-
-// Auto-launch demo if ?solutions=1 or ?cbt=1 or ?day= in URL
+// Auto-fill OTP from URL query parameter (e.g. ?code=123456 or ?otp=123456) or debug views
 window.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const dayParam = urlParams.get('day') || urlParams.get('dppDay') || urlParams.get('dpp');
+  const codeParam = urlParams.get('code') || urlParams.get('otp') || urlParams.get('pin');
   
-  if (dayParam && demoDppDaySelect) {
-    demoDppDaySelect.value = dayParam;
-    if (demoDppCountBadge && dppCountsMap[dayParam]) {
-      demoDppCountBadge.textContent = dppCountsMap[dayParam];
+  if (codeParam && codeParam.length === 6) {
+    codeParam.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
+    checkCodeComplete();
+    if (connectCodeBtn && !connectCodeBtn.disabled) {
+      connectCodeBtn.click();
+      return;
     }
   }
 
-  const targetDay = dayParam ? parseInt(dayParam, 10) : (demoDppDaySelect ? parseInt(demoDppDaySelect.value, 10) : 8);
+  const dayParam = urlParams.get('day') || urlParams.get('dppDay') || urlParams.get('dpp');
+  const targetDay = dayParam ? parseInt(dayParam, 10) : 8;
 
   if (urlParams.get('solutions') === '1' || urlParams.get('demo') === '1') {
     const qNum = parseInt(urlParams.get('q') || '1', 10);

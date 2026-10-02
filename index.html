@@ -45,17 +45,13 @@
   <!-- Main Container -->
   <main class="screen-container">
 
-    <!-- SCREEN 1: Authentication -->
-    <section id="authScreen" class="screen center-card-screen active">
+    <!-- SCREEN 1: Authentication (Hidden - OTP based login is active) -->
+    <section id="authScreen" class="screen center-card-screen" style="display: none;">
       <div class="auth-card">
         <div class="card-icon">💻</div>
         <h2 class="card-title">Sign In to Continue</h2>
         <p class="card-desc">Sign in with the same Google or Email account you use on the mobile app to sync your exam results.</p>
-
-        <!-- Status / Error Banner -->
         <div id="authAlert" class="status-alert"></div>
-
-        <!-- Google One-Click Sign In -->
         <button id="googleSignInBtn" class="btn-google" type="button">
           <svg viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -65,12 +61,7 @@
           </svg>
           Continue with Google
         </button>
-
-        <div class="divider">
-          <span>OR WITH EMAIL</span>
-        </div>
-
-        <!-- Email & Password Form -->
+        <div class="divider"><span>OR WITH EMAIL</span></div>
         <form id="emailAuthForm">
           <div class="form-group" id="nameGroup" style="display: none;">
             <label class="form-label" for="authName">Full Name</label>
@@ -86,7 +77,6 @@
           </div>
           <button type="submit" id="submitAuthBtn" class="btn-primary">Sign In</button>
         </form>
-
         <p class="auth-toggle">
           <span id="authTogglePrompt">Don't have an account?</span>
           <a id="toggleAuthMode">Sign Up</a>
@@ -94,12 +84,12 @@
       </div>
     </section>
 
-    <!-- SCREEN 2: 6-Digit Pairing Code Screen -->
-    <section id="pairingScreen" class="screen center-card-screen">
+    <!-- SCREEN 2: 6-Digit OTP Pairing Code Screen (Default Landing Screen) -->
+    <section id="pairingScreen" class="screen center-card-screen active">
       <div class="pairing-card">
         <div class="card-icon">📲 ➡️ 🖥️</div>
         <h2 class="card-title">Connect to PC</h2>
-        <p class="card-desc">Enter the 6-digit code shown in your Target Bank Exam mobile app to begin on this screen.</p>
+        <p class="card-desc">Enter the unique 6-digit OTP shown in your Target Bank Exam mobile app to open your test.</p>
 
         <!-- Status / Error Banner -->
         <div id="pairingAlert" class="status-alert"></div>
@@ -117,41 +107,13 @@
 
         <button id="connectCodeBtn" class="btn-primary" disabled>Start on PC</button>
 
-        <!-- DPP Day Selector Card -->
-        <div class="dpp-day-selector-card" style="margin-top: 14px; padding: 12px 14px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <label for="demoDppDaySelect" style="font-size: 13px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-calendar-days" style="color: #4f46e5;"></i> Select DPP Day:
-            </label>
-            <span id="demoDppCountBadge" style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e0e7ff; color: #4338ca;">Day 8 (5 Qs)</span>
-          </div>
-          <select id="demoDppDaySelect" class="form-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 13px; font-weight: 600; color: #1e293b; background: #fff; cursor: pointer; outline: none;">
-            <option value="8" selected>DPP Day 8 — Numerical Ability (Data Interpretation / 5 Qs)</option>
-            <option value="7">DPP Day 7 — Numerical Ability (5 Qs)</option>
-            <option value="6">DPP Day 6 — Numerical Ability (10 Qs)</option>
-            <option value="5">DPP Day 5 — Numerical Ability (10 Qs)</option>
-            <option value="4">DPP Day 4 — Numerical Ability (5 Qs)</option>
-            <option value="3">DPP Day 3 — Numerical Ability (10 Qs)</option>
-            <option value="2">DPP Day 2 — Numerical Ability (20 Qs)</option>
-            <option value="1">DPP Day 1 — Prelims Full DPP (70 Qs: 35 Quant, 35 Reasoning)</option>
-          </select>
-        </div>
-
-        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-          <button id="btnQuickDemoSolutions" type="button" class="btn-preview-outline">
-            <i class="fa-solid fa-square-poll-vertical"></i> View Solutions (Interactive Demo)
-          </button>
-          <button id="btnQuickDemoCBT" type="button" class="btn-preview-outline" style="color: #0d9488; border-color: #99f6e4; background: #f0fdfa;">
-            <i class="fa-solid fa-desktop"></i> Start CBT Exam (Interactive Demo)
-          </button>
-        </div>
-
-        <div style="margin-top: 20px; font-size: 12px; color: #5f6368; text-align: left; background: #f8f9fa; padding: 12px; border-radius: 8px;">
-          <strong>Quick Steps:</strong>
-          <ol style="margin-top: 6px; padding-left: 18px; line-height: 1.6;">
-            <li>Open Target Bank Exam on your phone.</li>
-            <li>Go to DPP Calendar & tap <strong>"PC"</strong>.</li>
-            <li>Enter the 6-digit code above!</li>
+        <div style="margin-top: 22px; font-size: 13px; color: #5f6368; text-align: left; background: #f8f9fa; padding: 14px 16px; border-radius: 8px; border: 1px solid #e9ecef;">
+          <strong style="color: #1e293b;">How to get your OTP:</strong>
+          <ol style="margin-top: 8px; padding-left: 18px; line-height: 1.8;">
+            <li>Open <strong>Target Bank Exam</strong> on your phone.</li>
+            <li>Select any <strong>DPP Day</strong> or <strong>Test</strong>.</li>
+            <li>Tap the <strong>"PC"</strong> button to view your unique 6-digit OTP.</li>
+            <li>Enter the OTP above to open your test on PC!</li>
           </ol>
         </div>
       </div>
@@ -427,35 +389,14 @@
           </div>
         </div>
 
-        <!-- Hero Score & Cut-Off Banner -->
-        <div class="result-hero-banner">
-          <div class="hero-left">
-            <div class="hero-score-badge">
-              <span class="hero-score-label">YOUR TOTAL SCORE</span>
-              <div class="hero-score-val">
-                <span id="resScoreText">0</span>
-                <span class="hero-score-max">/ <span id="resTotalQText">35</span></span>
-              </div>
+        <!-- Hero Score Banner (Direct Score Display - No Cutoff Clutter) -->
+        <div class="result-hero-banner" style="display: flex; justify-content: center; align-items: center; padding: 22px 28px;">
+          <div class="hero-score-badge" style="text-align: center;">
+            <span class="hero-score-label" style="letter-spacing: 1px; font-weight: 700; font-size: 13px;">YOUR TOTAL SCORE</span>
+            <div class="hero-score-val" style="justify-content: center; margin-top: 6px;">
+              <span id="resScoreText" style="font-size: 44px; font-weight: 800;">0</span>
+              <span class="hero-score-max" style="font-size: 24px; opacity: 0.85;">/ <span id="resTotalQText">5</span></span>
             </div>
-          </div>
-
-          <div class="hero-divider"></div>
-
-          <div class="hero-center">
-            <div class="hero-cutoff-box">
-              <div class="hero-meta-label">EXPECTED CUT-OFF</div>
-              <div class="hero-cutoff-val" id="resCutoffText">62.00</div>
-              <div class="hero-cutoff-sub">Category: General / UR</div>
-            </div>
-          </div>
-
-          <div class="hero-divider"></div>
-
-          <div class="hero-right">
-            <div class="hero-status-pill" id="resStatusBadge">
-              <i class="fa-solid fa-chart-line"></i> Keep Practicing!
-            </div>
-            <div class="hero-msg" id="resEncouragementMsg">Review your step-by-step solutions to strengthen your weak areas!</div>
           </div>
         </div>
 
@@ -580,26 +521,19 @@
           <button class="sol-top-btn" id="solBtnBackToOTP" title="Back to OTP / Connect Screen">
             <i class="fa-solid fa-arrow-left"></i> Enter PIN
           </button>
-          <button class="sol-top-btn" id="solBtnAnalytics" title="Performance Analytics">
-            <i class="fa-solid fa-chart-simple"></i> Analytics
-          </button>
           <button class="sol-top-btn" id="solBtnResults" title="View Result Summary">
             <i class="fa-solid fa-trophy"></i> Results
           </button>
           <div class="sol-user-pill">
             <i class="fa-regular fa-circle-user"></i>
-            <span id="solCandidateName">AdwipKashyap</span>
+            <span id="solCandidateName">Candidate</span>
           </div>
         </div>
       </div>
 
       <!-- Sub-Header Bar (Section Tabs + Re-Attempt Switch + Section Time) -->
       <div class="sol-sub-header">
-        <div class="sol-section-tabs" id="solSectionTabs">
-          <button class="sol-sec-tab active" data-sec-idx="0">English Language</button>
-          <button class="sol-sec-tab" data-sec-idx="1">Numerical Ability</button>
-          <button class="sol-sec-tab" data-sec-idx="2">Reasoning Ability</button>
-        </div>
+        <div class="sol-section-tabs" id="solSectionTabs"></div>
 
         <div class="sol-sub-right">
           <!-- Re-Attempt Mode Switch -->
@@ -631,23 +565,11 @@
         <!-- Left: Question Workspace -->
         <div class="sol-workspace" id="solWorkspace">
           
-          <!-- Question Meta Bar (Q: 1/100, Correct %, Incorrect %, Skipped %, Level, Bookmark, Report) -->
+          <!-- Question Meta Bar -->
           <div class="sol-q-meta-bar">
             <div class="sol-q-meta-left">
-              <span class="sol-q-global-label" id="solQNumberGlobal">Q: 1/100</span>
-              
-              <span class="sol-stat-pill pill-correct">
-                <i class="fa-solid fa-check"></i> Correct <strong id="solStatCorrect">53%</strong>
-              </span>
-              <span class="sol-stat-pill pill-incorrect">
-                <i class="fa-solid fa-xmark"></i> Incorrect <strong id="solStatIncorrect">33%</strong>
-              </span>
-              <span class="sol-stat-pill pill-skipped">
-                <i class="fa-solid fa-arrow-turn-up"></i> Skipped <strong id="solStatSkipped">14%</strong>
-              </span>
-              <span class="sol-stat-pill pill-level">
-                Level <strong id="solStatLevel">2</strong>
-              </span>
+              <span class="sol-q-global-label" id="solQNumberGlobal">Question 1</span>
+              <span class="sol-stat-pill" id="solSectionBadge" style="background: #eef2ff; color: #4338ca; border-color: #c7d2fe; font-weight: 600;">Numerical Ability</span>
             </div>
 
             <div class="sol-q-meta-right">
