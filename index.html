@@ -13,6 +13,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- Firebase Web SDK (v10 compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
@@ -114,6 +117,35 @@
 
         <button id="connectCodeBtn" class="btn-primary" disabled>Start on PC</button>
 
+        <!-- DPP Day Selector Card -->
+        <div class="dpp-day-selector-card" style="margin-top: 14px; padding: 12px 14px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <label for="demoDppDaySelect" style="font-size: 13px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-calendar-days" style="color: #4f46e5;"></i> Select DPP Day:
+            </label>
+            <span id="demoDppCountBadge" style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e0e7ff; color: #4338ca;">Day 8 (5 Qs)</span>
+          </div>
+          <select id="demoDppDaySelect" class="form-select" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 13px; font-weight: 600; color: #1e293b; background: #fff; cursor: pointer; outline: none;">
+            <option value="8" selected>DPP Day 8 — Numerical Ability (Data Interpretation / 5 Qs)</option>
+            <option value="7">DPP Day 7 — Numerical Ability (5 Qs)</option>
+            <option value="6">DPP Day 6 — Numerical Ability (10 Qs)</option>
+            <option value="5">DPP Day 5 — Numerical Ability (10 Qs)</option>
+            <option value="4">DPP Day 4 — Numerical Ability (5 Qs)</option>
+            <option value="3">DPP Day 3 — Numerical Ability (10 Qs)</option>
+            <option value="2">DPP Day 2 — Numerical Ability (20 Qs)</option>
+            <option value="1">DPP Day 1 — Prelims Full DPP (70 Qs: 35 Quant, 35 Reasoning)</option>
+          </select>
+        </div>
+
+        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+          <button id="btnQuickDemoSolutions" type="button" class="btn-preview-outline">
+            <i class="fa-solid fa-square-poll-vertical"></i> View Solutions (Interactive Demo)
+          </button>
+          <button id="btnQuickDemoCBT" type="button" class="btn-preview-outline" style="color: #0d9488; border-color: #99f6e4; background: #f0fdfa;">
+            <i class="fa-solid fa-desktop"></i> Start CBT Exam (Interactive Demo)
+          </button>
+        </div>
+
         <div style="margin-top: 20px; font-size: 12px; color: #5f6368; text-align: left; background: #f8f9fa; padding: 12px; border-radius: 8px;">
           <strong>Quick Steps:</strong>
           <ol style="margin-top: 6px; padding-left: 18px; line-height: 1.6;">
@@ -171,7 +203,8 @@
 
         <div class="inst-point">4. Examination contains Total <span id="instTotalQuestions">100</span> questions. Each correct answer you will be given <strong>+ve marks (+1.00)</strong> and for each wrong answer you may get <strong>-ve marks (-0.25)</strong>, based on Examination scheme.</div>
       </div>
-      <div class="inst-bottom-bar">
+      <div class="inst-bottom-bar" style="justify-content: space-between;">
+        <button class="inst-btn" id="btnInstBackToOTP" style="background: #ffffff; color: #475569; border: 1px solid #cbd5e1;"><i class="fa-solid fa-arrow-left"></i> Connect Screen</button>
         <button class="inst-btn" id="btnInstNext">Next &gt;</button>
       </div>
     </section>
@@ -362,169 +395,415 @@
       </footer>
     </section>
 
-    <!-- SCREEN 6: Submission Result Screen (Matching Photo 5) -->
+    <!-- SCREEN 6: Submission Result Screen (Redesigned Modern Scorecard) -->
     <section id="resultsScreen" class="screen result-screen-wrapper">
       
-      <!-- Top Title & Cutoff Banner -->
-      <div class="result-top-banner">
-        <div class="result-heading-box">
-          <h2>Range!</h2>
-          <div class="cutoff-text">Your Score: <strong id="resScoreText">0</strong> | Cut-off: <strong id="resCutoffText">62</strong></div>
-          <div class="sub-msg">Practice more to get desired cut-off!</div>
-        </div>
-        <div class="trophy-badge">🏆</div>
-      </div>
-
-      <!-- Stat Cards Row 1 (Photo 5) -->
-      <div class="stat-cards-row">
-        <div class="photo-card card-score">
-          <div class="card-top">
-            <div class="card-icon-round">🏅</div>
-            <span>Score</span>
-          </div>
-          <div class="card-value" id="resCardScore">0/100</div>
-        </div>
-
-        <div class="photo-card card-attempted">
-          <div class="card-top">
-            <div class="card-icon-round">🔔</div>
-            <span>Attempted</span>
-          </div>
-          <div class="card-value" id="resCardAttempted">0/100</div>
-        </div>
-
-        <div class="photo-card card-correct">
-          <div class="card-top">
-            <div class="card-icon-round">✓</div>
-            <span>Correct</span>
-          </div>
-          <div class="card-value" id="resCardCorrect">0/100</div>
-        </div>
-
-        <div class="photo-card card-incorrect">
-          <div class="card-top">
-            <div class="card-icon-round">✗</div>
-            <span>InCorrect</span>
-          </div>
-          <div class="card-value" id="resCardIncorrect">0/100</div>
-        </div>
-
-        <div class="photo-card card-skipped">
-          <div class="card-top">
-            <div class="card-icon-round">↗</div>
-            <span>Skipped</span>
-          </div>
-          <div class="card-value" id="resCardSkipped">0/100</div>
-        </div>
-
-        <div class="photo-card card-unseen">
-          <div class="card-top">
-            <div class="card-icon-round">👁</div>
-            <span>Unseen</span>
-          </div>
-          <div class="card-value" id="resCardUnseen">0/100</div>
+      <!-- Top Navigation & Return Bar -->
+      <div class="result-nav-header">
+        <button class="btn-result-back" id="btnResultBackToHome" title="Return to OTP Pairing Screen">
+          <i class="fa-solid fa-arrow-left"></i> Enter New PIN / Connect
+        </button>
+        <div class="result-brand-pill">
+          <span>🏛️</span> Target Bank Exam
         </div>
       </div>
 
-      <!-- Stat Cards Row 2 (Photo 5) -->
-      <div class="stat-cards-row-2">
-        <div class="photo-card card-accuracy">
-          <div class="card-top">
-            <div class="card-icon-round">🎯</div>
-            <span>Accuracy</span>
+      <!-- Main Scorecard Container Card -->
+      <div class="result-card-container">
+        
+        <!-- Header Info -->
+        <div class="result-exam-header">
+          <div class="result-exam-info">
+            <span class="result-badge-exam">CBT PERFORMANCE REPORT</span>
+            <h2 id="resExamTitleDisplay" class="result-exam-title">SBI Clerk 2026 Prelims Daily Practice Paper</h2>
+            <div class="result-student-meta">
+              <span><i class="fa-regular fa-user"></i> Candidate: <strong id="resCandidateName">AdwipKashyap</strong></span>
+              <span>•</span>
+              <span><i class="fa-regular fa-calendar-check"></i> Date: <strong id="resTestDate">Today</strong></span>
+            </div>
           </div>
-          <div class="card-value" id="resCardAccuracy">0%</div>
+          <div class="result-trophy-box">
+            <div class="result-trophy-circle">🏆</div>
+          </div>
         </div>
 
-        <div class="photo-card card-time">
-          <div class="card-top">
-            <div class="card-icon-round">⏱</div>
-            <span>Total Time</span>
+        <!-- Hero Score & Cut-Off Banner -->
+        <div class="result-hero-banner">
+          <div class="hero-left">
+            <div class="hero-score-badge">
+              <span class="hero-score-label">YOUR TOTAL SCORE</span>
+              <div class="hero-score-val">
+                <span id="resScoreText">0</span>
+                <span class="hero-score-max">/ <span id="resTotalQText">35</span></span>
+              </div>
+            </div>
           </div>
-          <div class="card-value" id="resCardTotalTime">0m 00s</div>
+
+          <div class="hero-divider"></div>
+
+          <div class="hero-center">
+            <div class="hero-cutoff-box">
+              <div class="hero-meta-label">EXPECTED CUT-OFF</div>
+              <div class="hero-cutoff-val" id="resCutoffText">62.00</div>
+              <div class="hero-cutoff-sub">Category: General / UR</div>
+            </div>
+          </div>
+
+          <div class="hero-divider"></div>
+
+          <div class="hero-right">
+            <div class="hero-status-pill" id="resStatusBadge">
+              <i class="fa-solid fa-chart-line"></i> Keep Practicing!
+            </div>
+            <div class="hero-msg" id="resEncouragementMsg">Review your step-by-step solutions to strengthen your weak areas!</div>
+          </div>
         </div>
 
-        <div class="photo-card card-utilized">
-          <div class="card-top">
-            <div class="card-icon-round">⏰</div>
-            <span>Utilized Time</span>
-          </div>
-          <div class="card-value" id="resCardUtilizedTime">0s</div>
+        <!-- Section: Performance Summary Grid -->
+        <div class="result-section-label">
+          <i class="fa-solid fa-gauge-high"></i> Performance Summary
         </div>
 
-        <div class="photo-card card-wasted">
-          <div class="card-top">
-            <div class="card-icon-round">⏳</div>
-            <span>Wasted Time</span>
+        <div class="stat-cards-row">
+          <div class="photo-card card-score">
+            <div class="card-top">
+              <div class="card-icon-round">🏅</div>
+              <span>Score</span>
+            </div>
+            <div class="card-value" id="resCardScore">0/35</div>
           </div>
-          <div class="card-value" id="resCardWastedTime">0s</div>
-        </div>
-      </div>
 
-      <!-- ONLY View Solutions Button (NO View Analysis button as requested) -->
-      <div class="result-btn-center">
-        <button class="btn-view-solutions-magenta" id="btnGoToSolutions">View Solutions</button>
+          <div class="photo-card card-attempted">
+            <div class="card-top">
+              <div class="card-icon-round">🔔</div>
+              <span>Attempted</span>
+            </div>
+            <div class="card-value" id="resCardAttempted">0/35</div>
+          </div>
+
+          <div class="photo-card card-correct">
+            <div class="card-top">
+              <div class="card-icon-round">✓</div>
+              <span>Correct</span>
+            </div>
+            <div class="card-value" id="resCardCorrect">0/35</div>
+          </div>
+
+          <div class="photo-card card-incorrect">
+            <div class="card-top">
+              <div class="card-icon-round">✗</div>
+              <span>InCorrect</span>
+            </div>
+            <div class="card-value" id="resCardIncorrect">0/35</div>
+          </div>
+
+          <div class="photo-card card-skipped">
+            <div class="card-top">
+              <div class="card-icon-round">↗</div>
+              <span>Skipped</span>
+            </div>
+            <div class="card-value" id="resCardSkipped">0/35</div>
+          </div>
+
+          <div class="photo-card card-unseen">
+            <div class="card-top">
+              <div class="card-icon-round">👁</div>
+              <span>Unseen</span>
+            </div>
+            <div class="card-value" id="resCardUnseen">0/35</div>
+          </div>
+        </div>
+
+        <!-- Section: Time & Accuracy Grid -->
+        <div class="result-section-label" style="margin-top: 18px;">
+          <i class="fa-regular fa-clock"></i> Time &amp; Accuracy Analysis
+        </div>
+
+        <div class="stat-cards-row-2">
+          <div class="photo-card card-accuracy">
+            <div class="card-top">
+              <div class="card-icon-round">🎯</div>
+              <span>Accuracy</span>
+            </div>
+            <div class="card-value" id="resCardAccuracy">0%</div>
+          </div>
+
+          <div class="photo-card card-time">
+            <div class="card-top">
+              <div class="card-icon-round">⏱</div>
+              <span>Total Time</span>
+            </div>
+            <div class="card-value" id="resCardTotalTime">0m 00s</div>
+          </div>
+
+          <div class="photo-card card-utilized">
+            <div class="card-top">
+              <div class="card-icon-round">⏰</div>
+              <span>Utilized Time</span>
+            </div>
+            <div class="card-value" id="resCardUtilizedTime">0s</div>
+          </div>
+
+          <div class="photo-card card-wasted">
+            <div class="card-top">
+              <div class="card-icon-round">⏳</div>
+              <span>Wasted Time</span>
+            </div>
+            <div class="card-value" id="resCardWastedTime">0s</div>
+          </div>
+        </div>
+
+        <!-- Action Footer -->
+        <div class="result-action-footer">
+          <button class="btn-result-secondary" id="btnResultEnterNewCode">
+            <i class="fa-solid fa-rotate-left"></i> Enter New 6-Digit PIN
+          </button>
+          <button class="btn-view-solutions-primary" id="btnGoToSolutions">
+            <i class="fa-solid fa-book-open"></i> View Solutions &amp; Explanations
+          </button>
+        </div>
+
       </div>
     </section>
 
-    <!-- SCREEN 7: Solutions & Reattempt Mode Screen -->
+    <!-- SCREEN 7: Solutions & Reattempt Mode Screen (Matching Photos 1, 2, 3, 4) -->
     <section id="solutionsScreen" class="screen solutions-view-screen">
+      
+      <!-- Top Navy Blue Bar (Photos 1-4) -->
       <div class="sol-top-bar">
-        <div style="font-weight: 700; font-size: 15px;">Solutions &amp; Explanations</div>
+        <div class="sol-top-left">
+          <span class="sol-brand-badge">SOLUTIONS :</span>
+          <span id="solExamTitle" class="sol-exam-title">SBI Clerk 2025 Prelims Expected Paper Test-1</span>
+        </div>
         
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <!-- Reattempt Mode Toggle -->
-          <div class="sol-mode-toggle" id="toggleReattemptMode">
-            <span>🔄 Reattempt Mode</span>
+        <div class="sol-top-right">
+          <button class="sol-top-btn" id="solBtnBackToOTP" title="Back to OTP / Connect Screen">
+            <i class="fa-solid fa-arrow-left"></i> Enter PIN
+          </button>
+          <button class="sol-top-btn" id="solBtnAnalytics" title="Performance Analytics">
+            <i class="fa-solid fa-chart-simple"></i> Analytics
+          </button>
+          <button class="sol-top-btn" id="solBtnResults" title="View Result Summary">
+            <i class="fa-solid fa-trophy"></i> Results
+          </button>
+          <div class="sol-user-pill">
+            <i class="fa-regular fa-circle-user"></i>
+            <span id="solCandidateName">AdwipKashyap</span>
           </div>
-
-          <button class="cbt-top-action-btn" id="btnBackToResultSummary">Back to Summary</button>
         </div>
       </div>
 
+      <!-- Sub-Header Bar (Section Tabs + Re-Attempt Switch + Section Time) -->
+      <div class="sol-sub-header">
+        <div class="sol-section-tabs" id="solSectionTabs">
+          <button class="sol-sec-tab active" data-sec-idx="0">English Language</button>
+          <button class="sol-sec-tab" data-sec-idx="1">Numerical Ability</button>
+          <button class="sol-sec-tab" data-sec-idx="2">Reasoning Ability</button>
+        </div>
+
+        <div class="sol-sub-right">
+          <!-- Re-Attempt Mode Switch -->
+          <div class="sol-reattempt-wrap">
+            <span class="sol-reattempt-label">Re-Attempt Mode</span>
+            <label class="sol-switch">
+              <input type="checkbox" id="solReattemptToggle">
+              <span class="sol-slider"></span>
+            </label>
+          </div>
+
+          <!-- Section / Test Time -->
+          <div class="sol-time-badge">
+            <i class="fa-regular fa-clock"></i>
+            <span id="solTimeBadgeText">20m</span>
+          </div>
+
+          <!-- Language Selector -->
+          <select id="solLangSelect" class="sol-lang-select">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Main Layout Split -->
       <div class="sol-main-split">
-        <!-- Left: Question and Detailed Solution -->
-        <div class="sol-content-area">
-          <div class="sol-q-meta">
-            <div>
-              <span style="font-weight: 800; font-size: 15px;" id="solQNumberLabel">Question 1</span>
-              <span style="color: #64748b; font-size: 13px; margin-left: 8px;" id="solSectionLabel">(Numerical Ability)</span>
+        
+        <!-- Left: Question Workspace -->
+        <div class="sol-workspace" id="solWorkspace">
+          
+          <!-- Question Meta Bar (Q: 1/100, Correct %, Incorrect %, Skipped %, Level, Bookmark, Report) -->
+          <div class="sol-q-meta-bar">
+            <div class="sol-q-meta-left">
+              <span class="sol-q-global-label" id="solQNumberGlobal">Q: 1/100</span>
+              
+              <span class="sol-stat-pill pill-correct">
+                <i class="fa-solid fa-check"></i> Correct <strong id="solStatCorrect">53%</strong>
+              </span>
+              <span class="sol-stat-pill pill-incorrect">
+                <i class="fa-solid fa-xmark"></i> Incorrect <strong id="solStatIncorrect">33%</strong>
+              </span>
+              <span class="sol-stat-pill pill-skipped">
+                <i class="fa-solid fa-arrow-turn-up"></i> Skipped <strong id="solStatSkipped">14%</strong>
+              </span>
+              <span class="sol-stat-pill pill-level">
+                Level <strong id="solStatLevel">2</strong>
+              </span>
             </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 12px; font-weight: 600; color: #475569;" id="solQTimeSpent">⏱ Time Taken: 0s</span>
-              <span class="sol-status-tag" id="solStatusTag">Correct</span>
+
+            <div class="sol-q-meta-right">
+              <button class="sol-icon-action-btn" id="solBtnBookmark" title="Bookmark Question">
+                <i class="fa-regular fa-bookmark"></i>
+              </button>
+              <button class="sol-icon-action-btn" id="solBtnReport" title="Report Question">
+                <i class="fa-regular fa-flag"></i>
+              </button>
             </div>
           </div>
 
-          <div id="solQuestionText" style="font-size: 15px; line-height: 1.6; margin-bottom: 16px;"></div>
-          <div id="solQuestionImages"></div>
+          <!-- Question Content Area (Dynamically toggles Bifurcated vs Single) -->
+          <div class="sol-content-container" id="solContentContainer">
+            
+            <!-- A. BIFURCATED VIEW (For questions with subquestions: Puzzles, Parajumble, RC, DI) - Photos 1, 2, 3 -->
+            <div class="sol-bifurcated-layout" id="solBifurcatedView">
+              
+              <!-- Left Constant Passage Pane -->
+              <div class="sol-passage-pane" id="solPassagePane">
+                <div class="sol-passage-header" id="solPassageHeader">
+                  Directions (1-5): Read the following information carefully and answer the questions that follow:
+                </div>
+                <div class="sol-passage-content" id="solPassageContent"></div>
+                <div class="sol-passage-images" id="solPassageImages"></div>
+              </div>
 
-          <!-- Options View -->
-          <div id="solOptionsGroup" class="cbt-options-group"></div>
+              <!-- Right Variable Question Pane -->
+              <div class="sol-question-pane" id="solQuestionPane">
+                <div class="sol-subquestion-text" id="solBifurcatedSubQ"></div>
+                <div class="sol-subquestion-images" id="solBifurcatedSubQImages"></div>
 
-          <!-- Reattempt Action (Only in Reattempt Mode) -->
-          <div id="reattemptActionBox" style="display: none; margin-top: 16px;">
-            <button class="cbt-nav-btn btn-nav-save" id="btnCheckReattemptAnswer">Check Answer</button>
+                <!-- Options -->
+                <div class="sol-options-group" id="solBifurcatedOptions"></div>
+
+                <!-- Reattempt Action Button (Only in Reattempt Mode) -->
+                <div class="sol-reattempt-action-box" id="solBifurcatedReattemptAction" style="display: none;">
+                  <button class="btn-check-reattempt" id="btnCheckBifurcatedReattempt">Check Answer</button>
+                </div>
+
+                <!-- Standard Compact Solution Block (Photos 1, 2, 3) -->
+                <div class="sol-standard-block" id="solBifurcatedSolutionBlock">
+                  <div class="sol-standard-title">Solution</div>
+                  <div class="sol-standard-text" id="solBifurcatedSolutionText"></div>
+                  <div class="sol-standard-images" id="solBifurcatedSolutionImages"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- B. SINGLE VIEW (For standalone questions: Mixtures, Simplification, Quadratic, etc.) - Photo 4 -->
+            <div class="sol-single-layout" id="solSingleView" style="display: none;">
+              <div class="sol-single-body">
+                <div class="sol-single-q-text" id="solSingleQText"></div>
+                <div class="sol-single-q-images" id="solSingleQImages"></div>
+
+                <!-- Options -->
+                <div class="sol-options-group" id="solSingleOptions"></div>
+
+                <!-- Reattempt Action Button (Only in Reattempt Mode) -->
+                <div class="sol-reattempt-action-box" id="solSingleReattemptAction" style="display: none;">
+                  <button class="btn-check-reattempt" id="btnCheckSingleReattempt">Check Answer</button>
+                </div>
+
+                <!-- Standard Compact Solution Block (Photo 4) -->
+                <div class="sol-standard-block" id="solSingleSolutionBlock">
+                  <div class="sol-standard-title">Solution</div>
+                  <div class="sol-standard-text" id="solSingleSolutionText"></div>
+                  <div class="sol-standard-images" id="solSingleSolutionImages"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Detailed Step-by-Step Explanation Box (Hidden during Reattempt Mode until checked) -->
-          <div class="sol-box-card" id="solExplanationBox">
-            <div class="sol-box-title">💡 Step-by-Step Solution:</div>
-            <div id="solExplanationText"></div>
-            <div id="solExplanationImages"></div>
+          <!-- Bottom Navigation Bar (Previous & Next) -->
+          <div class="sol-bottom-bar">
+            <button class="sol-nav-btn sol-btn-prev" id="solBtnPrev">
+              <i class="fa-solid fa-angle-left"></i> Previous
+            </button>
+            <button class="sol-nav-btn sol-btn-next" id="solBtnNext">
+              Next <i class="fa-solid fa-angle-right"></i>
+            </button>
           </div>
+
         </div>
 
-        <!-- Right: Solutions Palette with Time Taken Under Each Question -->
-        <div class="sol-right-sidebar">
-          <div style="font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 10px; text-transform: uppercase;">
-            Question Palette:
+        <!-- Sidebar Collapse / Expand Toggle Tab -->
+        <button class="sol-sidebar-toggle-btn" id="solSidebarToggle" title="Toggle Question Palette">
+          <i class="fa-solid fa-chevron-right" id="solSidebarToggleIcon"></i>
+        </button>
+
+        <!-- Right: Palette & Section Summary Sidebar (Photos 1 & 4) -->
+        <div class="sol-right-sidebar" id="solRightSidebar">
+          
+          <!-- Section Performance Summary Card (Photos 1 & 4) -->
+          <div class="sol-sec-summary-card" id="solSecSummaryCard">
+            <div class="summary-row">
+              <div class="summary-cell">
+                <span class="cell-label">Mark :</span>
+                <span class="cell-value" id="solSecMark">8.75/30</span>
+              </div>
+              <div class="summary-cell">
+                <span class="cell-label">Attempted :</span>
+                <span class="cell-value" id="solSecAttempted">25</span>
+              </div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-cell">
+                <span class="cell-label">Correct :</span>
+                <span class="cell-value val-correct" id="solSecCorrect">12</span>
+              </div>
+              <div class="summary-cell">
+                <span class="cell-label">Incorrect :</span>
+                <span class="cell-value val-incorrect" id="solSecIncorrect">13</span>
+              </div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-cell">
+                <span class="cell-label">You :</span>
+                <span class="cell-value" id="solSecTime">20m</span>
+              </div>
+            </div>
           </div>
-          <div class="sol-palette-grid" id="solPaletteGrid">
-            <!-- Populated dynamically with question number + green/red badge + time taken below -->
+
+          <!-- 4-Column Palette Grid with Shield Badges and Time (Photos 1 & 4) -->
+          <div class="sol-palette-scroll-wrap">
+            <div class="sol-palette-grid-4col" id="solPaletteGrid">
+              <!-- Dynamically populated with continuous question badges (1-30, 31-65, 66-100) and time underneath -->
+            </div>
           </div>
+
+          <!-- Palette Legend -->
+          <div class="sol-palette-legend">
+            <div class="sol-legend-item">
+              <span class="sol-legend-badge badge-correct"></span>
+              <span>Correct</span>
+            </div>
+            <div class="sol-legend-item">
+              <span class="sol-legend-badge badge-incorrect"></span>
+              <span>Incorrect</span>
+            </div>
+            <div class="sol-legend-item">
+              <span class="sol-legend-badge badge-skipped"></span>
+              <span>Skipped</span>
+            </div>
+            <div class="sol-legend-item">
+              <span class="sol-legend-badge badge-unseen"></span>
+              <span>Unseen</span>
+            </div>
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
   </main>
