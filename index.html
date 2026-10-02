@@ -45,12 +45,12 @@
   <!-- Main Container -->
   <main class="screen-container">
 
-    <!-- SCREEN 1: Authentication (Hidden - OTP based login is active) -->
-    <section id="authScreen" class="screen center-card-screen" style="display: none;">
+    <!-- SCREEN 1: Authentication (Google Sign-In & Email) -->
+    <section id="authScreen" class="screen center-card-screen active">
       <div class="auth-card">
         <div class="card-icon">💻</div>
         <h2 class="card-title">Sign In to Continue</h2>
-        <p class="card-desc">Sign in with the same Google or Email account you use on the mobile app to sync your exam results.</p>
+        <p class="card-desc">Sign in with the same Google account you use on the mobile app to sync your exam results and leaderboard rankings.</p>
         <div id="authAlert" class="status-alert"></div>
         <button id="googleSignInBtn" class="btn-google" type="button">
           <svg viewBox="0 0 24 24">
@@ -84,8 +84,8 @@
       </div>
     </section>
 
-    <!-- SCREEN 2: 6-Digit OTP Pairing Code Screen (Default Landing Screen) -->
-    <section id="pairingScreen" class="screen center-card-screen active">
+    <!-- SCREEN 2: 6-Digit OTP Pairing Code Screen -->
+    <section id="pairingScreen" class="screen center-card-screen">
       <div class="pairing-card">
         <div class="card-icon">📲 ➡️ 🖥️</div>
         <h2 class="card-title">Connect to PC</h2>

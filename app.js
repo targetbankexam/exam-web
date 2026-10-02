@@ -362,7 +362,7 @@ btnFullscreenToggle.addEventListener('click', () => {
 // ==========================================
 auth.onAuthStateChanged((user) => {
   state.currentUser = user;
-  if (user) {
+  if (user && !user.isAnonymous) {
     const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Candidate');
     if (userName) userName.textContent = name;
     if (user.photoURL && userAvatar) {
@@ -370,30 +370,88 @@ auth.onAuthStateChanged((user) => {
       userAvatar.style.display = 'block';
     }
     if (userBadge) userBadge.style.display = 'flex';
+    localStorage.setItem('target_bank_exam_pc_user', user.uid);
+
+    // If currently on auth screen or initial landing, transition to pairing screen
+    if (authScreen && authScreen.classList.contains('active')) {
+      showScreen(pairingScreen);
+      if (digitInputs[0]) digitInputs[0].focus();
+    }
   } else {
     if (userBadge) userBadge.style.display = 'none';
-    // Ensure anonymous auth for Firestore permissions without showing any login UI
-    firebase.auth().signInAnonymously().catch(() => {});
+    localStorage.removeItem('target_bank_exam_pc_user');
+    showScreen(authScreen);
   }
-  // The web exam portal is strictly OTP-based: always start on the pairing/PIN screen
-  showScreen(pairingScreen);
-  if (digitInputs[0]) digitInputs[0].focus();
 });
 
 const googleSignInBtn = document.getElementById('googleSignInBtn');
+const authAlert = document.getElementById('authAlert');
 if (googleSignInBtn) {
   googleSignInBtn.addEventListener('click', async () => {
     try {
+      if (authAlert) hideAlert(authAlert);
+      googleSignInBtn.disabled = true;
       const provider = new firebase.auth.GoogleAuthProvider();
       await auth.signInWithPopup(provider);
     } catch (err) {
-      showAlert(document.getElementById('authAlert'), err.message || 'Google sign in failed');
+      if (authAlert) showAlert(authAlert, err.message || 'Google sign in failed');
+    } finally {
+      googleSignInBtn.disabled = false;
+    }
+  });
+}
+
+// Optional Email Auth Form Handling
+const emailAuthForm = document.getElementById('emailAuthForm');
+const toggleAuthMode = document.getElementById('toggleAuthMode');
+const authTogglePrompt = document.getElementById('authTogglePrompt');
+const submitAuthBtn = document.getElementById('submitAuthBtn');
+const nameGroup = document.getElementById('nameGroup');
+let isSignUpMode = false;
+
+if (toggleAuthMode) {
+  toggleAuthMode.addEventListener('click', () => {
+    isSignUpMode = !isSignUpMode;
+    if (nameGroup) nameGroup.style.display = isSignUpMode ? 'block' : 'none';
+    if (submitAuthBtn) submitAuthBtn.textContent = isSignUpMode ? 'Create Account' : 'Sign In';
+    if (authTogglePrompt) authTogglePrompt.textContent = isSignUpMode ? 'Already have an account?' : "Don't have an account?";
+    toggleAuthMode.textContent = isSignUpMode ? 'Sign In' : 'Sign Up';
+    if (authAlert) hideAlert(authAlert);
+  });
+}
+
+if (emailAuthForm) {
+  emailAuthForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const name = document.getElementById('authName') ? document.getElementById('authName').value.trim() : '';
+    if (authAlert) hideAlert(authAlert);
+    if (submitAuthBtn) submitAuthBtn.disabled = true;
+
+    try {
+      if (isSignUpMode) {
+        const cred = await auth.createUserWithEmailAndPassword(email, password);
+        if (name && cred.user) {
+          await cred.user.updateProfile({ displayName: name });
+        }
+      } else {
+        await auth.signInWithEmailAndPassword(email, password);
+      }
+    } catch (err) {
+      if (authAlert) showAlert(authAlert, err.message || 'Authentication failed');
+    } finally {
+      if (submitAuthBtn) submitAuthBtn.disabled = false;
     }
   });
 }
 
 if (signOutBtn) {
-  signOutBtn.addEventListener('click', () => auth.signOut());
+  signOutBtn.addEventListener('click', () => {
+    auth.signOut().then(() => {
+      showScreen(authScreen);
+    });
+  });
 }
 
 // ==========================================
@@ -1003,18 +1061,71 @@ async function finalizeExamSubmission() {
   const accuracy = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
   const totalTimeSeconds = utilizedTime + wastedTime;
 
+  const examId = (state.activeSession && state.activeSession.examId) || 'sbi_clerk';
+  const dppDay = (state.activeSession && state.activeSession.dppDay) || null;
+
+  // Build questionResults array matching PracticeResult / QuestionResult schema in Flutter APK
+  const questionResultsList = state.allQuestions.map(q => {
+    const chosen = state.selectedAnswers[q.id];
+    const isAnswered = chosen !== undefined && chosen !== null;
+    const isCorrect = isAnswered && chosen === q.correctIndex;
+    let status = 'notVisited';
+    if (isAnswered) {
+      status = (state.questionStatus[q.id] === 'marked_answered') ? 'answeredAndMarked' : 'answered';
+    } else if (state.questionStatus[q.id] === 'marked') {
+      status = 'markedForReview';
+    } else if (state.questionStatus[q.id] === 'not_answered') {
+      status = 'notAnswered';
+    }
+
+    return {
+      question: {
+        id: q.id || '',
+        examId: examId,
+        stageId: q.stageId || 'prelims',
+        sectionId: q.sectionId || '',
+        topicId: q.topicId || '',
+        type: q.type || 'dpp',
+        dppDay: dppDay,
+        year: q.year || 2026,
+        testNumber: q.testNumber || 1,
+        questionText: q.questionText || '',
+        questionTextHi: q.questionTextHi || '',
+        questionImages: q.questionImages || (q.questionImageDriveLink ? [q.questionImageDriveLink] : []),
+        options: q.options || [],
+        optionsHi: q.optionsHi || [],
+        correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
+        explanation: q.explanation || '',
+        explanationHi: q.explanationHi || '',
+        explanationImages: q.explanationImages || (q.explanationImageDriveLink ? [q.explanationImageDriveLink] : []),
+        difficulty: q.difficulty || 'medium'
+      },
+      selectedIndex: isAnswered ? chosen : null,
+      isAnswered: isAnswered,
+      isCorrect: isCorrect,
+      status: status
+    };
+  });
+
   const resultPayload = {
     score: finalScore,
     maxScore: totalQuestions * 1.0,
     totalQuestions,
     answeredCount: attemptedCount,
     notAnsweredCount: skippedCount,
+    markedForReviewCount: 0,
     correctCount,
     incorrectCount,
     unattemptedCount: skippedCount,
     accuracy,
     timeTakenSeconds: totalTimeSeconds,
     completedAt: new Date().toISOString(),
+    title: (state.activeSession && state.activeSession.title) || `${examId.toUpperCase()} DPP Day ${dppDay}`,
+    isDpp: true,
+    examId: examId,
+    dppDay: dppDay,
+    isReattempt: false,
+    questionResults: questionResultsList,
     answers: state.selectedAnswers,
     questionTimeSpent: state.questionTimeSpent
   };
@@ -1031,31 +1142,43 @@ async function finalizeExamSubmission() {
       });
     }
 
-    const userId = state.currentUser ? state.currentUser.uid : (state.activeSession ? state.activeSession.userId : 'guest');
-    const cName = state.currentUser ? (state.currentUser.displayName || state.currentUser.email.split('@')[0]) : 'Candidate';
-    const examId = state.activeSession ? state.activeSession.examId : 'sbi_clerk';
-    const dppDay = state.activeSession ? state.activeSession.dppDay : null;
+    const mobileUserId = (state.activeSession && state.activeSession.userId && !state.activeSession.userId.startsWith('guest')) 
+      ? state.activeSession.userId 
+      : null;
+    const webUserId = (state.currentUser && !state.currentUser.isAnonymous) 
+      ? state.currentUser.uid 
+      : null;
+    const targetUserId = mobileUserId || webUserId || (state.currentUser ? state.currentUser.uid : 'guest');
+    
+    const cName = (state.currentUser && !state.currentUser.isAnonymous && (state.currentUser.displayName || state.currentUser.email.split('@')[0]))
+      || (state.activeSession ? state.activeSession.candidateName : 'Candidate');
 
     if (dppDay !== null && dppDay !== undefined) {
-      const subKey = `${userId}_${examId}_dpp_${dppDay}`;
+      const userIdsToUpdate = new Set([targetUserId]);
+      if (mobileUserId) userIdsToUpdate.add(mobileUserId);
+      if (webUserId) userIdsToUpdate.add(webUserId);
+
       const now = new Date();
       const istDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-      await db.collection('dpp_submissions').doc(subKey).set({
-        userId,
-        candidateName: cName,
-        examId,
-        dppDay,
-        score: finalScore,
-        totalQuestions,
-        timeTakenSeconds: totalTimeSeconds,
-        istDate,
-        submittedAt: now.toISOString()
-      }, { merge: true });
+      for (const uId of userIdsToUpdate) {
+        const subKey = `${uId}_${examId}_dpp_${dppDay}`;
+        await db.collection('dpp_submissions').doc(subKey).set({
+          userId: uId,
+          candidateName: cName,
+          examId,
+          dppDay,
+          score: finalScore,
+          totalQuestions,
+          timeTakenSeconds: totalTimeSeconds,
+          istDate,
+          submittedAt: now.toISOString()
+        }, { merge: true });
 
-      // Update leaderboards
-      await updateFirestoreLeaderboardDoc(`${examId}_${userId}`, userId, cName, examId, finalScore, totalTimeSeconds);
-      await updateFirestoreLeaderboardDoc(`all_${userId}`, userId, cName, 'all', finalScore, totalTimeSeconds);
+        // Update leaderboards for the specific exam and global 'all' category
+        await updateFirestoreLeaderboardDoc(`${examId}_${uId}`, uId, cName, examId, finalScore, totalTimeSeconds);
+        await updateFirestoreLeaderboardDoc(`all_${uId}`, uId, cName, 'all', finalScore, totalTimeSeconds);
+      }
     }
   } catch (syncErr) {
     console.warn('Firestore sync notice:', syncErr);
