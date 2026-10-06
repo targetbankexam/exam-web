@@ -19,6 +19,11 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+try {
+  db.settings({
+    experimentalAutoDetectLongPolling: true
+  });
+} catch (_) {}
 
 // App State
 const state = {
@@ -51,6 +56,22 @@ const state = {
   reattemptChecked: {}
 };
 
+// URL Query Parameters & Session Continuity
+const initialUrlParams = new URLSearchParams(window.location.search);
+const initialUrlCode = initialUrlParams.get('code') || initialUrlParams.get('otp') || initialUrlParams.get('pin') || '';
+const initialUrlEmail = (initialUrlParams.get('email') || '').trim().toLowerCase();
+const initialUrlMode = (initialUrlParams.get('mode') || '').trim().toLowerCase();
+
+let requiredAccountEmail = initialUrlEmail || sessionStorage.getItem('target_required_email') || '';
+let pendingPairingCode = initialUrlCode || sessionStorage.getItem('target_pending_code') || '';
+
+if (initialUrlEmail) {
+  sessionStorage.setItem('target_required_email', initialUrlEmail);
+}
+if (initialUrlCode && initialUrlCode.length === 6) {
+  sessionStorage.setItem('target_pending_code', initialUrlCode);
+}
+
 // DOM Elements
 const authScreen = document.getElementById('authScreen');
 const pairingScreen = document.getElementById('pairingScreen');
@@ -64,6 +85,24 @@ const userBadge = document.getElementById('userBadge');
 const userName = document.getElementById('userName');
 const userAvatar = document.getElementById('userAvatar');
 const signOutBtn = document.getElementById('signOutBtn');
+const authExpectedEmailBanner = document.getElementById('authExpectedEmailBanner');
+
+function updateAuthRequiredBanner() {
+  if (!authExpectedEmailBanner) return;
+  const targetEmail = requiredAccountEmail || sessionStorage.getItem('target_required_email') || '';
+  if (targetEmail) {
+    authExpectedEmailBanner.innerHTML = `<strong>🔒 Required Account:</strong> <span style="text-decoration: underline; font-weight: 700;">${targetEmail}</span><br><span style="font-size: 12px; opacity: 0.95;">This test session was generated in the mobile app for this account. Please sign in with ${targetEmail} on this PC to continue.</span>`;
+    authExpectedEmailBanner.className = 'status-alert info';
+    authExpectedEmailBanner.style.display = 'block';
+
+    const authEmailInput = document.getElementById('authEmail');
+    if (authEmailInput && !authEmailInput.value) {
+      authEmailInput.value = targetEmail;
+    }
+  } else {
+    authExpectedEmailBanner.style.display = 'none';
+  }
+}
 
 // Instructions Elements
 const instTitle1 = document.getElementById('instTitle1');
@@ -360,9 +399,26 @@ btnFullscreenToggle.addEventListener('click', () => {
 // ==========================================
 // 3. Authentication Handling
 // ==========================================
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async (user) => {
   state.currentUser = user;
   if (user && !user.isAnonymous) {
+    const webEmail = (user.email || '').trim().toLowerCase();
+    const targetRequiredEmail = (requiredAccountEmail || sessionStorage.getItem('target_required_email') || '').trim().toLowerCase();
+
+    // STRICT CHECK: Reject mismatch between web account and required mobile email
+    if (targetRequiredEmail && webEmail && targetRequiredEmail !== webEmail) {
+      console.warn(`Account mismatch: signed in as ${webEmail}, but required email is ${targetRequiredEmail}`);
+      await auth.signOut();
+      updateAuthRequiredBanner();
+      showAlert(
+        authAlert,
+        `Account Mismatch! This test session was initiated by (${targetRequiredEmail}) on mobile, but this computer was signed in as (${webEmail}). Please sign in with (${targetRequiredEmail}) to continue.`,
+        'error'
+      );
+      showScreen(authScreen);
+      return;
+    }
+
     const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Candidate');
     if (userName) userName.textContent = name;
     if (user.photoURL && userAvatar) {
@@ -372,6 +428,20 @@ auth.onAuthStateChanged((user) => {
     if (userBadge) userBadge.style.display = 'flex';
     localStorage.setItem('target_bank_exam_pc_user', user.uid);
 
+    // If an OTP code was passed in URL or saved as pending, auto-fill and auto-connect!
+    const codeToConnect = (pendingPairingCode || sessionStorage.getItem('target_pending_code') || '').trim();
+    if (codeToConnect && codeToConnect.length === 6) {
+      showScreen(pairingScreen);
+      codeToConnect.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
+      checkCodeComplete();
+      pendingPairingCode = '';
+      sessionStorage.removeItem('target_pending_code');
+      if (connectCodeBtn && !connectCodeBtn.disabled) {
+        connectCodeBtn.click();
+        return;
+      }
+    }
+
     // If currently on auth screen or initial landing, transition to pairing screen
     if (authScreen && authScreen.classList.contains('active')) {
       showScreen(pairingScreen);
@@ -380,6 +450,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     if (userBadge) userBadge.style.display = 'none';
     localStorage.removeItem('target_bank_exam_pc_user');
+    updateAuthRequiredBanner();
     showScreen(authScreen);
   }
 });
@@ -493,9 +564,26 @@ connectCodeBtn.addEventListener('click', async () => {
   connectCodeBtn.textContent = 'Verifying Code...';
 
   try {
-    const docSnap = await db.collection('pc_sessions').doc(code).get();
-    if (!docSnap.exists) {
-      showAlert(pairingAlert, 'Invalid code. Please check your mobile app.');
+    // 1. Ensure network connection to Firestore is active
+    try {
+      await db.enableNetwork();
+    } catch (_) {}
+
+    let docSnap;
+    try {
+      docSnap = await db.collection('pc_sessions').doc(code).get();
+    } catch (fetchErr) {
+      console.warn('Initial session lookup notice:', fetchErr);
+      // If client was reported offline or transient connection drop, retry after short pause
+      try {
+        await db.enableNetwork();
+      } catch (_) {}
+      await new Promise(r => setTimeout(r, 600));
+      docSnap = await db.collection('pc_sessions').doc(code).get();
+    }
+
+    if (!docSnap || !docSnap.exists) {
+      showAlert(pairingAlert, `Invalid or expired OTP code (${code}). Please check your phone.`);
       connectCodeBtn.disabled = false;
       connectCodeBtn.textContent = 'Start on PC';
       return;
@@ -503,7 +591,63 @@ connectCodeBtn.addEventListener('click', async () => {
 
     const sessionData = docSnap.data();
     if (sessionData.expiresAt && Date.now() > sessionData.expiresAt) {
-      showAlert(pairingAlert, 'Code expired. Please generate a new code on your phone.');
+      showAlert(pairingAlert, 'This code has expired. Please generate a new code on your phone.');
+      connectCodeBtn.disabled = false;
+      connectCodeBtn.textContent = 'Start on PC';
+      return;
+    }
+
+    // 2. STRICT ACCOUNT VERIFICATION CHECK (Fixes Account X vs Account Y issue)
+    const mobileEmail = (sessionData.userEmail || '').trim().toLowerCase();
+    const mobileUid = (sessionData.userId || '').trim();
+    const webUser = auth.currentUser || state.currentUser;
+    const webEmail = (webUser && webUser.email ? webUser.email : '').trim().toLowerCase();
+    const webUid = (webUser && webUser.uid ? webUser.uid : '').trim();
+
+    if (mobileEmail) {
+      if (!webUser || webUser.isAnonymous) {
+        requiredAccountEmail = mobileEmail;
+        sessionStorage.setItem('target_required_email', mobileEmail);
+        sessionStorage.setItem('target_pending_code', code);
+        updateAuthRequiredBanner();
+        showAlert(
+          authAlert,
+          `Please sign in! This test was created by (${mobileEmail}). Please sign in with (${mobileEmail}) on this computer to continue.`,
+          'info'
+        );
+        showScreen(authScreen);
+        connectCodeBtn.disabled = false;
+        connectCodeBtn.textContent = 'Start on PC';
+        return;
+      }
+
+      const emailMatches = webEmail === mobileEmail;
+      const uidMatches = mobileUid && webUid && mobileUid === webUid;
+
+      if (!emailMatches && !uidMatches) {
+        // STRICT MISMATCH: Automatically sign out desktop account so user can sign in with mobile account
+        const mismatchedEmail = webEmail;
+        await auth.signOut();
+        requiredAccountEmail = mobileEmail;
+        sessionStorage.setItem('target_required_email', mobileEmail);
+        sessionStorage.setItem('target_pending_code', code);
+        updateAuthRequiredBanner();
+        showAlert(
+          authAlert,
+          `Account Mismatch! This test was started on phone with (${mobileEmail}), but this PC was signed in as (${mismatchedEmail}). You have been signed out. Please sign in with (${mobileEmail}) to continue.`,
+          'error'
+        );
+        showScreen(authScreen);
+        connectCodeBtn.disabled = false;
+        connectCodeBtn.textContent = 'Start on PC';
+        return;
+      }
+    } else if (webUser && !webUser.isAnonymous && mobileUid.startsWith('guest_')) {
+      showAlert(
+        pairingAlert,
+        `This test code was generated in Guest mode on mobile. To sync your exam progress and results with (${webEmail}), please sign in with Google in the mobile app first.`,
+        'error'
+      );
       connectCodeBtn.disabled = false;
       connectCodeBtn.textContent = 'Start on PC';
       return;
@@ -512,15 +656,96 @@ connectCodeBtn.addEventListener('click', async () => {
     state.activeSession = sessionData;
     state.sessionCode = code;
 
-    await db.collection('pc_sessions').doc(code).update({
-      status: 'connected',
-      connectedAt: Date.now()
-    });
+    try {
+      await db.collection('pc_sessions').doc(code).update({
+        status: 'connected',
+        connectedAt: Date.now()
+      });
+    } catch (updErr) {
+      console.warn('Session status update notice:', updErr);
+    }
+
+    if (sessionData.mode === 'solution') {
+      const examId = sessionData.examId || 'sbi_clerk';
+      const targetDay = sessionData.dppDay || 1;
+
+      const ok = await loadDemoExamData(targetDay, examId);
+      if (ok) {
+        let savedRes = sessionData.result;
+        if (!savedRes) {
+          try {
+            const localRaw = localStorage.getItem(`dpp_result_${examId}_${targetDay}`) ||
+                             (webEmail ? localStorage.getItem(`dpp_result_${webEmail}_${examId}_${targetDay}`) : null) ||
+                             (mobileEmail ? localStorage.getItem(`dpp_result_${mobileEmail}_${examId}_${targetDay}`) : null);
+            if (localRaw) savedRes = JSON.parse(localRaw);
+          } catch (_) {}
+        }
+        if (!savedRes) {
+          const possibleIds = [webUid, mobileUid, webEmail, mobileEmail].filter(Boolean);
+          for (const pid of possibleIds) {
+            try {
+              const subKey = `${pid}_${examId}_dpp_${targetDay}`;
+              const subDoc = await db.collection('dpp_submissions').doc(subKey).get();
+              if (subDoc.exists && subDoc.data() && subDoc.data().result) {
+                savedRes = subDoc.data().result;
+                break;
+              }
+            } catch (_) {}
+          }
+        }
+
+        if (savedRes) {
+          try {
+            localStorage.setItem(`dpp_result_${examId}_${targetDay}`, JSON.stringify(savedRes));
+            if (webEmail) localStorage.setItem(`dpp_result_${webEmail}_${examId}_${targetDay}`, JSON.stringify(savedRes));
+            if (mobileEmail) localStorage.setItem(`dpp_result_${mobileEmail}_${examId}_${targetDay}`, JSON.stringify(savedRes));
+          } catch (_) {}
+
+          state.selectedAnswers = {};
+          if (savedRes.answers) {
+            state.selectedAnswers = { ...savedRes.answers };
+          }
+          if (savedRes.questionResults && Array.isArray(savedRes.questionResults)) {
+            savedRes.questionResults.forEach(qr => {
+              if (qr && qr.question && qr.question.id) {
+                if (qr.selectedIndex !== null && qr.selectedIndex !== undefined) {
+                  state.selectedAnswers[qr.question.id] = qr.selectedIndex;
+                }
+                if (qr.status) {
+                  state.questionStatus[qr.question.id] = qr.status;
+                }
+              }
+            });
+          } else if (sessionData.answers) {
+            state.selectedAnswers = { ...sessionData.answers };
+          }
+
+          if (savedRes.questionStatus) {
+            state.questionStatus = { ...state.questionStatus, ...savedRes.questionStatus };
+          }
+          if (savedRes.questionTimeSpent) {
+            state.questionTimeSpent = { ...savedRes.questionTimeSpent };
+          }
+
+          state.examResult = savedRes;
+        }
+
+        state.activeSession = sessionData;
+        state.solCurrentQIdx = 0;
+        renderSolutionsScreen();
+        return;
+      }
+    }
 
     await loadExamDataAndShowInstructions(sessionData);
 
   } catch (err) {
-    showAlert(pairingAlert, err.message || 'Error connecting to exam session');
+    console.error('Pairing error:', err);
+    let errMsg = err.message || 'Error connecting to exam session';
+    if (errMsg.toLowerCase().includes('offline') || err.code === 'unavailable') {
+      errMsg = 'Connection error: Unable to reach Firestore server. Please check your internet connection and try again.';
+    }
+    showAlert(pairingAlert, errMsg);
     connectCodeBtn.disabled = false;
     connectCodeBtn.textContent = 'Start on PC';
   }
@@ -1125,6 +1350,7 @@ async function finalizeExamSubmission() {
     examId: examId,
     dppDay: dppDay,
     isReattempt: false,
+    isFromWeb: true,
     questionResults: questionResultsList,
     answers: state.selectedAnswers,
     questionTimeSpent: state.questionTimeSpent
@@ -1132,12 +1358,26 @@ async function finalizeExamSubmission() {
 
   state.examResult = resultPayload;
 
+  // Persist result locally in browser storage for instant solution review
+  const effectiveEmail = ((state.activeSession && state.activeSession.userEmail) || 
+                          (state.currentUser && state.currentUser.email) || '').trim().toLowerCase();
+
+  try {
+    if (examId && dppDay !== null && dppDay !== undefined) {
+      localStorage.setItem(`dpp_result_${examId}_${dppDay}`, JSON.stringify(resultPayload));
+      if (effectiveEmail) {
+        localStorage.setItem(`dpp_result_${effectiveEmail}_${examId}_${dppDay}`, JSON.stringify(resultPayload));
+      }
+    }
+  } catch (_) {}
+
   // Sync to Firestore
   try {
     if (state.sessionCode) {
       await db.collection('pc_sessions').doc(state.sessionCode).update({
         status: 'completed',
         result: resultPayload,
+        answers: state.selectedAnswers,
         completedAt: Date.now()
       });
     }
@@ -1165,19 +1405,50 @@ async function finalizeExamSubmission() {
         const subKey = `${uId}_${examId}_dpp_${dppDay}`;
         await db.collection('dpp_submissions').doc(subKey).set({
           userId: uId,
+          userEmail: effectiveEmail,
           candidateName: cName,
           examId,
           dppDay,
           score: finalScore,
           totalQuestions,
+          answeredCount: attemptedCount,
+          correctCount,
+          incorrectCount,
+          unattemptedCount: skippedCount,
+          accuracy,
           timeTakenSeconds: totalTimeSeconds,
           istDate,
-          submittedAt: now.toISOString()
+          submittedAt: now.toISOString(),
+          isFromWeb: true,
+          result: resultPayload
         }, { merge: true });
 
         // Update leaderboards for the specific exam and global 'all' category
         await updateFirestoreLeaderboardDoc(`${examId}_${uId}`, uId, cName, examId, finalScore, totalTimeSeconds);
         await updateFirestoreLeaderboardDoc(`all_${uId}`, uId, cName, 'all', finalScore, totalTimeSeconds);
+      }
+
+      if (effectiveEmail) {
+        const emailSubKey = `${effectiveEmail}_${examId}_dpp_${dppDay}`;
+        await db.collection('dpp_submissions').doc(emailSubKey).set({
+          userId: targetUserId,
+          userEmail: effectiveEmail,
+          candidateName: cName,
+          examId,
+          dppDay,
+          score: finalScore,
+          totalQuestions,
+          answeredCount: attemptedCount,
+          correctCount,
+          incorrectCount,
+          unattemptedCount: skippedCount,
+          accuracy,
+          timeTakenSeconds: totalTimeSeconds,
+          istDate,
+          submittedAt: now.toISOString(),
+          isFromWeb: true,
+          result: resultPayload
+        }, { merge: true });
       }
     }
   } catch (syncErr) {
@@ -1900,10 +2171,14 @@ function startExamWithData(sessionMeta = {}, examId = 'sbi_clerk') {
   showScreen(instructionsScreen1);
 }
 
-async function loadDemoExamData(targetDay = 8) {
+async function loadDemoExamData(targetDay = 8, targetExamId = 'sbi_clerk') {
   try {
-    const res = await fetch(`data/sbi_clerk.json?_v=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to load sbi_clerk.json');
+    const examFile = (targetExamId && targetExamId.trim()) ? targetExamId.trim() : 'sbi_clerk';
+    let res = await fetch(`data/${examFile}.json?_v=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok && examFile !== 'sbi_clerk') {
+      res = await fetch(`data/sbi_clerk.json?_v=${Date.now()}`, { cache: 'no-store' });
+    }
+    if (!res.ok) throw new Error(`Failed to load ${examFile}.json`);
     const examData = await res.json();
     const allQ = examData.questions || [];
 
@@ -1919,11 +2194,15 @@ async function loadDemoExamData(targetDay = 8) {
       if (!questions.length) questions = allQ.slice(0, 35);
     }
 
+    const cleanTitle = (chosenDay === 1) 
+      ? `${examFile.replace(/_/g, ' ').toUpperCase()} Prelims DPP Day 1` 
+      : `${examFile.replace(/_/g, ' ').toUpperCase()} Prelims DPP Day ${chosenDay}`;
+
     state.activeSession = {
-      examId: 'sbi_clerk',
+      examId: examFile,
       mode: 'dpp',
       dppDay: chosenDay,
-      title: (chosenDay === 1) ? 'SBI Clerk Prelims DPP Day 1' : `SBI Clerk Prelims DPP Day ${chosenDay}`,
+      title: cleanTitle,
       timerMinutes: (chosenDay === 1 ? 40 : 20),
       candidateName: (state.currentUser && (state.currentUser.displayName || state.currentUser.email.split('@')[0])) || 'Candidate'
     };
@@ -1969,36 +2248,47 @@ async function loadDemoExamData(targetDay = 8) {
 
 // Auto-fill OTP from URL query parameter (e.g. ?code=123456 or ?otp=123456) or debug views
 window.addEventListener('DOMContentLoaded', async () => {
+  updateAuthRequiredBanner();
+
   const urlParams = new URLSearchParams(window.location.search);
   const codeParam = urlParams.get('code') || urlParams.get('otp') || urlParams.get('pin');
   
   if (codeParam && codeParam.length === 6) {
     codeParam.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
     checkCodeComplete();
-    if (connectCodeBtn && !connectCodeBtn.disabled) {
-      connectCodeBtn.click();
-      return;
+    
+    // If user is already authenticated with the matching account, proceed automatically
+    const webUser = auth.currentUser || state.currentUser;
+    const reqEmail = (requiredAccountEmail || '').trim().toLowerCase();
+    const curEmail = (webUser && webUser.email ? webUser.email : '').trim().toLowerCase();
+
+    if (webUser && !webUser.isAnonymous && (!reqEmail || curEmail === reqEmail)) {
+      if (connectCodeBtn && !connectCodeBtn.disabled) {
+        connectCodeBtn.click();
+        return;
+      }
     }
   }
 
+  const examParam = urlParams.get('exam') || urlParams.get('examId') || 'sbi_clerk';
   const dayParam = urlParams.get('day') || urlParams.get('dppDay') || urlParams.get('dpp');
   const targetDay = dayParam ? parseInt(dayParam, 10) : 8;
 
   if (urlParams.get('solutions') === '1' || urlParams.get('demo') === '1') {
     const qNum = parseInt(urlParams.get('q') || '1', 10);
-    const ok = await loadDemoExamData(targetDay);
+    const ok = await loadDemoExamData(targetDay, examParam);
     if (ok) {
       state.solCurrentQIdx = Math.max(0, Math.min(qNum - 1, state.allQuestions.length - 1));
       renderSolutionsScreen();
     }
   } else if (urlParams.get('cbt') === '1') {
-    const ok = await loadDemoExamData(targetDay);
+    const ok = await loadDemoExamData(targetDay, examParam);
     if (ok) {
       startExamWithData({ 
-        title: (targetDay === 1) ? 'SBI Clerk Prelims DPP Day 1' : `SBI Clerk Prelims DPP Day ${targetDay}`, 
+        title: (targetDay === 1) ? `${examParam.replace(/_/g, ' ').toUpperCase()} Prelims DPP Day 1` : `${examParam.replace(/_/g, ' ').toUpperCase()} Prelims DPP Day ${targetDay}`, 
         dppDay: targetDay,
         timerMinutes: (targetDay === 1 ? 40 : 20) 
-      }, 'sbi_clerk');
+      }, examParam);
     }
   }
 });
