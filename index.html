@@ -35,23 +35,33 @@
         <p class="brand-subtitle">PC WEB CBT SIMULATION PORTAL</p>
       </div>
     </div>
-    <div id="userBadge" class="user-badge" style="display: none;">
-      <img id="userAvatar" class="user-avatar" src="" alt="User" style="display: none;">
-      <span id="userName">Student</span>
-      <button class="signout-btn" id="signOutBtn" title="Sign Out">Logout</button>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div id="userBadge" class="user-badge" style="display: none;">
+        <img id="userAvatar" class="user-avatar" src="" alt="User" style="display: none;">
+        <span id="userName">Student</span>
+        <button class="signout-btn" id="signOutBtn" title="Sign Out">Logout</button>
+      </div>
+      <button id="headerGoogleSignInBtn" class="btn-google-header" type="button" style="display: none;">
+        <svg viewBox="0 0 24 24" width="16" height="16">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        Sign In with Google
+      </button>
     </div>
   </header>
 
   <!-- Main Container -->
   <main class="screen-container">
 
-    <!-- SCREEN 1: Authentication (Google Sign-In & Email) -->
-    <section id="authScreen" class="screen center-card-screen active">
+    <!-- SCREEN 1: Optional Google & Email Sign-In (Modal/Fallback Screen) -->
+    <section id="authScreen" class="screen center-card-screen">
       <div class="auth-card">
         <div class="card-icon">💻</div>
         <h2 class="card-title">Sign In to Continue</h2>
         <p class="card-desc">Sign in with the same Google account you use on the mobile app to sync your exam results and leaderboard rankings.</p>
-        <div id="authExpectedEmailBanner" class="status-alert info" style="display: none; margin-bottom: 14px;"></div>
         <div id="authAlert" class="status-alert"></div>
         <button id="googleSignInBtn" class="btn-google" type="button">
           <svg viewBox="0 0 24 24">
@@ -82,18 +92,22 @@
           <span id="authTogglePrompt">Don't have an account?</span>
           <a id="toggleAuthMode">Sign Up</a>
         </p>
+        <div style="margin-top: 14px; text-align: center;">
+          <a id="authBackToPairingBtn" style="font-size: 13px; color: #1a73e8; font-weight: 600; cursor: pointer;">← Back to OTP Pairing</a>
+        </div>
       </div>
     </section>
 
-    <!-- SCREEN 2: 6-Digit OTP Pairing Code Screen -->
-    <section id="pairingScreen" class="screen center-card-screen">
+    <!-- SCREEN 2: 6-Digit OTP Pairing Code Screen (Default Active for All Users Worldwide) -->
+    <section id="pairingScreen" class="screen center-card-screen active">
       <div class="pairing-card">
         <div class="card-icon">📲 ➡️ 🖥️</div>
         <h2 class="card-title">Connect to PC</h2>
-        <p class="card-desc">Enter the unique 6-digit OTP shown in your Target Bank Exam mobile app to open your test.</p>
+        <p class="card-desc">Enter the unique 6-digit OTP shown in your Target Bank Exam mobile app to open your test or solutions.</p>
 
         <!-- Status / Error Banner -->
         <div id="pairingAlert" class="status-alert"></div>
+        <button id="btnSwitchAccountOnMismatch" class="btn-switch-account" style="display: none;" type="button">Sign Out Mismatched Account & Continue</button>
 
         <!-- 6-Box PIN Inputs -->
         <div class="code-input-container">

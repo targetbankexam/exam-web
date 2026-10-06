@@ -187,6 +187,43 @@ body {
 }
 .signout-btn:hover { background: rgba(197, 34, 31, 0.1); }
 
+.btn-google-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #dadce0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #3c4043;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-google-header:hover {
+  background: #f8f9fa;
+  box-shadow: 0 1px 3px rgba(60,64,67,0.2);
+}
+
+.btn-switch-account {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-switch-account:hover {
+  background: #fecaca;
+}
+
 /* Screens Container */
 .screen-container {
   flex: 1 1 0%;

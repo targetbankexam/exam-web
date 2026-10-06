@@ -56,21 +56,18 @@ const state = {
   reattemptChecked: {}
 };
 
-// URL Query Parameters & Session Continuity
+// Clean up any stale legacy storage keys from previous tests
+try {
+  sessionStorage.removeItem('target_required_email');
+  localStorage.removeItem('target_required_email');
+} catch (_) {}
+
+// URL Query Parameters & Auto-Pairing
 const initialUrlParams = new URLSearchParams(window.location.search);
 const initialUrlCode = initialUrlParams.get('code') || initialUrlParams.get('otp') || initialUrlParams.get('pin') || '';
-const initialUrlEmail = (initialUrlParams.get('email') || '').trim().toLowerCase();
 const initialUrlMode = (initialUrlParams.get('mode') || '').trim().toLowerCase();
 
-let requiredAccountEmail = initialUrlEmail || sessionStorage.getItem('target_required_email') || '';
-let pendingPairingCode = initialUrlCode || sessionStorage.getItem('target_pending_code') || '';
-
-if (initialUrlEmail) {
-  sessionStorage.setItem('target_required_email', initialUrlEmail);
-}
-if (initialUrlCode && initialUrlCode.length === 6) {
-  sessionStorage.setItem('target_pending_code', initialUrlCode);
-}
+let pendingPairingCode = initialUrlCode && initialUrlCode.length === 6 ? initialUrlCode : '';
 
 // DOM Elements
 const authScreen = document.getElementById('authScreen');
@@ -85,24 +82,9 @@ const userBadge = document.getElementById('userBadge');
 const userName = document.getElementById('userName');
 const userAvatar = document.getElementById('userAvatar');
 const signOutBtn = document.getElementById('signOutBtn');
-const authExpectedEmailBanner = document.getElementById('authExpectedEmailBanner');
-
-function updateAuthRequiredBanner() {
-  if (!authExpectedEmailBanner) return;
-  const targetEmail = requiredAccountEmail || sessionStorage.getItem('target_required_email') || '';
-  if (targetEmail) {
-    authExpectedEmailBanner.innerHTML = `<strong>🔒 Required Account:</strong> <span style="text-decoration: underline; font-weight: 700;">${targetEmail}</span><br><span style="font-size: 12px; opacity: 0.95;">This test session was generated in the mobile app for this account. Please sign in with ${targetEmail} on this PC to continue.</span>`;
-    authExpectedEmailBanner.className = 'status-alert info';
-    authExpectedEmailBanner.style.display = 'block';
-
-    const authEmailInput = document.getElementById('authEmail');
-    if (authEmailInput && !authEmailInput.value) {
-      authEmailInput.value = targetEmail;
-    }
-  } else {
-    authExpectedEmailBanner.style.display = 'none';
-  }
-}
+const headerGoogleSignInBtn = document.getElementById('headerGoogleSignInBtn');
+const btnSwitchAccountOnMismatch = document.getElementById('btnSwitchAccountOnMismatch');
+const authBackToPairingBtn = document.getElementById('authBackToPairingBtn');
 
 // Instructions Elements
 const instTitle1 = document.getElementById('instTitle1');
@@ -402,23 +384,6 @@ btnFullscreenToggle.addEventListener('click', () => {
 auth.onAuthStateChanged(async (user) => {
   state.currentUser = user;
   if (user && !user.isAnonymous) {
-    const webEmail = (user.email || '').trim().toLowerCase();
-    const targetRequiredEmail = (requiredAccountEmail || sessionStorage.getItem('target_required_email') || '').trim().toLowerCase();
-
-    // STRICT CHECK: Reject mismatch between web account and required mobile email
-    if (targetRequiredEmail && webEmail && targetRequiredEmail !== webEmail) {
-      console.warn(`Account mismatch: signed in as ${webEmail}, but required email is ${targetRequiredEmail}`);
-      await auth.signOut();
-      updateAuthRequiredBanner();
-      showAlert(
-        authAlert,
-        `Account Mismatch! This test session was initiated by (${targetRequiredEmail}) on mobile, but this computer was signed in as (${webEmail}). Please sign in with (${targetRequiredEmail}) to continue.`,
-        'error'
-      );
-      showScreen(authScreen);
-      return;
-    }
-
     const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Candidate');
     if (userName) userName.textContent = name;
     if (user.photoURL && userAvatar) {
@@ -426,32 +391,36 @@ auth.onAuthStateChanged(async (user) => {
       userAvatar.style.display = 'block';
     }
     if (userBadge) userBadge.style.display = 'flex';
-    localStorage.setItem('target_bank_exam_pc_user', user.uid);
+    if (headerGoogleSignInBtn) headerGoogleSignInBtn.style.display = 'none';
+    try {
+      localStorage.setItem('target_bank_exam_pc_user', user.uid);
+    } catch (_) {}
 
-    // If an OTP code was passed in URL or saved as pending, auto-fill and auto-connect!
-    const codeToConnect = (pendingPairingCode || sessionStorage.getItem('target_pending_code') || '').trim();
-    if (codeToConnect && codeToConnect.length === 6) {
-      showScreen(pairingScreen);
-      codeToConnect.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
-      checkCodeComplete();
-      pendingPairingCode = '';
-      sessionStorage.removeItem('target_pending_code');
-      if (connectCodeBtn && !connectCodeBtn.disabled) {
-        connectCodeBtn.click();
-        return;
-      }
-    }
-
-    // If currently on auth screen or initial landing, transition to pairing screen
+    // If currently on auth screen, return to pairing screen
     if (authScreen && authScreen.classList.contains('active')) {
       showScreen(pairingScreen);
       if (digitInputs[0]) digitInputs[0].focus();
     }
   } else {
     if (userBadge) userBadge.style.display = 'none';
-    localStorage.removeItem('target_bank_exam_pc_user');
-    updateAuthRequiredBanner();
-    showScreen(authScreen);
+    if (headerGoogleSignInBtn) headerGoogleSignInBtn.style.display = 'inline-flex';
+    try {
+      localStorage.removeItem('target_bank_exam_pc_user');
+    } catch (_) {}
+  }
+
+  // If an OTP code was passed in URL, auto-fill and auto-connect
+  if (pendingPairingCode && pendingPairingCode.length === 6) {
+    showScreen(pairingScreen);
+    pendingPairingCode.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
+    checkCodeComplete();
+    const codeToRun = pendingPairingCode;
+    pendingPairingCode = '';
+    if (connectCodeBtn && !connectCodeBtn.disabled) {
+      setTimeout(() => {
+        connectCodeBtn.click();
+      }, 150);
+    }
   }
 });
 
@@ -517,10 +486,27 @@ if (emailAuthForm) {
   });
 }
 
+if (headerGoogleSignInBtn) {
+  headerGoogleSignInBtn.addEventListener('click', async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+    } catch (err) {
+      console.warn('Google sign-in popup notice:', err);
+    }
+  });
+}
+
+if (authBackToPairingBtn) {
+  authBackToPairingBtn.addEventListener('click', () => {
+    showScreen(pairingScreen);
+  });
+}
+
 if (signOutBtn) {
   signOutBtn.addEventListener('click', () => {
     auth.signOut().then(() => {
-      showScreen(authScreen);
+      showScreen(pairingScreen);
     });
   });
 }
@@ -597,61 +583,42 @@ connectCodeBtn.addEventListener('click', async () => {
       return;
     }
 
-    // 2. STRICT ACCOUNT VERIFICATION CHECK (Fixes Account X vs Account Y issue)
+    // 2. Candidate Identity & Account Verification (Works universally for anyone worldwide)
     const mobileEmail = (sessionData.userEmail || '').trim().toLowerCase();
     const mobileUid = (sessionData.userId || '').trim();
+    const candidateName = sessionData.candidateName || (mobileEmail ? mobileEmail.split('@')[0] : 'Candidate');
     const webUser = auth.currentUser || state.currentUser;
     const webEmail = (webUser && webUser.email ? webUser.email : '').trim().toLowerCase();
     const webUid = (webUser && webUser.uid ? webUser.uid : '').trim();
 
-    if (mobileEmail) {
-      if (!webUser || webUser.isAnonymous) {
-        requiredAccountEmail = mobileEmail;
-        sessionStorage.setItem('target_required_email', mobileEmail);
-        sessionStorage.setItem('target_pending_code', code);
-        updateAuthRequiredBanner();
-        showAlert(
-          authAlert,
-          `Please sign in! This test was created by (${mobileEmail}). Please sign in with (${mobileEmail}) on this computer to continue.`,
-          'info'
-        );
-        showScreen(authScreen);
-        connectCodeBtn.disabled = false;
-        connectCodeBtn.textContent = 'Start on PC';
-        return;
-      }
-
-      const emailMatches = webEmail === mobileEmail;
-      const uidMatches = mobileUid && webUid && mobileUid === webUid;
-
-      if (!emailMatches && !uidMatches) {
-        // STRICT MISMATCH: Automatically sign out desktop account so user can sign in with mobile account
-        const mismatchedEmail = webEmail;
-        await auth.signOut();
-        requiredAccountEmail = mobileEmail;
-        sessionStorage.setItem('target_required_email', mobileEmail);
-        sessionStorage.setItem('target_pending_code', code);
-        updateAuthRequiredBanner();
-        showAlert(
-          authAlert,
-          `Account Mismatch! This test was started on phone with (${mobileEmail}), but this PC was signed in as (${mismatchedEmail}). You have been signed out. Please sign in with (${mobileEmail}) to continue.`,
-          'error'
-        );
-        showScreen(authScreen);
-        connectCodeBtn.disabled = false;
-        connectCodeBtn.textContent = 'Start on PC';
-        return;
-      }
-    } else if (webUser && !webUser.isAnonymous && mobileUid.startsWith('guest_')) {
+    // Check account mismatch ONLY if the desktop browser is already signed into a Google account
+    if (webUser && !webUser.isAnonymous && webEmail && mobileEmail && webEmail !== mobileEmail) {
       showAlert(
         pairingAlert,
-        `This test code was generated in Guest mode on mobile. To sync your exam progress and results with (${webEmail}), please sign in with Google in the mobile app first.`,
+        `Account Mismatch: This test code is from (${mobileEmail}) on mobile, but this PC browser is signed into Google as (${webEmail}). Please switch account or sign out.`,
         'error'
       );
+      if (btnSwitchAccountOnMismatch) {
+        btnSwitchAccountOnMismatch.style.display = 'block';
+        btnSwitchAccountOnMismatch.textContent = `Sign Out of (${webEmail}) & Continue`;
+        btnSwitchAccountOnMismatch.onclick = async () => {
+          btnSwitchAccountOnMismatch.style.display = 'none';
+          await auth.signOut();
+          connectCodeBtn.click();
+        };
+      }
       connectCodeBtn.disabled = false;
       connectCodeBtn.textContent = 'Start on PC';
       return;
     }
+
+    if (btnSwitchAccountOnMismatch) {
+      btnSwitchAccountOnMismatch.style.display = 'none';
+    }
+
+    // Set candidate name and badge in top bar
+    if (userName) userName.textContent = candidateName;
+    if (userBadge) userBadge.style.display = 'flex';
 
     state.activeSession = sessionData;
     state.sessionCode = code;
@@ -2248,8 +2215,6 @@ async function loadDemoExamData(targetDay = 8, targetExamId = 'sbi_clerk') {
 
 // Auto-fill OTP from URL query parameter (e.g. ?code=123456 or ?otp=123456) or debug views
 window.addEventListener('DOMContentLoaded', async () => {
-  updateAuthRequiredBanner();
-
   const urlParams = new URLSearchParams(window.location.search);
   const codeParam = urlParams.get('code') || urlParams.get('otp') || urlParams.get('pin');
   
@@ -2257,16 +2222,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     codeParam.split('').forEach((d, i) => { if (digitInputs[i]) digitInputs[i].value = d; });
     checkCodeComplete();
     
-    // If user is already authenticated with the matching account, proceed automatically
-    const webUser = auth.currentUser || state.currentUser;
-    const reqEmail = (requiredAccountEmail || '').trim().toLowerCase();
-    const curEmail = (webUser && webUser.email ? webUser.email : '').trim().toLowerCase();
-
-    if (webUser && !webUser.isAnonymous && (!reqEmail || curEmail === reqEmail)) {
-      if (connectCodeBtn && !connectCodeBtn.disabled) {
+    if (connectCodeBtn && !connectCodeBtn.disabled) {
+      setTimeout(() => {
         connectCodeBtn.click();
-        return;
-      }
+      }, 200);
+      return;
     }
   }
 
