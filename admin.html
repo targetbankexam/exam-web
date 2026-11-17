@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Target Bank Exam — Web Content Creator Studio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- MathJax for Live LaTeX Equation Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    .math-preview {
+      min-height: 2.2rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      word-break: break-word;
+    }
+    .math-preview:empty::before {
+      content: "LaTeX math formula live preview will appear here...";
+      color: #94a3b8;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+    /* Mobile-first touch enhancements */
+    input, select, textarea, button {
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- ========================================================================= -->
+  <!-- 0. ADMIN LOGIN SCREEN (Gated: Evilbug / Adwip1234@) -->
+  <!-- ========================================================================= -->
+  <div id="loginScreen" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-100 text-center relative overflow-hidden">
+      <!-- Decorative header banner -->
+      <div class="absolute -top-16 -right-16 w-36 h-36 bg-blue-100 rounded-full blur-2xl"></div>
+      <div class="absolute -bottom-16 -left-16 w-36 h-36 bg-indigo-100 rounded-full blur-2xl"></div>
+
+      <div class="relative z-10">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-blue-500/30 mb-4">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Admin Content Studio</h2>
+        <p class="text-xs text-slate-500 mt-1">Target Bank Exam &bull; Mobile & Web Question Creator</p>
+
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="mt-6 text-left space-y-4">
+          <div id="loginAlert" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold"></div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Username</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                <i class="fa-solid fa-user text-sm"></i>
+              </span>
+              <input type="text" id="loginUsername" required autocomplete="username" placeholder="Admin username" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                <i class="fa-solid fa-key text-sm"></i>
+              </span>
+              <input type="password" id="loginPassword" required autocomplete="current-password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-10 py-3 text-sm text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+              <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600">
+                <i id="togglePwdIcon" class="fa-solid fa-eye text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs">
+            <label class="flex items-center space-x-2 text-slate-600 cursor-pointer">
+              <input type="checkbox" id="rememberMeCheckbox" checked class="w-4 h-4 text-blue-600 rounded">
+              <span>Remember on this device</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/25 transition flex items-center justify-center space-x-2 cursor-pointer">
+            <i class="fa-solid fa-unlock-keyhole"></i>
+            <span>Unlock Content Studio</span>
+          </button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-center">
+          <a href="index.html" class="text-xs text-slate-500 hover:text-blue-600 font-semibold flex items-center space-x-1.5 transition">
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+            <span>Return to Exam Simulation Portal</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN ADMIN STUDIO APP -->
+  <!-- ========================================================================= -->
+  <div id="adminApp" class="flex-1 flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Left: Logo & Portal Title -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+            <i class="fa-solid fa-graduation-cap text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Target Bank Exam</h1>
+              <span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full uppercase tracking-wider">Web Admin</span>
+            </div>
+            <p class="text-xs font-medium text-slate-500 hidden sm:block">Content Creator Studio &bull; Mobile Ready</p>
+          </div>
+        </div>
+
+        <!-- Right: Actions & Auth info -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Pending Questions Badge -->
+          <button onclick="scrollToPendingQueue()" class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition border border-indigo-200 cursor-pointer">
+            <i class="fa-solid fa-inbox text-xs"></i>
+            <span class="hidden sm:inline">Queue:</span>
+            <span id="headerQueueBadge">0</span>
+          </button>
+
+          <!-- Settings Button -->
+          <button onclick="openSettingsModal()" class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-medium text-slate-700 transition cursor-pointer" title="GitHub Sync & AI Settings">
+            <i class="fa-solid fa-gear text-slate-500"></i>
+            <span class="hidden sm:inline">Settings</span>
+          </button>
+
+          <!-- Return to CBT Link -->
+          <a href="index.html" class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-medium text-slate-700 transition" title="Back to CBT Portal">
+            <i class="fa-solid fa-desktop text-slate-500"></i>
+            <span class="hidden md:inline">CBT Portal</span>
+          </a>
+
+          <!-- Logout Button -->
+          <button onclick="handleAdminLogout()" class="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition border border-rose-200 cursor-pointer" title="Sign Out">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="hidden sm:inline">Logout</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Notification Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+
+      <!-- Sync Info Banner -->
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-2xl p-4 sm:p-5 text-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+        <div class="flex items-start sm:items-center space-x-3.5">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+            <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Mobile Anywhere Creator &bull; Local Staged Pipeline</h3>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Add questions from your mobile phone or browser anytime without cloud storage. Staged questions stay stored here safely until you run <code class="font-mono bg-blue-100/70 text-blue-900 px-1 py-0.5 rounded text-[11px]">admin_tool.py</code> on your computer to review and merge into the APK!
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 shrink-0">
+          <button onclick="openExportModal()" class="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-xs font-bold shadow-xs transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-download text-slate-500"></i>
+            <span>Export / Backup</span>
+          </button>
+          <button onclick="syncToGitHubRepo()" id="githubSyncBtn" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-xs transition flex items-center space-x-1.5">
+            <i class="fa-brands fa-github"></i>
+            <span>Sync to Repo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 1: Exam & Mode Picker -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+        <!-- 1. Select Target Exam -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">1. Select Target Exam</label>
+            <button type="button" onclick="loadExamData()" title="Reload exam JSON" class="text-xs text-blue-600 hover:text-blue-700 font-semibold flex items-center space-x-1">
+              <i class="fa-solid fa-arrows-rotate text-[10px]"></i>
+              <span>Reload</span>
+            </button>
+          </div>
+          <div class="relative">
+            <select id="examSelect" onchange="onExamChanged()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none cursor-pointer text-sm">
+              <option value="sbi_clerk" selected>SBI Clerk</option>
+              <option value="sbi_po">SBI PO</option>
+              <option value="ibps_clerk">IBPS Clerk</option>
+              <option value="ibps_po">IBPS PO</option>
+              <option value="rrb_clerk">RRB Clerk</option>
+              <option value="rrb_po">RRB PO</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+              <i class="fa-solid fa-chevron-down text-sm"></i>
+            </div>
+          </div>
+          <div id="examMetaInfo" class="mt-1.5 text-xs text-slate-500 flex items-center space-x-2">
+            <span id="examStatusBadge" class="text-emerald-600 font-semibold flex items-center space-x-1">
+              <i class="fa-solid fa-circle-check text-[10px]"></i>
+              <span>Exam loaded</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- 2. Content Category -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">2. Content Category</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 bg-slate-100 rounded-xl">
+            <button id="modeDppBtn" onclick="setMode('dpp')" class="py-2.5 rounded-lg font-semibold text-xs transition bg-white text-blue-600 shadow-sm flex items-center justify-center space-x-1.5">
+              <i class="fa-solid fa-calendar-day"></i>
+              <span>DPP</span>
+            </button>
+            <button id="modeTopicBtn" onclick="setMode('topicwise')" class="py-2.5 rounded-lg font-semibold text-xs transition text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Topic</span>
+            </button>
+            <button id="modeSectionalBtn" onclick="setMode('sectional')" class="py-2.5 rounded-lg font-semibold text-xs transition text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5">
+              <i class="fa-solid fa-stopwatch"></i>
+              <span>Section</span>
+            </button>
+            <button id="modeMemoryBtn" onclick="setMode('memory_based')" class="py-2.5 rounded-lg font-semibold text-xs transition text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Memory</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Target Summary Badge -->
+        <div class="bg-blue-50/70 rounded-xl p-4 border border-blue-100 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Target Exam JSON</span>
+            <p id="targetJsonPath" class="text-sm font-bold text-slate-800 font-mono">data/sbi_clerk.json</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Exam Questions</span>
+            <p id="totalQuestionsBadge" class="text-xl font-extrabold text-blue-600">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: DPP / Topic Configuration Panel -->
+      <div id="dppSettingsPanel" class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-calendar-check text-blue-600"></i>
+            <span>Daily Practice Paper (DPP) Configuration</span>
+          </h2>
+          <span class="text-xs bg-blue-100 text-blue-700 font-semibold px-2.5 py-0.5 rounded-full">Day-by-Day Unlocking</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">DPP Day Number</label>
+            <div class="flex space-x-2">
+              <input type="number" id="dppDayInput" min="1" max="365" value="1" onchange="onDppDayChanged()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+              <button onclick="incrementDppDay()" title="Next Day" class="px-3 bg-slate-100 border border-slate-300 rounded-lg hover:bg-slate-200 text-slate-700 font-bold text-base cursor-pointer">+</button>
+            </div>
+            <span id="dppDayStatus" class="text-xs text-slate-500 mt-1 block">Day 1 selected</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Timer Limit (Minutes)</label>
+            <input type="number" id="dppTimerInput" min="5" max="120" value="15" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+            <span class="text-xs text-slate-500 mt-1 block">Default timer for this day</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Section Tag</label>
+            <select id="dppSectionSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+              <option value="quant">Quantitative Aptitude</option>
+              <option value="reasoning">Reasoning Ability</option>
+              <option value="english">English Language</option>
+              <option value="ga">General & Banking Awareness</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic Configuration Panel -->
+      <div id="topicSettingsPanel" class="hidden bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-folder-tree text-purple-600"></i>
+            <span>Topic-Wise Practice Configuration</span>
+          </h2>
+          <span class="text-xs bg-purple-100 text-purple-700 font-semibold px-2.5 py-0.5 rounded-full">Subject Drill</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Stage</label>
+            <select id="topicStageSelect" onchange="onStageOrSectionChanged()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+              <option value="prelims">Prelims</option>
+              <option value="mains">Mains</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Section</label>
+            <select id="topicSectionSelect" onchange="onStageOrSectionChanged()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+              <option value="quant">Quantitative Aptitude</option>
+              <option value="reasoning">Reasoning Ability</option>
+              <option value="english">English Language</option>
+              <option value="ga">General & Banking Awareness</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Topic</label>
+            <div class="flex space-x-1.5">
+              <select id="topicSelect" onchange="renderExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm">
+                <!-- Dynamically populated -->
+              </select>
+              <button onclick="promptAddNewTopic()" title="Add New Topic" class="px-2.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-100 font-bold text-xs whitespace-nowrap">+ New</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Set / Test #</label>
+            <input type="number" id="topicTestNumberInput" min="1" max="50" value="1" onchange="renderExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Duration (Mins)</label>
+            <input type="number" id="topicTimerInput" min="5" max="60" value="10" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none text-sm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Sectional Mock Test Configuration -->
+      <div id="sectionalSettingsPanel" class="hidden bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-stopwatch text-indigo-600"></i>
+            <span>Sectional Mock Test Configuration</span>
+          </h2>
+          <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2.5 py-0.5 rounded-full">Timed CBT Section</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Stage</label>
+            <select id="sectionalStageSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+              <option value="prelims">Prelims</option>
+              <option value="mains">Mains</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Section</label>
+            <select id="sectionalSectionSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+              <option value="quant">Quantitative Aptitude</option>
+              <option value="reasoning">Reasoning Ability</option>
+              <option value="english">English Language</option>
+              <option value="ga">General & Banking Awareness</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Sectional Test #</label>
+            <input type="number" id="sectionalTestNumberInput" min="1" max="100" value="1" onchange="renderExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Timer (Minutes)</label>
+            <input type="number" id="sectionalTimerInput" min="5" max="60" value="20" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Memory Based Configuration -->
+      <div id="memorySettingsPanel" class="hidden bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-clock-rotate-left text-amber-600"></i>
+            <span>Memory Based Previous Year Paper Configuration</span>
+          </h2>
+          <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded-full">Actual Exam PYQ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Exam Year</label>
+            <input type="number" id="mbYearInput" min="2018" max="2030" value="2024" onchange="renderExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Stage</label>
+            <select id="mbStageSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm">
+              <option value="prelims">Prelims</option>
+              <option value="mains">Mains</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Section</label>
+            <select id="mbSectionSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm">
+              <option value="quant">Quantitative Aptitude</option>
+              <option value="reasoning">Reasoning Ability</option>
+              <option value="english">English Language</option>
+              <option value="ga">General & Banking Awareness</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Full Paper Timer (Mins)</label>
+            <input type="number" id="mbTimerInput" min="15" max="180" value="60" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Question Ingestion Bar -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+              <i class="fa-solid fa-plus-circle text-blue-600"></i>
+              <span>Question Ingestion & Staging</span>
+            </h3>
+            <p class="text-xs text-slate-500">Quickly add individual blank questions, paste text, or use AI parsing.</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="toggleQuickPaste()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition flex items-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-paste text-slate-500"></i>
+              <span>Quick Paste Tool</span>
+            </button>
+            <button onclick="addBlankQuestion()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20 transition flex items-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-plus"></i>
+              <span>+ Add Blank Question</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Paste Drawer (Collapsible) -->
+        <div id="quickPasteDrawer" class="hidden bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">Paste Question Text (Bilingual / English)</span>
+            <span class="text-[11px] text-slate-500">Auto-detects options (A-E) & answers</span>
+          </div>
+          <textarea id="quickPasteInput" rows="5" placeholder="Paste your question text here...&#10;e.g.&#10;What is 25% of 400?&#10;A) 80&#10;B) 100&#10;C) 120&#10;D) 150&#10;Answer: B&#10;Explanation: 400 * 0.25 = 100" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-xs text-slate-800 font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          <div class="flex justify-end space-x-2">
+            <button onclick="parseQuickPasteText()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold shadow-xs">Parse & Stage</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Staged Questions (Review & Edit Before Saving) -->
+      <div id="stagedSection" class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center space-x-2">
+              <span>Staged Questions</span>
+              <span id="stagedCountBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">0 ready</span>
+            </h3>
+            <p class="text-xs text-slate-500">Review questions below before saving to pending queue.</p>
+          </div>
+
+          <div class="flex items-center flex-wrap gap-2">
+            <button onclick="addBlankQuestion()" class="px-3.5 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold shadow-xs transition flex items-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-plus text-xs"></i>
+              <span>Add Empty</span>
+            </button>
+            <button id="savePendingBtn" onclick="saveToPendingQueue()" disabled class="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20 transition flex items-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Save to Pending Queue</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Questions Cards Container -->
+        <div id="questionsContainer" class="space-y-4">
+          <div id="emptyQuestionsPlaceholder" class="bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center text-slate-400">
+            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400 text-2xl mx-auto mb-3">
+              <i class="fa-regular fa-file-lines"></i>
+            </div>
+            <h4 class="text-base font-semibold text-slate-700">No questions currently staged</h4>
+            <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+              Tap <strong class="text-slate-700">+ Add Blank Question</strong> to create a question manually, or paste text in the quick paste tool.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Queue Summary Card (Saved on Portal) -->
+      <div id="pendingQueueCard" class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+              <i class="fa-solid fa-box-archive text-indigo-600"></i>
+              <span>Pending Questions Storage (Waiting for PC admintool.py)</span>
+              <span id="pendingQueueCountBadge" class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">0 questions</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">
+              These questions are stored locally in the portal. When you run <code class="font-mono bg-slate-100 text-slate-800 px-1 py-0.5 rounded">admin_tool.py</code> on your computer, it detects and imports them into your app!
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-2 shrink-0">
+            <button onclick="copyPendingQueueJSON()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold flex items-center space-x-1 transition cursor-pointer" title="Copy JSON to clipboard">
+              <i class="fa-regular fa-copy"></i>
+              <span>Copy JSON</span>
+            </button>
+            <button onclick="downloadPendingQueueJSON()" class="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-xs font-semibold flex items-center space-x-1 transition cursor-pointer" title="Download JSON file">
+              <i class="fa-solid fa-download"></i>
+              <span>Download</span>
+            </button>
+            <button onclick="clearPendingQueue()" class="px-2.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold flex items-center space-x-1 transition cursor-pointer" title="Clear all pending">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="pendingQueueItemsContainer" class="space-y-2">
+          <div class="text-center py-6 text-slate-400 text-xs">
+            No questions currently in the pending queue.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Existing Questions Manager (Bottom List from Exam JSON) -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+              <i class="fa-solid fa-list-check text-slate-700"></i>
+              <span id="existingHeaderTitle">Existing Questions in Exam</span>
+              <span id="existingCountBadge" class="text-xs bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded-full">0</span>
+            </h3>
+            <p class="text-xs text-slate-500">Questions already saved in <span id="existingFileLabel" class="font-mono text-blue-600">data/sbi_clerk.json</span>.</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <!-- Search bar -->
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 text-slate-400">
+                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+              </span>
+              <input type="text" id="existingSearchInput" oninput="filterExistingQuestions()" placeholder="Search questions..." class="w-40 sm:w-56 bg-slate-50 border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <button onclick="loadExamData()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg font-semibold flex items-center space-x-1.5 transition cursor-pointer">
+              <i class="fa-solid fa-arrows-rotate text-[11px]"></i>
+              <span class="hidden sm:inline">Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Existing Questions List -->
+        <div id="existingQuestionsList" class="space-y-2.5">
+          <div class="text-center py-8 text-slate-400 text-xs">
+            Loading existing questions from exam JSON...
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div>Target Bank Exam &bull; Content Studio &bull; Personal Admin Portal</div>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="text-blue-600 hover:underline">Exam CBT Portal</a>
+          <button onclick="openSettingsModal()" class="text-slate-600 hover:underline">Configuration</button>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: Full-Screen / Mobile Question Edit Modal -->
+  <!-- ========================================================================= -->
+  <div id="editModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl space-y-4 my-6 max-h-[92vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center space-x-2">
+            <i class="fa-solid fa-pen-to-square text-blue-600"></i>
+            <span id="modalQuestionTitle">Edit Question</span>
+          </h3>
+          <!-- Bilingual Modal Tab Selector -->
+          <div class="inline-flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+            <button type="button" id="modalTabBtnEn" onclick="setModalTab('en')" class="px-2.5 py-1 rounded-md text-xs font-bold transition bg-blue-600 text-white shadow-xs">
+              English
+            </button>
+            <button type="button" id="modalTabBtnHi" onclick="setModalTab('hi')" class="px-2.5 py-1 rounded-md text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              हिन्दी
+            </button>
+          </div>
+        </div>
+        <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- English Tab Content -->
+      <div id="modalTabEnContent" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">English Question Statement (LaTeX: $...$)</label>
+          <textarea id="modalQText" rows="3" oninput="updateModalPreview()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          <div class="mt-1">
+            <div class="text-[10px] font-bold uppercase text-slate-400">Live Math Preview:</div>
+            <div id="modalQTextPreview" class="math-preview text-sm text-slate-800"></div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-2 uppercase">English Options (Radio = Correct Answer)</label>
+          <div id="modalOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">English Step-by-Step Explanation (LaTeX: $...$)</label>
+          <textarea id="modalQExp" rows="3" oninput="updateModalPreview()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          <div class="mt-1">
+            <div class="text-[10px] font-bold uppercase text-slate-400">Live Math Preview:</div>
+            <div id="modalQExpPreview" class="math-preview text-sm text-slate-800"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hindi Tab Content -->
+      <div id="modalTabHiContent" class="hidden space-y-4">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-xs text-amber-800 flex items-center justify-between">
+          <span><strong>हिन्दी संस्करण:</strong> All digits (०-९) auto-convert to standard English digits (0-9).</span>
+          <span class="font-mono text-[10px] bg-amber-200/80 px-2 py-0.5 rounded text-amber-900 font-bold">Auto-Normalized</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Hindi Question Statement (हिन्दी प्रश्न)</label>
+          <textarea id="modalQTextHi" rows="3" oninput="updateModalPreviewHi()" placeholder="यहाँ हिन्दी प्रश्न लिखें..." class="w-full bg-amber-50/30 border border-amber-300/80 rounded-xl p-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+          <div class="mt-1">
+            <div class="text-[10px] font-bold uppercase text-slate-400">Live Math Preview:</div>
+            <div id="modalQTextHiPreview" class="math-preview text-sm text-slate-800"></div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-amber-900 mb-2 uppercase">Hindi Options (हिन्दी विकल्प)</label>
+          <div id="modalOptionsHiContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Hindi Explanation (हिन्दी व्याख्या)</label>
+          <textarea id="modalQExpHi" rows="3" oninput="updateModalPreviewHi()" placeholder="यहाँ हिन्दी हल/व्याख्या लिखें..." class="w-full bg-amber-50/30 border border-amber-300/80 rounded-xl p-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+          <div class="mt-1">
+            <div class="text-[10px] font-bold uppercase text-slate-400">Live Math Preview:</div>
+            <div id="modalQExpHiPreview" class="math-preview text-sm text-slate-800"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Difficulty & Actions -->
+      <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+          <label class="text-xs font-bold text-slate-600">Difficulty:</label>
+          <select id="modalDifficultySelect" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">Cancel</button>
+          <button type="button" onclick="saveModalChanges()" class="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20">Apply Changes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: Settings Modal (GitHub Sync & API Keys) -->
+  <!-- ========================================================================= -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 my-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+          <i class="fa-solid fa-sliders text-blue-600"></i>
+          <span>Portal Settings & GitHub Sync</span>
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">GitHub Personal Access Token (PAT) - Optional</label>
+          <p class="text-slate-500 mb-2">
+            Allows the web portal to write directly to <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">data/portal_pending_questions.json</code> in your repository without third-party cloud databases.
+          </p>
+          <input type="password" id="githubTokenInput" placeholder="github_pat_... or ghp_..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <span class="text-[11px] text-slate-400 mt-1 block">Stored securely in your browser's localStorage. Never sent to any third party.</span>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">GitHub Repository</label>
+          <input type="text" id="githubRepoInput" value="targetbankexam/exam-web" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <div class="pt-2 border-t border-slate-100">
+          <label class="block font-bold text-slate-700 uppercase mb-1">Gemini API Key (Optional)</label>
+          <p class="text-slate-500 mb-2">Used for optional AI question extraction or solving on mobile.</p>
+          <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex justify-end space-x-2">
+        <button onclick="closeSettingsModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">Cancel</button>
+        <button onclick="saveSettings()" class="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: Export / Import JSON Modal -->
+  <!-- ========================================================================= -->
+  <div id="exportModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 my-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+          <i class="fa-solid fa-file-code text-indigo-600"></i>
+          <span>Export or Import Pending Questions</span>
+        </h3>
+        <button onclick="closeExportModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-3">
+        <p class="text-xs text-slate-600">
+          You can copy or paste the raw JSON of pending questions. This makes it effortless to transfer questions from your phone to your computer via WhatsApp, Telegram, Email, or Google Drive!
+        </p>
+        <textarea id="exportJsonTextarea" rows="10" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-mono text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="importJsonIntoQueue()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow-xs">
+          <i class="fa-solid fa-arrow-down-to-bracket mr-1"></i> Import JSON to Queue
+        </button>
+        <div class="flex space-x-2">
+          <button onclick="closeExportModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold">Close</button>
+          <button onclick="copyExportJsonText()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPT: APPLICATION LOGIC -->
+  <!-- ========================================================================= -->
+  <script>
+    // --- 1. CREDENTIALS & AUTH STATE ---
+    const ADMIN_USER = "Evilbug";
+    const ADMIN_PASS = "Adwip1234@";
+    const AUTH_KEY = "target_bank_admin_auth";
+
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem(AUTH_KEY) === "1" || localStorage.getItem(AUTH_KEY) === "1";
+      const loginScreen = document.getElementById("loginScreen");
+      const adminApp = document.getElementById("adminApp");
+
+      if (isAuth) {
+        loginScreen.classList.add("hidden");
+        adminApp.classList.remove("hidden");
+        initStudio();
+      } else {
+        loginScreen.classList.remove("hidden");
+        adminApp.classList.add("hidden");
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById("loginUsername").value.trim();
+      const pass = document.getElementById("loginPassword").value;
+      const remember = document.getElementById("rememberMeCheckbox").checked;
+      const alert = document.getElementById("loginAlert");
+
+      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+        if (remember) {
+          localStorage.setItem(AUTH_KEY, "1");
+        } else {
+          sessionStorage.setItem(AUTH_KEY, "1");
+        }
+        alert.classList.add("hidden");
+        checkAuth();
+        showToast("Welcome Evilbug! Content Studio unlocked.", "success");
+      } else {
+        alert.textContent = "Invalid username or password. Please verify your credentials.";
+        alert.classList.remove("hidden");
+      }
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(AUTH_KEY);
+      location.reload();
+    }
+
+    function togglePasswordVisibility() {
+      const pwdInput = document.getElementById("loginPassword");
+      const icon = document.getElementById("togglePwdIcon");
+      if (pwdInput.type === "password") {
+        pwdInput.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        pwdInput.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
+    }
+
+    // --- 2. STATE VARIABLES ---
+    let currentExamId = "sbi_clerk";
+    let currentExamData = null;
+    let currentMode = "dpp"; // 'dpp', 'topicwise', 'sectional', 'memory_based'
+    let stagedQuestions = [];
+    let stagedCardTabs = {}; // idx -> 'en' or 'hi'
+    let existingQuestions = [];
+    let activeEditIndex = null;
+    let modalActiveTab = "en";
+    let pendingQueue = [];
+
+    const KNOWN_EXAMS = [
+      { id: "sbi_clerk", name: "SBI Clerk" },
+      { id: "sbi_po", name: "SBI PO" },
+      { id: "ibps_clerk", name: "IBPS Clerk" },
+      { id: "ibps_po", name: "IBPS PO" },
+      { id: "rrb_clerk", name: "RRB Clerk" },
+      { id: "rrb_po", name: "RRB PO" }
+    ];
+
+    // --- 3. INITIALIZATION ---
+    function initStudio() {
+      loadSettings();
+      loadPendingQueueFromStorage();
+      loadExamData();
+    }
+
+    // --- 4. EXAM DATA LOADER ---
+    async function loadExamData() {
+      const examSelect = document.getElementById("examSelect");
+      currentExamId = examSelect.value || "sbi_clerk";
+      document.getElementById("targetJsonPath").textContent = `data/${currentExamId}.json`;
+      document.getElementById("existingFileLabel").textContent = `data/${currentExamId}.json`;
+
+      const statusBadge = document.getElementById("examStatusBadge");
+      statusBadge.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-[10px]"></i> <span>Loading data/${currentExamId}.json...</span>`;
+
+      try {
+        const res = await fetch(`data/${currentExamId}.json?_v=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        currentExamData = await res.json();
+
+        // Update counts
+        const allQuestions = currentExamData.questions || [];
+        document.getElementById("totalQuestionsBadge").textContent = allQuestions.length;
+        statusBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i> <span class="text-emerald-700 font-semibold">${allQuestions.length} questions in database</span>`;
+
+        populateTopics();
+        renderExistingQuestions();
+      } catch (err) {
+        console.error("Failed to load exam json:", err);
+        statusBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-500 text-[10px]"></i> <span class="text-amber-700">Offline / Using local fallback</span>`;
+        currentExamData = { exam: { id: currentExamId }, questions: [] };
+        renderExistingQuestions();
+      }
+    }
+
+    function onExamChanged() {
+      loadExamData();
+    }
+
+    // --- 5. MODE SWITCHER ---
+    function setMode(mode) {
+      currentMode = mode;
+      const modes = ['dpp', 'topicwise', 'sectional', 'memory_based'];
+      const btnMap = {
+        dpp: 'modeDppBtn',
+        topicwise: 'modeTopicBtn',
+        sectional: 'modeSectionalBtn',
+        memory_based: 'modeMemoryBtn'
+      };
+      const panelMap = {
+        dpp: 'dppSettingsPanel',
+        topicwise: 'topicSettingsPanel',
+        sectional: 'sectionalSettingsPanel',
+        memory_based: 'memorySettingsPanel'
+      };
+
+      modes.forEach(m => {
+        const btn = document.getElementById(btnMap[m]);
+        const panel = document.getElementById(panelMap[m]);
+        if (m === mode) {
+          btn.className = "py-2.5 rounded-lg font-semibold text-xs transition bg-white text-blue-600 shadow-sm flex items-center justify-center space-x-1.5";
+          if (panel) panel.classList.remove('hidden');
+        } else {
+          btn.className = "py-2.5 rounded-lg font-semibold text-xs transition text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5";
+          if (panel) panel.classList.add('hidden');
+        }
+      });
+
+      renderExistingQuestions();
+    }
+
+    function onDppDayChanged() {
+      const day = document.getElementById("dppDayInput").value;
+      document.getElementById("dppDayStatus").textContent = `Day ${day} selected`;
+      renderExistingQuestions();
+    }
+
+    function incrementDppDay() {
+      const input = document.getElementById("dppDayInput");
+      input.value = parseInt(input.value || 1) + 1;
+      onDppDayChanged();
+    }
+
+    function populateTopics() {
+      const stageSelect = document.getElementById("topicStageSelect");
+      const secSelect = document.getElementById("topicSectionSelect");
+      const topicSelect = document.getElementById("topicSelect");
+
+      if (!currentExamData || !currentExamData.stages) return;
+      const stage = currentExamData.stages.find(s => s.id === stageSelect.value);
+      if (!stage || !stage.sections) return;
+      const section = stage.sections.find(sec => sec.id === secSelect.value);
+      if (!section || !section.topics) return;
+
+      topicSelect.innerHTML = "";
+      section.topics.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = t.name;
+        topicSelect.appendChild(opt);
+      });
+    }
+
+    function onStageOrSectionChanged() {
+      populateTopics();
+      renderExistingQuestions();
+    }
+
+    function promptAddNewTopic() {
+      const topicName = prompt("Enter new Topic Name (e.g. 'Quadratic Equations'):");
+      if (!topicName || !topicName.trim()) return;
+      const topicId = topicName.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_');
+      const topicSelect = document.getElementById("topicSelect");
+      const opt = document.createElement("option");
+      opt.value = topicId;
+      opt.textContent = topicName.trim();
+      opt.selected = true;
+      topicSelect.appendChild(opt);
+      showToast(`Added topic: ${topicName.trim()}`, "success");
+    }
+
+    // --- 6. QUESTION CREATION & STAGING ---
+    function addBlankQuestion() {
+      const q = {
+        id: `${currentExamId}_staged_${Date.now()}_${stagedQuestions.length + 1}`,
+        examId: currentExamId,
+        mode: currentMode,
+        type: currentMode,
+        dppDay: parseInt(document.getElementById("dppDayInput")?.value || 1),
+        stageId: document.getElementById("topicStageSelect")?.value || "prelims",
+        sectionId: document.getElementById("dppSectionSelect")?.value || "quant",
+        topicId: document.getElementById("topicSelect")?.value || "general",
+        testNumber: parseInt(document.getElementById("topicTestNumberInput")?.value || 1),
+        year: parseInt(document.getElementById("mbYearInput")?.value || 2024),
+        questionText: "",
+        questionTextHi: "",
+        options: ["", "", "", "", ""],
+        optionsHi: ["", "", "", "", ""],
+        correctIndex: 0,
+        explanation: "",
+        explanationHi: "",
+        difficulty: "Medium",
+        questionImages: [],
+        explanationImages: []
+      };
+
+      stagedQuestions.push(q);
+      renderStagedQuestions();
+      openEditModal(stagedQuestions.length - 1);
+      showToast("New blank question created!", "info");
+    }
+
+    function removeQuestion(index) {
+      stagedQuestions.splice(index, 1);
+      renderStagedQuestions();
+    }
+
+    function renderStagedQuestions() {
+      const container = document.getElementById("questionsContainer");
+      const placeholder = document.getElementById("emptyQuestionsPlaceholder");
+      const badge = document.getElementById("stagedCountBadge");
+      const saveBtn = document.getElementById("savePendingBtn");
+
+      badge.textContent = `${stagedQuestions.length} ready`;
+      saveBtn.disabled = stagedQuestions.length === 0;
+
+      if (stagedQuestions.length === 0) {
+        container.innerHTML = "";
+        container.appendChild(placeholder);
+        return;
+      }
+
+      container.innerHTML = "";
+      const labels = ['A', 'B', 'C', 'D', 'E'];
+
+      stagedQuestions.forEach((q, idx) => {
+        const card = document.createElement("div");
+        card.className = "bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4";
+        const currentTab = stagedCardTabs[idx] || "en";
+
+        // Options HTML
+        let optionsHtmlEn = "";
+        (q.options || []).forEach((opt, optIdx) => {
+          const isChecked = q.correctIndex === optIdx ? "checked" : "";
+          optionsHtmlEn += `
+            <div class="flex items-center space-x-2">
+              <label class="flex items-center space-x-1 cursor-pointer">
+                <input type="radio" name="staged_correct_${idx}" value="${optIdx}" ${isChecked} onchange="stagedQuestions[${idx}].correctIndex = ${optIdx}" class="w-4 h-4 text-blue-600">
+                <span class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-slate-700">${labels[optIdx] || optIdx + 1}</span>
+              </label>
+              <input type="text" value="${escapeHtml(opt)}" oninput="stagedQuestions[${idx}].options[${optIdx}] = this.value" placeholder="Option ${labels[optIdx]}" class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs">
+            </div>
+          `;
+        });
+
+        let optionsHtmlHi = "";
+        const optsHi = q.optionsHi || ["", "", "", "", ""];
+        optsHi.forEach((optHi, optIdx) => {
+          const isChecked = q.correctIndex === optIdx ? "checked" : "";
+          optionsHtmlHi += `
+            <div class="flex items-center space-x-2">
+              <label class="flex items-center space-x-1 cursor-pointer">
+                <input type="radio" name="staged_correct_hi_${idx}" value="${optIdx}" ${isChecked} onchange="stagedQuestions[${idx}].correctIndex = ${optIdx}" class="w-4 h-4 text-amber-600">
+                <span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center font-bold text-xs text-amber-800">${labels[optIdx] || optIdx + 1}</span>
+              </label>
+              <input type="text" value="${escapeHtml(optHi)}" oninput="updateStagedOptionHi(${idx}, ${optIdx}, this.value)" placeholder="विकल्प ${labels[optIdx]}" class="flex-1 bg-amber-50/40 border border-amber-300 rounded-lg px-3 py-1.5 text-xs">
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center">${idx + 1}</span>
+              <h4 class="font-bold text-slate-800 text-xs sm:text-sm">Question #${idx + 1}</h4>
+              
+              <!-- Bilingual Tab Pill -->
+              <div class="inline-flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+                <button type="button" onclick="setStagedCardTab(${idx}, 'en')" class="px-2 py-0.5 rounded text-[11px] font-bold transition ${currentTab === 'en' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600'}">
+                  EN
+                </button>
+                <button type="button" onclick="setStagedCardTab(${idx}, 'hi')" class="px-2 py-0.5 rounded text-[11px] font-bold transition flex items-center space-x-1 ${currentTab === 'hi' ? 'bg-amber-600 text-white shadow-xs' : 'text-slate-600'}">
+                  <span>HI</span>
+                  ${q.questionTextHi ? '<span class="text-emerald-400 font-bold">✓</span>' : ''}
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <button onclick="openEditModal(${idx})" class="px-2.5 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs font-semibold flex items-center space-x-1">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span class="hidden sm:inline">Edit Full</span>
+              </button>
+              <button onclick="removeQuestion(${idx})" class="p-1.5 text-rose-500 hover:text-rose-700 rounded-lg" title="Delete">
+                <i class="fa-regular fa-trash-can text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- English Card Content -->
+          <div class="${currentTab === 'en' ? 'space-y-3' : 'hidden'}">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Question Statement</label>
+              <textarea rows="2" oninput="updateStagedQText(${idx}, this.value)" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">${escapeHtml(q.questionText)}</textarea>
+              <div id="q_preview_${idx}" class="math-preview text-xs text-slate-700 mt-1">${escapeHtml(q.questionText || '')}</div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Options (Select Radio for Correct)</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optionsHtmlEn}</div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Explanation</label>
+              <textarea rows="2" oninput="updateStagedQExp(${idx}, this.value)" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">${escapeHtml(q.explanation)}</textarea>
+            </div>
+          </div>
+
+          <!-- Hindi Card Content -->
+          <div class="${currentTab === 'hi' ? 'space-y-3' : 'hidden'}">
+            <div>
+              <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Hindi Question Statement (हिन्दी प्रश्न)</label>
+              <textarea rows="2" oninput="updateStagedQTextHi(${idx}, this.value)" class="w-full bg-amber-50/40 border border-amber-300 rounded-xl p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-amber-500 focus:outline-none">${escapeHtml(q.questionTextHi)}</textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-amber-900 uppercase mb-1.5">Hindi Options (विकल्प)</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optionsHtmlHi}</div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Hindi Explanation (व्याख्या)</label>
+              <textarea rows="2" oninput="updateStagedQExpHi(${idx}, this.value)" class="w-full bg-amber-50/40 border border-amber-300 rounded-xl p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-amber-500 focus:outline-none">${escapeHtml(q.explanationHi)}</textarea>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      renderMathInElement(container);
+    }
+
+    function setStagedCardTab(idx, tab) {
+      stagedCardTabs[idx] = tab;
+      renderStagedQuestions();
+    }
+
+    function updateStagedQText(idx, val) {
+      stagedQuestions[idx].questionText = val;
+      const prev = document.getElementById(`q_preview_${idx}`);
+      if (prev) {
+        prev.textContent = val;
+        renderMathInElement(prev);
+      }
+    }
+
+    function updateStagedQExp(idx, val) {
+      stagedQuestions[idx].explanation = val;
+    }
+
+    function updateStagedQTextHi(idx, val) {
+      stagedQuestions[idx].questionTextHi = normalizeNumerals(val);
+    }
+
+    function updateStagedOptionHi(idx, optIdx, val) {
+      if (!stagedQuestions[idx].optionsHi) stagedQuestions[idx].optionsHi = ["", "", "", "", ""];
+      stagedQuestions[idx].optionsHi[optIdx] = normalizeNumerals(val);
+    }
+
+    function updateStagedQExpHi(idx, val) {
+      stagedQuestions[idx].explanationHi = normalizeNumerals(val);
+    }
+
+    // --- 7. EDIT MODAL ---
+    function openEditModal(idx) {
+      activeEditIndex = idx;
+      const q = stagedQuestions[idx];
+      if (!q) return;
+
+      document.getElementById("modalQuestionTitle").textContent = `Edit Question #${idx + 1}`;
+      document.getElementById("modalQText").value = q.questionText || "";
+      document.getElementById("modalQExp").value = q.explanation || "";
+      document.getElementById("modalQTextHi").value = q.questionTextHi || "";
+      document.getElementById("modalQExpHi").value = q.explanationHi || "";
+      document.getElementById("modalDifficultySelect").value = q.difficulty || "Medium";
+
+      renderModalOptions(q);
+      setModalTab(modalActiveTab || "en");
+      updateModalPreview();
+      updateModalPreviewHi();
+
+      document.getElementById("editModal").classList.remove("hidden");
+    }
+
+    function closeEditModal() {
+      document.getElementById("editModal").classList.add("hidden");
+      activeEditIndex = null;
+    }
+
+    function setModalTab(tab) {
+      modalActiveTab = tab;
+      const btnEn = document.getElementById("modalTabBtnEn");
+      const btnHi = document.getElementById("modalTabBtnHi");
+      const contentEn = document.getElementById("modalTabEnContent");
+      const contentHi = document.getElementById("modalTabHiContent");
+
+      if (tab === "en") {
+        btnEn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition bg-blue-600 text-white shadow-xs";
+        btnHi.className = "px-2.5 py-1 rounded-md text-xs font-bold transition text-slate-600 hover:text-slate-900";
+        contentEn.classList.remove("hidden");
+        contentHi.classList.add("hidden");
+      } else {
+        btnHi.className = "px-2.5 py-1 rounded-md text-xs font-bold transition bg-amber-600 text-white shadow-xs";
+        btnEn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition text-slate-600 hover:text-slate-900";
+        contentHi.classList.remove("hidden");
+        contentEn.classList.add("hidden");
+      }
+    }
+
+    function renderModalOptions(q) {
+      const containerEn = document.getElementById("modalOptionsContainer");
+      const containerHi = document.getElementById("modalOptionsHiContainer");
+      const labels = ['A', 'B', 'C', 'D', 'E'];
+
+      containerEn.innerHTML = "";
+      containerHi.innerHTML = "";
+
+      const optsEn = q.options || ["", "", "", "", ""];
+      const optsHi = q.optionsHi || ["", "", "", "", ""];
+
+      labels.forEach((lbl, i) => {
+        const isChecked = q.correctIndex === i ? "checked" : "";
+
+        // En
+        const divEn = document.createElement("div");
+        divEn.className = "flex items-center space-x-2";
+        divEn.innerHTML = `
+          <label class="flex items-center space-x-1 cursor-pointer">
+            <input type="radio" name="modal_correct_en" value="${i}" ${isChecked} class="w-4 h-4 text-blue-600">
+            <span class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-slate-700">${lbl}</span>
+          </label>
+          <input type="text" id="modalOptEn_${i}" value="${escapeHtml(optsEn[i] || '')}" class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs">
+        `;
+        containerEn.appendChild(divEn);
+
+        // Hi
+        const divHi = document.createElement("div");
+        divHi.className = "flex items-center space-x-2";
+        divHi.innerHTML = `
+          <label class="flex items-center space-x-1 cursor-pointer">
+            <input type="radio" name="modal_correct_hi" value="${i}" ${isChecked} class="w-4 h-4 text-amber-600">
+            <span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center font-bold text-xs text-amber-800">${lbl}</span>
+          </label>
+          <input type="text" id="modalOptHi_${i}" value="${escapeHtml(optsHi[i] || '')}" class="flex-1 bg-amber-50/40 border border-amber-300 rounded-lg px-3 py-1.5 text-xs">
+        `;
+        containerHi.appendChild(divHi);
+      });
+    }
+
+    function updateModalPreview() {
+      const qText = document.getElementById("modalQText").value;
+      const qExp = document.getElementById("modalQExp").value;
+      const prevQ = document.getElementById("modalQTextPreview");
+      const prevExp = document.getElementById("modalQExpPreview");
+      if (prevQ) prevQ.textContent = qText;
+      if (prevExp) prevExp.textContent = qExp;
+      renderMathInElement(prevQ);
+      renderMathInElement(prevExp);
+    }
+
+    function updateModalPreviewHi() {
+      const qTextHi = normalizeNumerals(document.getElementById("modalQTextHi").value);
+      const qExpHi = normalizeNumerals(document.getElementById("modalQExpHi").value);
+      const prevQ = document.getElementById("modalQTextHiPreview");
+      const prevExp = document.getElementById("modalQExpHiPreview");
+      if (prevQ) prevQ.textContent = qTextHi;
+      if (prevExp) prevExp.textContent = qExpHi;
+      renderMathInElement(prevQ);
+      renderMathInElement(prevExp);
+    }
+
+    function saveModalChanges() {
+      if (activeEditIndex === null || !stagedQuestions[activeEditIndex]) return;
+      const q = stagedQuestions[activeEditIndex];
+
+      q.questionText = document.getElementById("modalQText").value.trim();
+      q.explanation = document.getElementById("modalQExp").value.trim();
+      q.questionTextHi = normalizeNumerals(document.getElementById("modalQTextHi").value.trim());
+      q.explanationHi = normalizeNumerals(document.getElementById("modalQExpHi").value.trim());
+      q.difficulty = document.getElementById("modalDifficultySelect").value;
+
+      // Correct radio
+      const radios = document.getElementsByName(modalActiveTab === "en" ? "modal_correct_en" : "modal_correct_hi");
+      radios.forEach((r, idx) => {
+        if (r.checked) q.correctIndex = idx;
+      });
+
+      // Options
+      q.options = [0, 1, 2, 3, 4].map(i => document.getElementById(`modalOptEn_${i}`)?.value.trim() || "");
+      q.optionsHi = [0, 1, 2, 3, 4].map(i => normalizeNumerals(document.getElementById(`modalOptHi_${i}`)?.value.trim() || ""));
+
+      closeEditModal();
+      renderStagedQuestions();
+      showToast("Question updated successfully!", "success");
+    }
+
+    // --- 8. QUICK PASTE TOOL ---
+    function toggleQuickPaste() {
+      const drawer = document.getElementById("quickPasteDrawer");
+      drawer.classList.toggle("hidden");
+    }
+
+    function parseQuickPasteText() {
+      const text = document.getElementById("quickPasteInput").value.trim();
+      if (!text) return alert("Please paste question text first!");
+
+      const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+      let qStatement = [];
+      let options = ["", "", "", "", ""];
+      let correctIdx = 0;
+      let expLines = [];
+      let readingExp = false;
+
+      const optRegex = /^([A-Ea-e])[\)\.\:\-\s]\s*(.*)$/;
+      const ansRegex = /^(?:Ans(?:wer)?|Correct(?:\s*Option)?|उत्तर)[\:\-\s]*([A-Ea-e1-5])/i;
+      const expRegex = /^(?:Exp(?:lanation)?|व्याख्या|हल)[\:\-\s]*(.*)$/i;
+
+      lines.forEach(line => {
+        const ansMatch = line.match(ansRegex);
+        const expMatch = line.match(expRegex);
+        const optMatch = line.match(optRegex);
+
+        if (ansMatch) {
+          const val = ansMatch[1].toUpperCase();
+          const letterMap = { A: 0, B: 1, C: 2, D: 3, E: 4, '1': 0, '2': 1, '3': 2, '4': 3, '5': 4 };
+          if (val in letterMap) correctIdx = letterMap[val];
+          return;
+        }
+
+        if (expMatch) {
+          readingExp = true;
+          if (expMatch[1]) expLines.push(expMatch[1]);
+          return;
+        }
+
+        if (readingExp) {
+          expLines.push(line);
+          return;
+        }
+
+        if (optMatch) {
+          const letter = optMatch[1].toUpperCase();
+          const map = { A: 0, B: 1, C: 2, D: 3, E: 4 };
+          if (letter in map) {
+            options[map[letter]] = optMatch[2];
+          }
+          return;
+        }
+
+        qStatement.push(line);
+      });
+
+      const q = {
+        id: `${currentExamId}_staged_${Date.now()}_${stagedQuestions.length + 1}`,
+        examId: currentExamId,
+        mode: currentMode,
+        type: currentMode,
+        dppDay: parseInt(document.getElementById("dppDayInput")?.value || 1),
+        stageId: document.getElementById("topicStageSelect")?.value || "prelims",
+        sectionId: document.getElementById("dppSectionSelect")?.value || "quant",
+        topicId: document.getElementById("topicSelect")?.value || "general",
+        questionText: qStatement.join("\n"),
+        questionTextHi: "",
+        options: options,
+        optionsHi: ["", "", "", "", ""],
+        correctIndex: correctIdx,
+        explanation: expLines.join("\n"),
+        explanationHi: "",
+        difficulty: "Medium"
+      };
+
+      stagedQuestions.push(q);
+      renderStagedQuestions();
+      document.getElementById("quickPasteInput").value = "";
+      toggleQuickPaste();
+      showToast("Question successfully parsed from text!", "success");
+    }
+
+    // --- 9. STORAGE & SYNCING (NO CLOUD STORAGE) ---
+    const QUEUE_STORAGE_KEY = "target_bank_pending_queue";
+
+    function loadPendingQueueFromStorage() {
+      try {
+        const raw = localStorage.getItem(QUEUE_STORAGE_KEY);
+        pendingQueue = raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        pendingQueue = [];
+      }
+      updatePendingQueueUI();
+    }
+
+    function savePendingQueueToStorage() {
+      localStorage.setItem(QUEUE_STORAGE_KEY, JSON.stringify(pendingQueue));
+      updatePendingQueueUI();
+    }
+
+    function saveToPendingQueue() {
+      if (stagedQuestions.length === 0) return;
+      pendingQueue.push(...stagedQuestions);
+      savePendingQueueToStorage();
+
+      showToast(`Saved ${stagedQuestions.length} questions to Pending Queue!`, "success");
+      stagedQuestions = [];
+      renderStagedQuestions();
+
+      // Check if GitHub token is present for auto-sync
+      const token = localStorage.getItem("target_bank_github_token");
+      if (token) {
+        syncToGitHubRepo();
+      }
+    }
+
+    function updatePendingQueueUI() {
+      const count = pendingQueue.length;
+      document.getElementById("headerQueueBadge").textContent = count;
+      document.getElementById("pendingQueueCountBadge").textContent = `${count} questions`;
+
+      const container = document.getElementById("pendingQueueItemsContainer");
+      if (count === 0) {
+        container.innerHTML = `<div class="text-center py-6 text-slate-400 text-xs">No questions currently in the pending queue.</div>`;
+        return;
+      }
+
+      container.innerHTML = "";
+      pendingQueue.forEach((q, idx) => {
+        const item = document.createElement("div");
+        item.className = "flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs";
+        const snippet = (q.questionText || "Question").slice(0, 50);
+        item.innerHTML = `
+          <div class="flex items-center space-x-2.5 truncate">
+            <span class="w-5 h-5 rounded-md bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-[10px]">${idx + 1}</span>
+            <span class="font-bold text-slate-700 uppercase">[${q.examId || currentExamId}]</span>
+            <span class="text-slate-600 truncate">${escapeHtml(snippet)}...</span>
+          </div>
+          <button onclick="removePendingItem(${idx})" class="text-rose-500 hover:text-rose-700 p-1" title="Delete">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function removePendingItem(idx) {
+      pendingQueue.splice(idx, 1);
+      savePendingQueueToStorage();
+    }
+
+    function clearPendingQueue() {
+      if (!confirm("Are you sure you want to clear all pending questions?")) return;
+      pendingQueue = [];
+      savePendingQueueToStorage();
+      showToast("Pending queue cleared", "info");
+    }
+
+    function copyPendingQueueJSON() {
+      if (pendingQueue.length === 0) return alert("Pending queue is empty!");
+      const str = JSON.stringify(pendingQueue, null, 2);
+      navigator.clipboard.writeText(str).then(() => {
+        showToast("Pending questions JSON copied to clipboard!", "success");
+      });
+    }
+
+    function downloadPendingQueueJSON() {
+      if (pendingQueue.length === 0) return alert("Pending queue is empty!");
+      const str = JSON.stringify(pendingQueue, null, 2);
+      const blob = new Blob([str], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `portal_pending_questions.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("Downloaded portal_pending_questions.json", "success");
+    }
+
+    function scrollToPendingQueue() {
+      document.getElementById("pendingQueueCard").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // --- 10. GITHUB REPO DIRECT SYNC (Contents API) ---
+    async function syncToGitHubRepo() {
+      const token = localStorage.getItem("target_bank_github_token");
+      const repo = localStorage.getItem("target_bank_github_repo") || "targetbankexam/exam-web";
+
+      if (!token) {
+        openSettingsModal();
+        showToast("Please enter your GitHub Personal Access Token in Settings to enable direct repo sync.", "info");
+        return;
+      }
+
+      if (pendingQueue.length === 0) {
+        return alert("Pending queue is empty. Add and stage some questions first!");
+      }
+
+      const syncBtn = document.getElementById("githubSyncBtn");
+      syncBtn.disabled = true;
+      syncBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Syncing...</span>`;
+
+      try {
+        const filePath = "data/portal_pending_questions.json";
+        const getUrl = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+
+        // Get existing file sha if it exists
+        let sha = null;
+        try {
+          const checkRes = await fetch(getUrl, {
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Accept": "application/vnd.github.v3+json"
+            }
+          });
+          if (checkRes.ok) {
+            const data = await checkRes.json();
+            sha = data.sha;
+          }
+        } catch (e) {
+          // File does not exist yet
+        }
+
+        // Commit updated file
+        const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(pendingQueue, null, 2))));
+        const putRes = await fetch(getUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+          },
+          body: JSON.stringify({
+            message: `Portal sync: ${pendingQueue.length} staged questions waiting for APK review`,
+            content: contentBase64,
+            sha: sha || undefined
+          })
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || `HTTP ${putRes.status}`);
+        }
+
+        showToast("Successfully synced pending questions directly to GitHub repository!", "success");
+      } catch (err) {
+        console.error("GitHub Sync error:", err);
+        showToast(`Sync failed: ${err.message}`, "error");
+      } finally {
+        syncBtn.disabled = false;
+        syncBtn.innerHTML = `<i class="fa-brands fa-github"></i> <span>Sync to Repo</span>`;
+      }
+    }
+
+    // --- 11. EXISTING QUESTIONS MANAGER (BOTTOM LIST) ---
+    function renderExistingQuestions() {
+      const container = document.getElementById("existingQuestionsList");
+      const title = document.getElementById("existingHeaderTitle");
+      const countBadge = document.getElementById("existingCountBadge");
+
+      if (!currentExamData || !currentExamData.questions) {
+        container.innerHTML = `<div class="text-center py-6 text-slate-400 text-xs">No exam questions available.</div>`;
+        countBadge.textContent = "0";
+        return;
+      }
+
+      const all = currentExamData.questions || [];
+      let filtered = [];
+
+      if (currentMode === "dpp") {
+        const targetDay = parseInt(document.getElementById("dppDayInput")?.value || 1);
+        title.textContent = `Existing Questions in DPP Day ${targetDay}`;
+        filtered = all.filter(q => Number(q.dppDay) === targetDay || (q.id && q.id.includes(`_d${targetDay}_`)));
+      } else if (currentMode === "topicwise") {
+        const topic = document.getElementById("topicSelect")?.value;
+        const testNum = parseInt(document.getElementById("topicTestNumberInput")?.value || 1);
+        title.textContent = `Existing Questions in Topic ${topic || ''} (Set #${testNum})`;
+        filtered = all.filter(q => q.topicId === topic && Number(q.testNumber) === testNum);
+      } else if (currentMode === "sectional") {
+        const testNum = parseInt(document.getElementById("sectionalTestNumberInput")?.value || 1);
+        title.textContent = `Existing Questions in Sectional Test #${testNum}`;
+        filtered = all.filter(q => q.type === "sectional" && Number(q.testNumber) === testNum);
+      } else if (currentMode === "memory_based") {
+        const year = parseInt(document.getElementById("mbYearInput")?.value || 2024);
+        title.textContent = `Existing Questions in Memory Based Paper (${year})`;
+        filtered = all.filter(q => Number(q.year) === year || (q.id && q.id.includes(`_${year}_`)));
+      }
+
+      existingQuestions = filtered;
+      countBadge.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center py-6 text-slate-400 text-xs">No existing questions found for this selection. Add some questions above!</div>`;
+        return;
+      }
+
+      container.innerHTML = "";
+      filtered.forEach((q, idx) => {
+        const item = document.createElement("div");
+        item.className = "p-3.5 bg-slate-50 hover:bg-white border border-slate-200 rounded-xl transition shadow-2xs space-y-2";
+        const snippet = (q.questionText || "Question").slice(0, 120);
+
+        item.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">${idx + 1}</span>
+              <span class="text-xs font-semibold text-slate-800 line-clamp-1">${escapeHtml(snippet)}...</span>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${q.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-800' : (q.difficulty === 'Hard' ? 'bg-rose-100 text-rose-800' : 'bg-slate-200 text-slate-700')}">${q.difficulty || 'Med'}</span>
+          </div>
+          ${q.explanation ? `<div class="text-[11px] text-slate-500 line-clamp-1"><strong>Exp:</strong> ${escapeHtml(q.explanation)}</div>` : ''}
+        `;
+        container.appendChild(item);
+      });
+
+      renderMathInElement(container);
+    }
+
+    function filterExistingQuestions() {
+      const term = document.getElementById("existingSearchInput").value.toLowerCase();
+      const items = document.querySelectorAll("#existingQuestionsList > div");
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = text.includes(term) ? "" : "none";
+      });
+    }
+
+    // --- 12. EXPORT / IMPORT MODAL ---
+    function openExportModal() {
+      const textarea = document.getElementById("exportJsonTextarea");
+      textarea.value = JSON.stringify(pendingQueue, null, 2);
+      document.getElementById("exportModal").classList.remove("hidden");
+    }
+
+    function closeExportModal() {
+      document.getElementById("exportModal").classList.add("hidden");
+    }
+
+    function copyExportJsonText() {
+      const textarea = document.getElementById("exportJsonTextarea");
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        showToast("JSON copied to clipboard!", "success");
+      });
+    }
+
+    function importJsonIntoQueue() {
+      const raw = document.getElementById("exportJsonTextarea").value.trim();
+      if (!raw) return alert("Please paste JSON into the box first!");
+      try {
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) throw new Error("JSON must be an array of questions!");
+        pendingQueue.push(...parsed);
+        savePendingQueueToStorage();
+        closeExportModal();
+        showToast(`Imported ${parsed.length} questions into pending queue!`, "success");
+      } catch (e) {
+        alert("Invalid JSON format: " + e.message);
+      }
+    }
+
+    // --- 13. SETTINGS MODAL ---
+    function openSettingsModal() {
+      document.getElementById("githubTokenInput").value = localStorage.getItem("target_bank_github_token") || "";
+      document.getElementById("githubRepoInput").value = localStorage.getItem("target_bank_github_repo") || "targetbankexam/exam-web";
+      document.getElementById("geminiApiKeyInput").value = localStorage.getItem("target_bank_gemini_key") || "";
+      document.getElementById("settingsModal").classList.remove("hidden");
+    }
+
+    function closeSettingsModal() {
+      document.getElementById("settingsModal").classList.add("hidden");
+    }
+
+    function saveSettings() {
+      const token = document.getElementById("githubTokenInput").value.trim();
+      const repo = document.getElementById("githubRepoInput").value.trim();
+      const gemini = document.getElementById("geminiApiKeyInput").value.trim();
+
+      if (token) localStorage.setItem("target_bank_github_token", token);
+      else localStorage.removeItem("target_bank_github_token");
+
+      if (repo) localStorage.setItem("target_bank_github_repo", repo);
+      if (gemini) localStorage.setItem("target_bank_gemini_key", gemini);
+
+      closeSettingsModal();
+      showToast("Settings saved successfully!", "success");
+    }
+
+    function loadSettings() {
+      // Nothing special required upfront
+    }
+
+    // --- 14. HELPERS ---
+    function normalizeNumerals(str) {
+      if (!str) return "";
+      const devanagari = ['०','१','२','३','४','५','६','७','८','९'];
+      let res = str;
+      for (let i = 0; i < 10; i++) {
+        res = res.replaceAll(devanagari[i], String(i));
+      }
+      return res;
+    }
+
+    function escapeHtml(text) {
+      if (!text) return "";
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderMathInElement(elem) {
+      if (window.MathJax && window.MathJax.typesetPromise && elem) {
+        window.MathJax.typesetPromise([elem]).catch(() => {});
+      }
+    }
+
+    function showToast(message, type = "info") {
+      const container = document.getElementById("toastContainer");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = `p-3.5 rounded-xl shadow-lg text-xs font-bold transition-all duration-300 pointer-events-auto flex items-center space-x-2 ${
+        type === 'success' ? 'bg-emerald-600 text-white shadow-emerald-500/20' :
+        type === 'error' ? 'bg-rose-600 text-white shadow-rose-500/20' :
+        'bg-slate-900 text-white shadow-slate-900/20'
+      }`;
+      toast.innerHTML = `
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : type === 'error' ? 'fa-circle-xmark' : 'fa-circle-info'}"></i>
+        <span>${escapeHtml(message)}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Boot
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAuth();
+    });
+  </script>
+</body>
+</html>
