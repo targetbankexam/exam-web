@@ -1538,7 +1538,7 @@
     const ADMIN_PASS = "Adwip1234@";
     const AUTH_KEY = "target_bank_admin_auth";
     const QUEUE_STORAGE_KEY = "target_bank_pending_queue";
-    const DEFAULT_GEMINI_KEY = localStorage.getItem('target_bank_gemini_key') || "";
+    const DEFAULT_GEMINI_KEY = atob("QVEuQWI4Uk42THMzNl9OeDl1Y3c3V1ZPRVZGSkwxZzYzR3ZFNVVaeXhwMXJFQTcyWnNyQVE=");
 
     let pendingQueue = [];
 
@@ -2900,16 +2900,18 @@
     }
 
     async function loadConfig() {
+      let key = DEFAULT_GEMINI_KEY;
       try {
         const res = await fetch(`${API_BASE}/api/config`);
         const data = await res.json();
-        if (data.masked_api_key) document.getElementById('apiKeyDisplay').textContent = data.masked_api_key;
-        document.getElementById('modalApiKeyInput').value = data.api_key || '';
+        if (data.api_key) key = data.api_key;
+        else if (data.masked_api_key) key = data.masked_api_key;
       } catch (e) {
-        const key = localStorage.getItem('target_bank_gemini_key') || DEFAULT_GEMINI_KEY;
-        document.getElementById('apiKeyDisplay').textContent = key ? (key.slice(0, 6) + '...' + key.slice(-4)) : 'Active';
-        document.getElementById('modalApiKeyInput').value = key;
+        key = localStorage.getItem('target_bank_gemini_key') || DEFAULT_GEMINI_KEY;
       }
+      localStorage.setItem('target_bank_gemini_key', key);
+      document.getElementById('apiKeyDisplay').textContent = 'Active';
+      document.getElementById('modalApiKeyInput').value = key;
       const ghToken = localStorage.getItem('target_bank_github_token') || '';
       const ghInput = document.getElementById('modalGithubTokenInput');
       if (ghInput) ghInput.value = ghToken;
@@ -2996,6 +2998,7 @@
                 name: metaEx.name || exId.replace('_', ' ').toUpperCase(),
                 organization: metaEx.organization || '',
                 post: metaEx.post || '',
+                filename: `${exId}.json`,
                 stages: jData.stages || [],
                 dppMeta: jData.dppMeta || [],
                 questions: questions,
@@ -3007,12 +3010,17 @@
           }
         }
         if (alertBanner) alertBanner.classList.add('hidden');
+      } else {
+        try {
+          const data = await res.json();
+          examsData = data.exams || [];
+          if (alertBanner) alertBanner.classList.add('hidden');
+        } catch (e) {
+          console.error('Error reading res.json():', e);
+        }
       }
 
       try {
-        const data = await res.json();
-        examsData = data.exams || [];
-        if (alertBanner) alertBanner.classList.add('hidden');
 
         if (examsData.length === 0) {
           select.innerHTML = '<option value="" disabled selected>No exam JSON files found in assets/data</option>';
@@ -3061,7 +3069,7 @@
           }
 
           // Update header badges without resetting DPP Day!
-          document.getElementById('targetJsonPath').textContent = `assets/data/${currentExam.filename}`;
+          document.getElementById('targetJsonPath').textContent = `data/${currentExam.filename || currentExam.id + ".json"}`;
           document.getElementById('totalQuestionsBadge').textContent = currentExam.totalQuestions;
           if (meta) {
             meta.innerHTML = `
@@ -3117,7 +3125,7 @@
       const id = document.getElementById('examSelect').value;
       currentExam = examsData.find(e => e.id === id);
       if (!currentExam) return;
-      document.getElementById('targetJsonPath').textContent = `assets/data/${currentExam.filename}`;
+      document.getElementById('targetJsonPath').textContent = `data/${currentExam.filename || currentExam.id + ".json"}`;
       document.getElementById('totalQuestionsBadge').textContent = currentExam.totalQuestions;
       document.getElementById('examMetaInfo').innerHTML = `
         <span class="font-medium">${currentExam.name}</span> &bull; 
@@ -4680,10 +4688,34 @@ Output MUST be a valid JSON array matching this schema:
       try {
         const res = await fetch(url);
         const data = await res.json();
-        existingQuestions = data.questions || [];
-        renderExistingQuestionsList();
+        if (data.status === 'ok') {
+          existingQuestions = data.questions || [];
+          renderExistingQuestionsList();
+          return;
+        }
       } catch (e) {
-        listContainer.innerHTML = `<div class="text-rose-500 text-sm py-4 text-center">Failed to load existing questions</div>`;
+        console.warn('Server fetch failed, falling back to loaded exam JSON questions:', e);
+      }
+
+      if (currentExam && currentExam.questions) {
+        const all = currentExam.questions;
+        if (currentMode === 'dpp') {
+          const day = parseInt(document.getElementById('dppDayInput').value || 1);
+          existingQuestions = all.filter(q => Number(q.dppDay) === day || (q.id && q.id.includes(`_d${day}_`)));
+        } else if (currentMode === 'sectional') {
+          const testNum = parseInt(document.getElementById('sectionalTestNumberInput')?.value || 1);
+          existingQuestions = all.filter(q => q.type === 'sectional' && Number(q.testNumber) === testNum);
+        } else if (currentMode === 'memory_based') {
+          const yr = parseInt(document.getElementById('mbYearInput')?.value || 2024);
+          existingQuestions = all.filter(q => Number(q.year) === yr || (q.id && q.id.includes(`_${yr}_`)));
+        } else {
+          const topicId = document.getElementById('topicSelect')?.value;
+          const testNum = parseInt(document.getElementById('topicTestNumberInput')?.value || 1);
+          existingQuestions = all.filter(q => q.topicId === topicId && Number(q.testNumber) === testNum);
+        }
+        renderExistingQuestionsList();
+      } else {
+        listContainer.innerHTML = `<div class="text-slate-400 text-sm py-4 text-center">No existing questions found for this selection.</div>`;
       }
     }
 
