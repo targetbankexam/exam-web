@@ -320,17 +320,23 @@
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">Topic</label>
           <div class="flex space-x-2">
-            <select id="topicSelect" onchange="loadExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <select id="topicSelect" onchange="onTopicSelectChanged()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer">
               <!-- Populated dynamically -->
             </select>
-            <button onclick="promptAddNewTopic()" title="Add New Topic" class="px-3 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-100 font-bold whitespace-nowrap text-xs">+ New</button>
+            <button type="button" onclick="openManageTopicsModal()" title="Manage Topics & Sets" class="px-3 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-100 font-bold whitespace-nowrap text-xs flex items-center space-x-1 cursor-pointer">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Manage Topics</span>
+            </button>
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-600 mb-1">Set / Test #</label>
-          <input type="number" id="topicTestNumberInput" min="1" max="50" value="1" onchange="loadExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none">
-          <span class="text-xs text-slate-500 mt-1 block">e.g. Set #1, Set #2</span>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-xs font-semibold text-slate-600">Set / Test #</label>
+            <span id="topicSetNameBadge" class="text-[11px] font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">Set 01</span>
+          </div>
+          <input type="number" id="topicTestNumberInput" min="1" max="50" value="1" oninput="onTopicTestNumberChanged()" onchange="loadExistingQuestions()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none">
+          <span class="text-[11px] text-slate-500 mt-1 block font-medium" id="topicSetDesc">Default: Set 01</span>
         </div>
 
         <div>
@@ -2156,7 +2162,7 @@
       if (!rawText) return '';
       rawText = autoRepairLatexCommands(rawText);
       const tagRegex = /\[img(\d+)\]/gi;
-      return rawText.replace(tagRegex, (match, p1) => {
+      let textWithImgs = rawText.replace(tagRegex, (match, p1) => {
         const idx = parseInt(p1) - 1;
         let imgUrl = '';
         if (isHi && hiImages && hiImages[idx]) {
@@ -2174,6 +2180,12 @@
           return `<span class="text-[10px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded inline-flex items-center space-x-1 font-mono"><i class="fa-regular fa-image"></i><span>[img${p1}]</span></span>`;
         }
       });
+
+      // Preserve clean line breaks and paragraph spacing for LaTeX calculations
+      return textWithImgs
+        .replace(/\r\n/g, '\n')
+        .replace(/\n\n+/g, '<div class="h-2.5"></div>')
+        .replace(/\n/g, '<br>');
     }
 
     function insertTagIntoTextarea(textareaId, tag) {
@@ -2923,10 +2935,19 @@
           applyDiagramToTarget(data.directUrl);
           closeQuickUploadModal();
         } else {
-          alert('Upload failed: ' + (data.message || 'Unknown error'));
+          const errMsg = data.message || 'Unknown error';
+          if (confirm('Google Drive upload failed:\n' + errMsg + '\n\nWould you like to attach this image directly into the question (no Google Drive required)?')) {
+            applyDiagramToTarget(quickUploadSelectedImageBase64);
+            closeQuickUploadModal();
+            showToast('Image attached directly to question!', 'info');
+          }
         }
       } catch (e) {
-        alert('Error uploading to Google Drive: ' + e.message);
+        if (confirm('Google Drive connection error: ' + e.message + '\n\nWould you like to attach this image directly into the question (no Google Drive required)?')) {
+          applyDiagramToTarget(quickUploadSelectedImageBase64);
+          closeQuickUploadModal();
+          showToast('Image attached directly to question!', 'info');
+        }
       } finally {
         submitBtn.disabled = false;
         submitBtnText.textContent = 'Upload & Insert';
@@ -3342,28 +3363,60 @@
 
     function populateTopicSelect() {
       if (!currentExam) return;
-      const stageId = document.getElementById('topicStageSelect').value;
-      const sectionId = document.getElementById('topicSectionSelect').value;
+      const stageId = document.getElementById('topicStageSelect')?.value;
+      const sectionId = document.getElementById('topicSectionSelect')?.value;
       const select = document.getElementById('topicSelect');
+      if (!select) return;
+      const prevSelectedValue = select.value;
       select.innerHTML = '';
+
       const stage = (currentExam.stages || []).find(s => s.id === stageId);
       const sec = stage ? (stage.sections || []).find(s => s.id === sectionId) : null;
-      const topics = sec ? (sec.topics || []) : [];
-      if (topics.length === 0) {
+      if (!sec) {
+        select.innerHTML = '<option value="general">General / Mixed (0 questions)</option>';
+        onTopicSelectChanged();
+        return;
+      }
+      if (!sec.topics) sec.topics = [];
+
+      // Auto-discover any topics from currentExam.questions that might not be in sec.topics yet
+      (currentExam.questions || []).forEach(q => {
+        if ((q.type === 'topicwise' || q.topicId) && q.topicId && q.topicId !== 'general' && q.topicId !== 'dpp_mixed' && !String(q.topicId).startsWith('pyq_')) {
+          const qStage = q.stageId || 'prelims';
+          const qSec = q.sectionId || 'quant';
+          if (qStage === stageId && qSec === sectionId) {
+            if (!sec.topics.some(t => t.id === q.topicId)) {
+              sec.topics.push({
+                id: q.topicId,
+                name: q.topicId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                timerMinutes: q.timerMinutes || 10
+              });
+            }
+          }
+        }
+      });
+
+      if (sec.topics.length === 0) {
         const opt = document.createElement('option');
         opt.value = 'general';
-        opt.textContent = 'General / Mixed';
+        opt.textContent = 'General / Mixed (0 questions)';
         select.appendChild(opt);
       } else {
-        topics.forEach(t => {
+        sec.topics.forEach(t => {
           const opt = document.createElement('option');
           opt.value = t.id;
-          const count = (currentExam.topicCounts || {})[t.id] || 0;
+          const count = (currentExam.questions || []).filter(q => q.type === 'topicwise' && q.topicId === t.id).length
+            || (currentExam.topicCounts || {})[t.id] || 0;
           opt.textContent = `${t.name} (${count} questions)`;
           select.appendChild(opt);
         });
       }
-      loadExistingQuestions();
+
+      if (prevSelectedValue && Array.from(select.options).some(o => o.value === prevSelectedValue)) {
+        select.value = prevSelectedValue;
+      }
+
+      onTopicSelectChanged();
     }
 
     function onStageOrSectionChanged() {
@@ -3371,19 +3424,274 @@
       checkSectionForHindi();
     }
 
-    function promptAddNewTopic() {
-      const name = prompt("Enter new Topic Name (e.g. 'Quadratic Equations'):");
-      if (!name || !name.trim()) return;
-      const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_');
+
+    // ==========================================
+    // TOPIC & PRACTICE SET MANAGEMENT SYSTEM
+    // ==========================================
+    function onTopicSelectChanged() {
       const select = document.getElementById('topicSelect');
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = `${name.trim()} (New)`;
-      opt.selected = true;
-      select.appendChild(opt);
-      showToast(`Topic '${name.trim()}' added!`, 'info');
+      if (!select || !currentExam) return;
+      const stageId = document.getElementById('topicStageSelect')?.value;
+      const sectionId = document.getElementById('topicSectionSelect')?.value;
+      const stage = (currentExam.stages || []).find(s => s.id === stageId);
+      const sec = stage ? (stage.sections || []).find(s => s.id === sectionId) : null;
+      const t = sec && sec.topics ? sec.topics.find(top => top.id === select.value) : null;
+      if (t && t.timerMinutes) {
+        const timerInp = document.getElementById('topicTimerInput');
+        if (timerInp) timerInp.value = t.timerMinutes;
+      }
+      onTopicTestNumberChanged();
       loadExistingQuestions();
     }
+
+    function onTopicTestNumberChanged() {
+      const select = document.getElementById('topicSelect');
+      const testNum = parseInt(document.getElementById('topicTestNumberInput')?.value || 1);
+      const topicName = select?.options[select.selectedIndex]?.text.split(' (')[0] || 'Topic';
+      const formattedNum = String(testNum).padStart(2, '0');
+      const badge = document.getElementById('topicSetNameBadge');
+      if (badge) badge.textContent = `Set ${formattedNum}`;
+      const desc = document.getElementById('topicSetDesc');
+      if (desc) desc.textContent = `${topicName} — Set ${formattedNum}`;
+    }
+
+    function openManageTopicsModal() {
+      if (!currentExam) {
+        showToast('Please select an exam first!', 'error');
+        return;
+      }
+      const stageId = document.getElementById('topicStageSelect')?.value;
+      const sectionId = document.getElementById('topicSectionSelect')?.value;
+      const stage = (currentExam.stages || []).find(s => s.id === stageId);
+      const sec = stage ? (stage.sections || []).find(s => s.id === sectionId) : null;
+      
+      const ctxLabel = document.getElementById('manageTopicsContextLabel');
+      if (ctxLabel) {
+        ctxLabel.textContent = `${currentExam.name} • ${stage ? stage.name : stageId} • ${sec ? sec.name : sectionId}`;
+      }
+
+      document.getElementById('newTopicNameInput').value = '';
+      document.getElementById('newTopicSetNumberInput').value = '1';
+      document.getElementById('newTopicTimerInput').value = '10';
+      onNewTopicNameChanged();
+
+      renderManageTopicsList();
+      document.getElementById('manageTopicsModal').classList.remove('hidden');
+    }
+
+    function closeManageTopicsModal() {
+      document.getElementById('manageTopicsModal').classList.add('hidden');
+    }
+
+    function onNewTopicNameChanged() {
+      const name = document.getElementById('newTopicNameInput')?.value.trim() || 'Topic';
+      const setNum = parseInt(document.getElementById('newTopicSetNumberInput')?.value || 1);
+      const formatted = String(setNum).padStart(2, '0');
+      const preview = document.getElementById('newTopicSetNamePreview');
+      if (preview) preview.textContent = `${name} - Set ${formatted}`;
+    }
+
+    function setNewTopicTimerPreset(mins) {
+      const inp = document.getElementById('newTopicTimerInput');
+      if (inp) inp.value = mins;
+    }
+
+    function renderManageTopicsList() {
+      const container = document.getElementById('manageTopicsListContainer');
+      const badge = document.getElementById('manageTopicsCountBadge');
+      if (!container || !currentExam) return;
+
+      const stageId = document.getElementById('topicStageSelect')?.value;
+      const sectionId = document.getElementById('topicSectionSelect')?.value;
+      const stage = (currentExam.stages || []).find(s => s.id === stageId);
+      const sec = stage ? (stage.sections || []).find(s => s.id === sectionId) : null;
+      const topics = sec && sec.topics ? sec.topics : [];
+
+      if (badge) badge.textContent = `${topics.length} topic(s)`;
+
+      if (topics.length === 0) {
+        container.innerHTML = `
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center text-slate-400 space-y-1">
+            <p class="text-xs font-semibold">No topics configured in this section yet.</p>
+            <p class="text-[11px] text-slate-400">Add your first topic below to organize practice questions.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      topics.forEach(t => {
+        const allQuestions = currentExam.questions || [];
+        const topicQs = allQuestions.filter(q => q.type === 'topicwise' && q.topicId === t.id);
+        const qCount = topicQs.length || (currentExam.topicCounts || {})[t.id] || 0;
+
+        const setsMap = {};
+        topicQs.forEach(q => {
+          const sNum = q.testNumber || 1;
+          setsMap[sNum] = (setsMap[sNum] || 0) + 1;
+        });
+        const setBadges = Object.keys(setsMap).sort((a,b) => parseInt(a)-parseInt(b)).map(s => {
+          return `<span class="text-[10px] bg-slate-100 text-slate-700 font-mono font-bold px-1.5 py-0.5 rounded border border-slate-200">Set ${String(s).padStart(2, '0')}: ${setsMap[s]} Qs</span>`;
+        }).join(' ');
+
+        const card = document.createElement('div');
+        card.className = 'bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 hover:border-purple-200 transition';
+        card.innerHTML = `
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-slate-900 text-xs sm:text-sm">${escapeHtml(t.name)}</span>
+              <span class="text-[10px] font-mono text-slate-400">(${t.id})</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">${qCount} questions</span>
+              <span class="text-[10px] bg-purple-100 text-purple-800 font-bold px-2 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i>${t.timerMinutes || 10} mins</span>
+              ${setBadges || '<span class="text-[10px] text-slate-400 italic">No sets yet</span>'}
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 shrink-0">
+            <button type="button" onclick="selectTopicFromManager('${t.id}')" class="px-3 py-1.5 bg-white border border-purple-200 hover:bg-purple-50 text-purple-700 rounded-lg text-xs font-bold transition shadow-2xs cursor-pointer">
+              Select
+            </button>
+            <button type="button" onclick="deleteTopicFromManager('${t.id}', '${escapeHtml(t.name)}', ${qCount})" class="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition cursor-pointer" title="Delete Topic & all questions">
+              <i class="fa-regular fa-trash-can text-sm"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectTopicFromManager(topicId) {
+      const select = document.getElementById('topicSelect');
+      if (select) {
+        select.value = topicId;
+        onTopicSelectChanged();
+      }
+      closeManageTopicsModal();
+      showToast('Topic selected!', 'success');
+    }
+
+    async function submitCreateNewTopic() {
+      const nameInp = document.getElementById('newTopicNameInput');
+      const topicName = nameInp ? nameInp.value.trim() : '';
+      if (!topicName) {
+        alert('Please enter a valid Topic Name (e.g. "Wrong Number Series")');
+        return;
+      }
+
+      const stageId = document.getElementById('topicStageSelect')?.value || 'prelims';
+      const sectionId = document.getElementById('topicSectionSelect')?.value || 'quant';
+      const timerMinutes = parseInt(document.getElementById('newTopicTimerInput')?.value || 10);
+      const setNum = parseInt(document.getElementById('newTopicSetNumberInput')?.value || 1);
+      const topicId = topicName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+
+      const btn = document.getElementById('createTopicBtn');
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/add-topic`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            examId: currentExam.id,
+            stageId: stageId,
+            sectionId: sectionId,
+            topicId: topicId,
+            topicName: topicName,
+            timerMinutes: timerMinutes
+          })
+        });
+
+        const stage = (currentExam.stages || []).find(s => s.id === stageId);
+        if (stage) {
+          const sec = (stage.sections || []).find(s => s.id === sectionId);
+          if (sec) {
+            if (!sec.topics) sec.topics = [];
+            if (!sec.topics.some(t => t.id === topicId)) {
+              sec.topics.push({ id: topicId, name: topicName, timerMinutes: timerMinutes });
+            }
+          }
+        }
+
+        populateTopicSelect();
+        const select = document.getElementById('topicSelect');
+        if (select) select.value = topicId;
+        const testInp = document.getElementById('topicTestNumberInput');
+        if (testInp) testInp.value = setNum;
+        const timerInp = document.getElementById('topicTimerInput');
+        if (timerInp) timerInp.value = timerMinutes;
+        onTopicTestNumberChanged();
+        closeManageTopicsModal();
+        showToast(`Topic '${topicName}' created and ready!`, 'success');
+        loadExistingQuestions();
+      } catch (e) {
+        const stage = (currentExam.stages || []).find(s => s.id === stageId);
+        if (stage) {
+          const sec = (stage.sections || []).find(s => s.id === sectionId);
+          if (sec) {
+            if (!sec.topics) sec.topics = [];
+            if (!sec.topics.some(t => t.id === topicId)) {
+              sec.topics.push({ id: topicId, name: topicName, timerMinutes: timerMinutes });
+            }
+          }
+        }
+        populateTopicSelect();
+        const select = document.getElementById('topicSelect');
+        if (select) select.value = topicId;
+        const testInp = document.getElementById('topicTestNumberInput');
+        if (testInp) testInp.value = setNum;
+        const timerInp = document.getElementById('topicTimerInput');
+        if (timerInp) timerInp.value = timerMinutes;
+        onTopicTestNumberChanged();
+        closeManageTopicsModal();
+        showToast(`Topic '${topicName}' created (Local Session)!`, 'success');
+        loadExistingQuestions();
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    async function deleteTopicFromManager(topicId, topicName, qCount) {
+      if (!confirm(`Are you sure you want to delete topic '${topicName}' and ALL its questions from ${currentExam.name}?\n\nThis will permanently delete ${qCount} question(s). This action cannot be undone.`)) {
+        return;
+      }
+
+      const stageId = document.getElementById('topicStageSelect')?.value || 'prelims';
+      const sectionId = document.getElementById('topicSectionSelect')?.value || 'quant';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/delete-topic`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            examId: currentExam.id,
+            stageId: stageId,
+            sectionId: sectionId,
+            topicId: topicId
+          })
+        });
+      } catch (e) {
+        console.warn("Delete topic endpoint offline, applying local removal:", e);
+      }
+
+      const stage = (currentExam.stages || []).find(s => s.id === stageId);
+      if (stage) {
+        const sec = (stage.sections || []).find(s => s.id === sectionId);
+        if (sec && sec.topics) {
+          sec.topics = sec.topics.filter(t => t.id !== topicId);
+        }
+      }
+      if (currentExam.questions) {
+        currentExam.questions = currentExam.questions.filter(q => !(q.type === 'topicwise' && q.topicId === topicId));
+      }
+
+      showToast(`Topic '${topicName}' and questions deleted!`, 'info');
+      populateTopicSelect();
+      renderManageTopicsList();
+      loadExistingQuestions();
+    }
+
 
     // Unified Image Ingestion & Cross-Section Drag-and-Drop System
     let draggedThumb = null; // { section, index }
@@ -4230,6 +4538,10 @@ Output MUST be a valid JSON array matching this schema:
 
       container.innerHTML = '';
       stagedQuestions.forEach((q, idx) => {
+        if (q.questionText) q.questionText = autoRepairLatexCommands(q.questionText);
+        if (q.questionTextHi) q.questionTextHi = autoRepairLatexCommands(q.questionTextHi);
+        if (q.explanation) q.explanation = autoRepairLatexCommands(q.explanation);
+        if (q.explanationHi) q.explanationHi = autoRepairLatexCommands(q.explanationHi);
         const card = document.createElement('div');
         card.className = 'bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4';
         const currentTab = stagedCardTabs[idx] || 'en';
@@ -4667,6 +4979,7 @@ Output MUST be a valid JSON array matching this schema:
         payload.stageId = document.getElementById('topicStageSelect').value;
         payload.sectionId = document.getElementById('topicSectionSelect').value;
         payload.topicId = document.getElementById('topicSelect').value;
+        payload.topicName = document.getElementById('topicSelect').options[document.getElementById('topicSelect').selectedIndex]?.text.split(' (')[0] || '';
         payload.testNumber = parseInt(document.getElementById('topicTestNumberInput').value || 1);
         payload.timerMinutes = parseInt(document.getElementById('topicTimerInput').value || 10);
       }
@@ -5635,6 +5948,108 @@ Output MUST be a valid JSON array matching this schema:
       </div>
     </div>
 
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- TOPIC & PRACTICE SET MANAGER MODAL -->
+  <!-- ========================================================================= -->
+  <div id="manageTopicsModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl space-y-5 my-8 max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-lg shadow-xs">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Topic & Practice Set Manager</h3>
+            <p class="text-xs text-slate-500" id="manageTopicsContextLabel">Exam &bull; Stage &bull; Section</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeManageTopicsModal()" class="w-8 h-8 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center transition cursor-pointer">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto space-y-5 pr-1">
+
+        <!-- Section A: Available Topics List -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center space-x-1.5">
+              <i class="fa-solid fa-list-check text-purple-600"></i>
+              <span>Available Topics & Questions</span>
+            </h4>
+            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full" id="manageTopicsCountBadge">0 topics</span>
+          </div>
+
+          <div id="manageTopicsListContainer" class="space-y-2.5">
+            <!-- Dynamically rendered list of topics -->
+          </div>
+        </div>
+
+        <!-- Section B: Add New Topic Form -->
+        <div class="bg-purple-50/60 border border-purple-200/80 rounded-2xl p-4 sm:p-5 space-y-4">
+          <div class="flex items-center space-x-2 border-b border-purple-200/60 pb-2.5">
+            <div class="w-6 h-6 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xs">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-purple-950">Add New Practice Topic</h4>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <!-- Topic Name -->
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Topic Name *</label>
+              <input type="text" id="newTopicNameInput" placeholder="e.g. Wrong Number Series, Quadratic Equations..." oninput="onNewTopicNameChanged()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+            </div>
+
+            <!-- Set / Test Number -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Initial Set / Test #</label>
+              <input type="number" id="newTopicSetNumberInput" min="1" max="50" value="1" oninput="onNewTopicNameChanged()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none">
+            </div>
+
+            <!-- Practice Timer (Mins) -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Duration (Minutes)</label>
+              <div class="flex space-x-1.5">
+                <input type="number" id="newTopicTimerInput" min="5" max="60" value="10" class="w-20 bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-800 font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                <button type="button" onclick="setNewTopicTimerPreset(10)" class="px-2 py-1 bg-white hover:bg-purple-100 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 cursor-pointer">10m</button>
+                <button type="button" onclick="setNewTopicTimerPreset(15)" class="px-2 py-1 bg-white hover:bg-purple-100 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 cursor-pointer">15m</button>
+                <button type="button" onclick="setNewTopicTimerPreset(20)" class="px-2 py-1 bg-white hover:bg-purple-100 border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 cursor-pointer">20m</button>
+              </div>
+            </div>
+
+            <!-- Auto-Generated Default Set Name Preview -->
+            <div class="sm:col-span-2 bg-white/80 border border-purple-100 rounded-xl p-2.5 flex items-center justify-between text-xs">
+              <span class="text-slate-500 font-medium">Default Set Title:</span>
+              <span id="newTopicSetNamePreview" class="font-bold text-purple-700 font-mono">Topic - Set 01</span>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-1">
+            <button type="button" onclick="submitCreateNewTopic()" id="createTopicBtn" class="w-full sm:w-auto px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold shadow-md shadow-purple-500/20 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+              <i class="fa-solid fa-plus"></i>
+              <span>Create Topic & Select</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="border-t border-slate-100 pt-3 flex justify-between items-center shrink-0">
+        <span class="text-[11px] text-slate-400">Selecting a topic loads its practice questions below.</span>
+        <button type="button" onclick="closeManageTopicsModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition cursor-pointer">
+          Done
+        </button>
+      </div>
+
+    </div>
   </div>
 
 </body>

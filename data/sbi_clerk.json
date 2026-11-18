@@ -18,6 +18,11 @@
               "id": "simplification",
               "name": "Simplification & Approximation",
               "timerMinutes": 10
+            },
+            {
+              "id": "wrong_number_series",
+              "name": "Wrong Number Series",
+              "timerMinutes": 10
             }
           ]
         },
@@ -294,6 +299,191 @@
       "explanation": "The series is formed by arranging digits of the numbers 4792, 6387, 5921, 3986, 7164 based on specific rules (even numbers in descending, odd in ascending). The blank corresponds to the next digit in the sequence.\n\n[img1]",
       "explanationHi": "यह श्रृंखला 4792, 6387, 5921, 3986, 7164 संख्याओं के अंकों को विशिष्ट नियमों (सम संख्याएँ अवरोही क्रम में, विषम आरोही क्रम में) के आधार पर व्यवस्थित करके बनाई गई है। रिक्त स्थान अनुक्रम में अगले अंक से मेल खाता है।\n\n[img1]",
       "difficulty": "Hard",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_wrong_number_series_t1_1794987619_1",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "wrong_number_series",
+      "type": "topicwise",
+      "testNumber": 1,
+      "timerMinutes": 10,
+      "questionText": "Find out the wrong number in the following number series.\n\n**$14, 17, 51, 55, 162, 165$**",
+      "questionTextHi": "निम्नलिखित संख्या श्रृंखला में गलत संख्या ज्ञात कीजिए।\n\n**$14, 17, 51, 55, 162, 165$**",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$17$",
+        "$55$",
+        "$162$",
+        "$165$",
+        "None of these"
+      ],
+      "optionsHi": [
+        "$17$",
+        "$55$",
+        "$162$",
+        "$165$",
+        "इनमें से कोई नहीं"
+      ],
+      "correctIndex": 1,
+      "explanation": "The pattern of the series is as follows:\n$14 + 3 = 17$\n$17 \\times 3 = 51$\n$51 + 3 = \\mathbf{54}$\n$54 \\times 3 = 162$\n$162 + 3 = 165$\n\nHence, the wrong number is $55$.",
+      "explanationHi": "श्रृंखला का पैटर्न इस प्रकार है:\n$14 + 3 = 17$\n$17 \\times 3 = 51$\n$51 + 3 = \\mathbf{54}$\n$54 \\times 3 = 162$\n$162 + 3 = 165$\n\nइसलिए, गलत संख्या $55$ है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_wrong_number_series_t1_1794987619_2",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "wrong_number_series",
+      "type": "topicwise",
+      "testNumber": 1,
+      "timerMinutes": 10,
+      "questionText": "Find out the wrong number in the following number series.\n\n**$50, 62, 84, 94, 126, 138$**",
+      "questionTextHi": "निम्नलिखित संख्या श्रृंखला में गलत संख्या ज्ञात कीजिए।\n\n**$50, 62, 84, 94, 126, 138$**",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$94$",
+        "$138$",
+        "$62$",
+        "$84$",
+        "$50$"
+      ],
+      "optionsHi": [
+        "$94$",
+        "$138$",
+        "$62$",
+        "$84$",
+        "$50$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The pattern of the series is as follows:\n$7^2 + 1 = 50$\n$8^2 - 2 = 62$\n$9^2 + 3 = 84$\n$10^2 - 4 = \\mathbf{96}$\n$11^2 + 5 = 126$\n$12^2 - 6 = 138$\n\nHence, the wrong number is $94$.",
+      "explanationHi": "श्रृंखला का पैटर्न इस प्रकार है:\n$7^2 + 1 = 50$\n$8^2 - 2 = 62$\n$9^2 + 3 = 84$\n$10^2 - 4 = \\mathbf{96}$\n$11^2 + 5 = 126$\n$12^2 - 6 = 138$\n\nइसलिए, गलत संख्या $94$ है।",
+      "difficulty": "Medium",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_wrong_number_series_t1_1794987619_3",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "wrong_number_series",
+      "type": "topicwise",
+      "testNumber": 1,
+      "timerMinutes": 10,
+      "questionText": "Find out the wrong number in the following number series.\n\n**$497, 125, 33, 12, 6.5, 6.375$**",
+      "questionTextHi": "निम्नलिखित संख्या श्रृंखला में गलत संख्या ज्ञात कीजिए।\n\n**$497, 125, 33, 12, 6.5, 6.375$**",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$12$",
+        "$497$",
+        "$6.375$",
+        "$125$",
+        "None of these"
+      ],
+      "optionsHi": [
+        "$12$",
+        "$497$",
+        "$6.375$",
+        "$125$",
+        "इनमें से कोई नहीं"
+      ],
+      "correctIndex": 0,
+      "explanation": "The pattern of the series is as follows:\n$(497 - 1) / 4 + 1 = 125$\n$(125 - 1) / 4 + 2 = 33$\n$(33 - 1) / 4 + 3 = \\mathbf{11}$\n$(11 - 1) / 4 + 4 = 6.5$\n$(6.5 - 1) / 4 + 5 = 6.375$\n\nHence, the wrong number is $12$.",
+      "explanationHi": "श्रृंखला का पैटर्न इस प्रकार है:\n$(497 - 1) / 4 + 1 = 125$\n$(125 - 1) / 4 + 2 = 33$\n$(33 - 1) / 4 + 3 = \\mathbf{11}$\n$(11 - 1) / 4 + 4 = 6.5$\n$(6.5 - 1) / 4 + 5 = 6.375$\n\nइसलिए, गलत संख्या $12$ है।",
+      "difficulty": "Hard",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_wrong_number_series_t1_1794987619_4",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "wrong_number_series",
+      "type": "topicwise",
+      "testNumber": 1,
+      "timerMinutes": 10,
+      "questionText": "Find out the wrong number in the following number series.\n\n**$5400, 900, 180, 47, 15, 7.5$**",
+      "questionTextHi": "निम्नलिखित संख्या श्रृंखला में गलत संख्या ज्ञात कीजिए।\n\n**$5400, 900, 180, 47, 15, 7.5$**",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$900$",
+        "$47$",
+        "$15$",
+        "$180$",
+        "$7.5$"
+      ],
+      "optionsHi": [
+        "$900$",
+        "$47$",
+        "$15$",
+        "$180$",
+        "$7.5$"
+      ],
+      "correctIndex": 1,
+      "explanation": "The pattern of the series is as follows:\n$5400 / 6 = 900$\n$900 / 5 = 180$\n$180 / 4 = \\mathbf{45}$\n$45 / 3 = 15$\n$15 / 2 = 7.5$\n\nHence, the wrong number is $47$.",
+      "explanationHi": "श्रृंखला का पैटर्न इस प्रकार है:\n$5400 / 6 = 900$\n$900 / 5 = 180$\n$180 / 4 = \\mathbf{45}$\n$45 / 3 = 15$\n$15 / 2 = 7.5$\n\nइसलिए, गलत संख्या $47$ है।",
+      "difficulty": "Easy",
+      "isActive": true
+    },
+    {
+      "id": "sbi_clerk_wrong_number_series_t1_1794987619_5",
+      "examId": "sbi_clerk",
+      "stageId": "prelims",
+      "sectionId": "quant",
+      "topicId": "wrong_number_series",
+      "type": "topicwise",
+      "testNumber": 1,
+      "timerMinutes": 10,
+      "questionText": "Find out the wrong number in the following number series.\n\n**$15, 23, 50, 114, 239, 457$**",
+      "questionTextHi": "निम्नलिखित संख्या श्रृंखला में गलत संख्या ज्ञात कीजिए।\n\n**$15, 23, 50, 114, 239, 457$**",
+      "questionImageDriveLink": null,
+      "questionImages": [],
+      "questionImagesHi": null,
+      "explanationImageDriveLink": null,
+      "explanationImages": [],
+      "explanationImagesHi": null,
+      "options": [
+        "$239$",
+        "$23$",
+        "$457$",
+        "$15$",
+        "$114$"
+      ],
+      "optionsHi": [
+        "$239$",
+        "$23$",
+        "$457$",
+        "$15$",
+        "$114$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The pattern of the series is as follows:\n$15 + 2^3 = 23$\n$23 + 3^3 = 50$\n$50 + 4^3 = 114$\n$114 + 5^3 = 239$\n$239 + 6^3 = \\mathbf{455}$\n\nHence, the wrong number is $457$.",
+      "explanationHi": "श्रृंखला का पैटर्न इस प्रकार है:\n$15 + 2^3 = 23$\n$23 + 3^3 = 50$\n$50 + 4^3 = 114$\n$114 + 5^3 = 239$\n$239 + 6^3 = \\mathbf{455}$\n\nइसलिए, गलत संख्या $457$ है।",
+      "difficulty": "Medium",
       "isActive": true
     }
   ]
