@@ -29,7 +29,11 @@
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
       border-radius: 0.5rem;
-      padding: 0.5rem 0.75rem;
+      padding: 0.6rem 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.65;
+      font-size: 0.875rem;
     }
     .math-preview:empty::before {
       content: "LaTeX math formula live preview will appear here...";
@@ -1009,13 +1013,31 @@
           <span class="text-[10px] text-slate-400 block mt-0.5">Leave blank for automatic smart scan</span>
         </div>
 
-        <!-- DI / Set-Based passage checkbox -->
-        <div class="md:col-span-2 flex items-center bg-purple-50/60 border border-purple-100 rounded-lg p-2.5 space-x-2.5">
-          <input type="checkbox" id="pdfSetBasedCheckbox" checked class="w-4 h-4 rounded text-purple-600 mt-0.5 cursor-pointer">
-          <label for="pdfSetBasedCheckbox" class="text-xs text-slate-700 cursor-pointer select-none">
-            <strong class="font-bold text-slate-900 block">DI / RC / Puzzle Set (Prepend Common Passage & Share Diagram)</strong>
-            <span class="text-[11px] text-slate-500 block">Auto-crops DI table/chart and automatically links it to all questions in this range.</span>
-          </label>
+        <!-- Set-Based Options (2 Checkboxes) -->
+        <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- Option 1: DI / Puzzle Set with Diagrams -->
+          <div class="flex items-start bg-purple-50/70 border border-purple-200 rounded-xl p-3 space-x-2.5">
+            <input type="checkbox" id="pdfSetBasedCheckbox" checked class="w-4 h-4 rounded text-purple-600 mt-0.5 cursor-pointer" onchange="onPdfCheckboxChange('diagram')">
+            <label for="pdfSetBasedCheckbox" class="text-xs text-slate-700 cursor-pointer select-none">
+              <strong class="font-bold text-purple-950 block flex items-center space-x-1.5">
+                <i class="fa-solid fa-chart-pie text-purple-600"></i>
+                <span>DI / Puzzle Set (With Diagram & Auto-Crop)</span>
+              </strong>
+              <span class="text-[11px] text-purple-800/80 block mt-0.5">Auto-crops DI table/chart, uploads to Drive, & prepends passage to each question.</span>
+            </label>
+          </div>
+
+          <!-- Option 2: Paragraph / Passage Set (No Diagram / Pure Text) -->
+          <div class="flex items-start bg-blue-50/70 border border-blue-200 rounded-xl p-3 space-x-2.5">
+            <input type="checkbox" id="pdfTextPassageOnlyCheckbox" class="w-4 h-4 rounded text-blue-600 mt-0.5 cursor-pointer" onchange="onPdfCheckboxChange('text')">
+            <label for="pdfTextPassageOnlyCheckbox" class="text-xs text-slate-700 cursor-pointer select-none">
+              <strong class="font-bold text-blue-950 block flex items-center space-x-1.5">
+                <i class="fa-solid fa-paragraph text-blue-600"></i>
+                <span>Paragraph / Passage Set (No Diagram — Text-Only RC)</span>
+              </strong>
+              <span class="text-[11px] text-blue-800/80 block mt-0.5">Prepends passage to all questions. No screenshots or diagram cropping required!</span>
+            </label>
+          </div>
         </div>
       </div>
 
@@ -2132,6 +2154,7 @@
 
     function renderDiagramsPreviewInText(rawText, enImages = [], hiImages = [], isHi = false) {
       if (!rawText) return '';
+      rawText = autoRepairLatexCommands(rawText);
       const tagRegex = /\[img(\d+)\]/gi;
       return rawText.replace(tagRegex, (match, p1) => {
         const idx = parseInt(p1) - 1;
@@ -2626,6 +2649,10 @@
         return;
       }
       stagedQuestions.forEach((q, idx) => {
+        if (q.questionText) q.questionText = autoRepairLatexCommands(q.questionText);
+        if (q.questionTextHi) q.questionTextHi = autoRepairLatexCommands(q.questionTextHi);
+        if (q.explanation) q.explanation = autoRepairLatexCommands(q.explanation);
+        if (q.explanationHi) q.explanationHi = autoRepairLatexCommands(q.explanationHi);
         const opt = document.createElement('option');
         opt.value = idx;
         const snippet = (q.questionText || '').replace(/<[^>]*>?/gm, '').substring(0, 32);
@@ -4051,7 +4078,10 @@ Output MUST be a valid JSON array matching this schema:
 
       const qRange = document.getElementById('pdfQuestionRangeInput')?.value.trim() || '1-5';
       const pRange = document.getElementById('pdfPageRangeInput')?.value.trim() || '';
-      const isSetBased = document.getElementById('pdfSetBasedCheckbox')?.checked || false;
+      const isSetBasedWithDiagram = document.getElementById('pdfSetBasedCheckbox')?.checked || false;
+      const isTextPassageOnly = document.getElementById('pdfTextPassageOnlyCheckbox')?.checked || false;
+      const isSetBased = isSetBasedWithDiagram || isTextPassageOnly;
+      const noDiagrams = isTextPassageOnly;
       const instructions = document.getElementById('pdfHintInput')?.value.trim() || '';
       const examSelect = document.getElementById('pdfUploadExamSelect');
       const examId = examSelect ? examSelect.value : (currentExam ? currentExam.id : 'sbi_clerk');
@@ -4073,6 +4103,7 @@ Output MUST be a valid JSON array matching this schema:
         page_range: pRange,
         exam_id: examId,
         is_set_based: isSetBased,
+        no_diagrams: noDiagrams,
         instructions: instructions
       };
 
@@ -5066,6 +5097,36 @@ Output MUST be a valid JSON array matching this schema:
       }
     }
 
+    
+    function onPdfCheckboxChange(source) {
+      const cbDiagram = document.getElementById('pdfSetBasedCheckbox');
+      const cbTextOnly = document.getElementById('pdfTextPassageOnlyCheckbox');
+      const btnSpan = document.getElementById('extractPdfBtnText');
+      if (source === 'diagram' && cbDiagram && cbDiagram.checked) {
+        if (cbTextOnly) cbTextOnly.checked = false;
+        if (btnSpan) btnSpan.textContent = 'Extract Questions & Auto-Crop Diagrams from PDF';
+      } else if (source === 'text' && cbTextOnly && cbTextOnly.checked) {
+        if (cbDiagram) cbDiagram.checked = false;
+        if (btnSpan) btnSpan.textContent = 'Extract Passage & Questions (No Diagrams)';
+      } else if (btnSpan) {
+        btnSpan.textContent = 'Extract Questions & Auto-Crop Diagrams from PDF';
+      }
+    }
+
+    function autoRepairLatexCommands(str) {
+      if (!str || typeof str !== 'string') return str || '';
+      return str
+        .replace(/[\r\s]+ightarrow\b/g, ' \\rightarrow')
+        .replace(/(^|[^a-zA-Z\\])ightarrow\b/g, '$1\\rightarrow')
+        .replace(/[\r\s]+leftarrow\b/g, ' \\leftarrow')
+        .replace(/(^|[^a-zA-Z\\])leftarrow\b/g, '$1\\leftarrow')
+        .replace(/(^|[^a-zA-Z\\])Rightarrow\b/g, '$1\\Rightarrow')
+        .replace(/(^|[^a-zA-Z\\])Leftarrow\b/g, '$1\\Leftarrow')
+        .replace(/(^|[^a-zA-Z\\])imes\b/g, '$1\\times')
+        .replace(/(^|[^a-zA-Z\\])rac\{/g, '$1\\frac{')
+        .replace(/(^|[^a-zA-Z\\])eq\b/g, '$1\\neq');
+    }
+
     function escapeHtml(text) {
       if (!text) return '';
       return text
@@ -5416,6 +5477,7 @@ Output MUST be a valid JSON array matching this schema:
 
     function updateViewQuestionText(idx, lang, val) {
       if (!stagedQuestions[idx]) return;
+      val = autoRepairLatexCommands(val);
       if (lang === 'en') {
         stagedQuestions[idx].questionText = val;
         const prev = document.getElementById(`viewPreview_qText_en_${idx}`);
