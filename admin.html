@@ -1066,6 +1066,137 @@
       </div>
     </div>
 
+    <!-- Section 3C: HTML Test & Quiz Ingestion Studio (Direct Extraction, Bilingual & DI Capture) -->
+    <div id="htmlStudioSection" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-600 flex items-center justify-center text-white shadow-md">
+            <i class="fa-solid fa-file-code text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+              <span>HTML Test & Quiz Ingestion Studio</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wider">Direct Extract & Bilingual DI</span>
+            </h3>
+            <p class="text-xs text-slate-500">
+              Upload test HTML files &bull; Instant bilingual extraction &bull; Auto-captures DI charts & tables &bull; Official answers & step-by-step solutions verbatim
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-slate-500 font-medium">Target Exam:</span>
+          <select id="htmlUploadExamSelect" class="bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            <option value="sbi_clerk">SBI Clerk</option>
+            <option value="sbi_po">SBI PO</option>
+            <option value="ibps_clerk">IBPS Clerk</option>
+            <option value="ibps_po">IBPS PO</option>
+            <option value="rrb_clerk">RRB Clerk</option>
+            <option value="rrb_po">RRB PO</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- HTML File Dropzone -->
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+        <div class="flex items-center justify-between">
+          <label class="block text-xs font-bold uppercase text-slate-700 flex items-center space-x-1.5">
+            <i class="fa-solid fa-code text-emerald-600"></i>
+            <span>Test HTML File with Questions & Solutions (Required)</span>
+          </label>
+          <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full">Bilingual (EN + HI)</span>
+        </div>
+        <p class="text-[11px] text-slate-500 leading-tight">
+          Upload any test quiz HTML file (e.g., Guidely / Mock tests). Questions, options, answer keys, step-by-step solutions, and DI diagrams in both English and Hindi are extracted directly from the file.
+        </p>
+
+        <!-- Drop area -->
+        <div id="htmlDropzone" ondragover="onHtmlDragOver(event)" ondragleave="onHtmlDragLeave(event)" ondrop="onHtmlDrop(event)" onclick="document.getElementById('htmlFileInput').click()" class="border-2 border-dashed border-slate-300 hover:border-emerald-400 bg-white rounded-xl p-5 text-center cursor-pointer transition">
+          <input type="file" id="htmlFileInput" accept=".html,.htm,text/html" onchange="handleHtmlFileInput(event)" class="hidden">
+          
+          <div id="htmlEmptyState" class="space-y-2">
+            <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-lg">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <p class="text-xs font-bold text-slate-700">Click or drag & drop Test HTML file here</p>
+            <p class="text-[10px] text-slate-400">Supports .html and .htm files with encrypted or structured quiz data</p>
+          </div>
+
+          <div id="htmlLoadedState" class="hidden flex items-center justify-between bg-emerald-50/70 border border-emerald-200 rounded-lg p-3 text-left">
+            <div class="flex items-center space-x-3 overflow-hidden">
+              <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm shrink-0">
+                <i class="fa-solid fa-file-code"></i>
+              </div>
+              <div class="min-w-0">
+                <p id="htmlFileName" class="text-xs font-bold text-slate-900 truncate">quiz_file.html</p>
+                <p id="htmlFileSize" class="text-[10px] text-slate-500">1.2 MB &bull; Ready</p>
+              </div>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); removeHtmlFile()" class="text-slate-400 hover:text-rose-600 p-1.5 text-sm transition cursor-pointer" title="Remove HTML File">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Row: Question Range & Two Checkboxes (matching PDF studio) -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-3 pt-2 border-t border-slate-100">
+        <!-- Question Range -->
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-700 mb-1">
+            Question Range <span class="text-rose-500">*</span>
+          </label>
+          <input type="text" id="htmlQuestionRangeInput" value="1-5" placeholder="e.g. 1-5, 6-10, 1-35, or all" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          <span class="text-[10px] text-slate-400 block mt-0.5">Extracts only these question numbers (e.g. 1-5)</span>
+        </div>
+
+        <!-- Set-Based Options (2 Checkboxes) -->
+        <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Option 1: DI / Puzzle Set with Diagrams -->
+          <div class="flex items-start bg-emerald-50/70 border border-emerald-200 rounded-xl p-3 space-x-2.5">
+            <input type="checkbox" id="htmlSetBasedCheckbox" checked class="w-4 h-4 rounded text-emerald-600 mt-0.5 cursor-pointer" onchange="onHtmlCheckboxChange('diagram')">
+            <label for="htmlSetBasedCheckbox" class="text-xs text-slate-700 cursor-pointer select-none">
+              <strong class="font-bold text-emerald-950 block flex items-center space-x-1.5">
+                <i class="fa-solid fa-chart-pie text-emerald-600"></i>
+                <span>DI / Puzzle Set (With Diagrams/Images)</span>
+              </strong>
+              <span class="text-[11px] text-emerald-800/80 block mt-0.5">Captures DI charts, tables & images from the HTML file, uploads to Drive, & prepends passage to each question.</span>
+            </label>
+          </div>
+
+          <!-- Option 2: Paragraph / Passage Set (No Diagram / Pure Text) -->
+          <div class="flex items-start bg-blue-50/70 border border-blue-200 rounded-xl p-3 space-x-2.5">
+            <input type="checkbox" id="htmlTextPassageOnlyCheckbox" class="w-4 h-4 rounded text-blue-600 mt-0.5 cursor-pointer" onchange="onHtmlCheckboxChange('text')">
+            <label for="htmlTextPassageOnlyCheckbox" class="text-xs text-slate-700 cursor-pointer select-none">
+              <strong class="font-bold text-blue-950 block flex items-center space-x-1.5">
+                <i class="fa-solid fa-paragraph text-blue-600"></i>
+                <span>Paragraph / Passage Set (No Diagram — Text-Only RC)</span>
+              </strong>
+              <span class="text-[11px] text-blue-800/80 block mt-0.5">Prepends passage to all questions. Ignores/strips diagrams for pure text reading comprehension sets.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Hint / Instructions -->
+      <div>
+        <input type="text" id="htmlHintInput" placeholder="Optional notes (e.g. 'Questions 1 to 5 only', 'Check chart legend')" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+      </div>
+
+      <!-- Action Button & Extraction Status -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-slate-100">
+        <div id="htmlStatusMsg" class="text-xs text-slate-500 flex items-center space-x-2">
+          <i class="fa-solid fa-circle-info text-emerald-500"></i>
+          <span>Ready to extract questions and solutions directly from HTML test file.</span>
+        </div>
+
+        <button type="button" id="extractHtmlBtn" onclick="extractHtmlQuestions()" disabled class="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-500/20 transition flex items-center justify-center space-x-2 cursor-pointer">
+          <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+          <span id="extractHtmlBtnText">Extract Questions & Solutions from HTML</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Section 4: Staged Questions (Review & Edit Before Saving) -->
     <div class="space-y-6">
       <div class="flex items-center justify-between">
@@ -4459,6 +4590,541 @@ Output MUST be a valid JSON array matching this schema:
         btn.disabled = false;
         btnText.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-sm mr-1"></i> Extract Questions & Auto-Crop Diagrams from PDF';
         updatePdfExtractBtnState();
+      }
+    }
+
+    // ==========================================
+    // HTML Test & Quiz Ingestion Studio
+    // ==========================================
+    let currentHtmlFile = null;
+    let currentHtmlContent = null;
+    let currentDecryptedData = null;
+
+    function cleanHtmlTextClient(str) {
+      if (!str) return '';
+      let t = String(str);
+      t = t.replace(/<br\s*\/?>/gi, '\n');
+      t = t.replace(/<\/p>/gi, '\n\n');
+      t = t.replace(/<\/pre>/gi, '\n\n');
+      t = t.replace(/<\/div>/gi, '\n');
+      t = t.replace(/<\/li>/gi, '\n');
+      t = t.replace(/<li>/gi, '• ');
+      t = t.replace(/<strong[^>]*>(.*?)<\/strong>/gis, '**$1**');
+      t = t.replace(/<b[^>]*>(.*?)<\/b>/gis, '**$1**');
+      t = t.replace(/<em[^>]*>(.*?)<\/em>/gis, '*$1*');
+      t = t.replace(/<i[^>]*>(.*?)<\/i>/gis, '*$1*');
+      t = t.replace(/<sup[^>]*>(.*?)<\/sup>/gis, '^{$1}');
+      t = t.replace(/<sub[^>]*>(.*?)<\/sub>/gis, '_{$1}');
+      t = t.replace(/<[^>]+>/g, '');
+      try {
+        const doc = new DOMParser().parseFromString(t, 'text/html');
+        t = doc.body.textContent || '';
+      } catch (e) {}
+      return t.split('\n').map(l => l.trim()).filter((l, i, arr) => l !== '' || (i > 0 && arr[i-1] !== '')).join('\n').trim();
+    }
+
+    function extractFieldClient(obj, keys) {
+      if (!obj || typeof obj !== 'object') return null;
+      for (const k of keys) {
+        if (obj[k] !== undefined && obj[k] !== null && obj[k] !== '') return obj[k];
+      }
+      return null;
+    }
+
+    function parseOptionsClient(rawOpts) {
+      if (!rawOpts) return ['', '', '', '', ''];
+      let arr = [];
+      if (Array.isArray(rawOpts)) {
+        arr = rawOpts.map(o => {
+          if (o && typeof o === 'object') {
+            const val = extractFieldClient(o, ['text', 'option', 'title', 'value', 'label', 'opt']);
+            return cleanHtmlTextClient(val !== null ? val : JSON.stringify(o));
+          }
+          return cleanHtmlTextClient(o);
+        });
+      } else if (typeof rawOpts === 'object') {
+        arr = Object.values(rawOpts).map(o => cleanHtmlTextClient(o));
+      }
+      while (arr.length < 5) arr.push('');
+      return arr.slice(0, 5);
+    }
+
+    function parseAnswerClient(rawAns, optsLen) {
+      if (rawAns === null || rawAns === undefined) return 0;
+      if (typeof rawAns === 'number') {
+        if (rawAns >= 0 && rawAns < (optsLen || 5)) return rawAns;
+        if (rawAns >= 1 && rawAns <= (optsLen || 5)) return rawAns - 1;
+        return 0;
+      }
+      if (typeof rawAns === 'string') {
+        const clean = rawAns.trim().toUpperCase();
+        const mapping = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
+        if (mapping[clean] !== undefined) return mapping[clean];
+        const num = parseInt(clean, 10);
+        if (!isNaN(num)) {
+          if (num >= 0 && num < (optsLen || 5)) return num;
+          if (num >= 1 && num <= (optsLen || 5)) return num - 1;
+        }
+      }
+      return 0;
+    }
+
+    function parseQuestionRangeFlexibly(rangeStr, totalCount) {
+      if (!rangeStr || !String(rangeStr).trim()) {
+        return Array.from({ length: Math.min(5, totalCount) }, (_, i) => i + 1);
+      }
+      const s = String(rangeStr).trim().toLowerCase();
+      if (s === 'all') {
+        return Array.from({ length: totalCount }, (_, i) => i + 1);
+      }
+      const rangeMatch = s.match(/(\d+)\s*(?:[-–—]|\bto\b|\.\.)\s*(\d+)/);
+      if (rangeMatch) {
+        let sq = parseInt(rangeMatch[1], 10);
+        let eq = parseInt(rangeMatch[2], 10);
+        if (sq > totalCount) sq = Math.max(1, totalCount - 4);
+        else sq = Math.max(1, sq);
+        eq = Math.min(totalCount, Math.max(1, eq));
+        if (sq <= eq) {
+          const res = [];
+          for (let i = sq; i <= eq; i++) res.push(i);
+          return res;
+        } else {
+          const res = [];
+          for (let i = eq; i <= sq; i++) res.push(i);
+          return res;
+        }
+      }
+      if (s.includes(',')) {
+        const nums = [];
+        s.split(',').forEach(p => {
+          const digits = p.match(/\d+/);
+          if (digits) {
+            const v = parseInt(digits[0], 10);
+            if (v >= 1 && v <= totalCount && !nums.includes(v)) nums.push(v);
+          }
+        });
+        if (nums.length > 0) return nums.sort((a, b) => a - b);
+      }
+      const d = s.match(/\d+/);
+      if (d) {
+        const v = parseInt(d[0], 10);
+        if (v >= 1 && v <= totalCount) return [v];
+      }
+      return Array.from({ length: Math.min(5, totalCount) }, (_, i) => i + 1);
+    }
+
+    function extractQuestionsClientSide(data, targetNums, noDiagrams) {
+      if (!data) return [];
+      let enList = [];
+      let hiList = [];
+      if (data && typeof data === 'object') {
+        if (Array.isArray(data.en)) {
+          enList = data.en;
+          hiList = Array.isArray(data.hi) ? data.hi : [];
+        } else if (Array.isArray(data.questions)) {
+          enList = data.questions;
+        } else if (Array.isArray(data)) {
+          enList = data;
+        }
+      }
+      if (!enList.length) return [];
+
+      const totalQ = enList.length;
+      const questions = [];
+
+      targetNums.forEach(qNum => {
+        const idx = qNum - 1;
+        if (idx < 0 || idx >= totalQ) return;
+
+        const rawItem = enList[idx];
+        const rawItemHi = hiList[idx] || null;
+
+        let itemEn = rawItem;
+        let itemHi = rawItemHi || rawItem;
+
+        if (rawItem && typeof rawItem === 'object') {
+          if (rawItem.en && typeof rawItem.en === 'object') itemEn = rawItem.en;
+          if (rawItem.hi && typeof rawItem.hi === 'object') itemHi = rawItem.hi;
+        }
+
+        const qKeysEn = ['question', 'question_en', 'questionText', 'ques', 'q_text', 'title', 'text', 'content'];
+        const qKeysHi = ['question_hi', 'ques_hi', 'q_hi', 'questionTextHi', ...qKeysEn];
+        const commKeysEn = ['common_data', 'common_en', 'passage', 'direction', 'directions', 'info', 'notes'];
+        const commKeysHi = ['common_hi', 'passage_hi', 'direction_hi', ...commKeysEn];
+
+        const commEnRaw = extractFieldClient(itemEn, commKeysEn) || extractFieldClient(rawItem, commKeysEn) || '';
+        const qEnRaw = extractFieldClient(itemEn, qKeysEn) || extractFieldClient(rawItem, qKeysEn) || '';
+
+        const commHiRaw = extractFieldClient(itemHi, commKeysHi) || extractFieldClient(rawItem, commKeysHi) || '';
+        const qHiRaw = extractFieldClient(itemHi, qKeysHi) || extractFieldClient(rawItem, qKeysHi) || '';
+
+        // Process images
+        const qImagesEn = [];
+        const processHtmlWithImages = (rawHtml, imgList) => {
+          if (!rawHtml) return '';
+          if (noDiagrams) {
+            return cleanHtmlTextClient(rawHtml.replace(/<img[^>]*>/gi, ''));
+          }
+          let tagged = rawHtml.replace(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi, (match, src) => {
+            if (!src) return '';
+            imgList.push(src);
+            return `\n\n[img${imgList.length}]\n\n`;
+          });
+          return cleanHtmlTextClient(tagged);
+        };
+
+        const commEnTxt = processHtmlWithImages(commEnRaw, qImagesEn);
+        const qEnTxt = processHtmlWithImages(qEnRaw, qImagesEn);
+        const fullQEn = (commEnTxt ? commEnTxt + '\n\n' + qEnTxt : qEnTxt).trim();
+
+        const qImagesHi = [];
+        const commHiTxt = processHtmlWithImages(commHiRaw, qImagesHi);
+        const qHiTxt = processHtmlWithImages(qHiRaw, qImagesHi);
+        const fullQHi = (commHiTxt ? commHiTxt + '\n\n' + qHiTxt : qHiTxt).trim();
+        const finalQImagesHi = qImagesHi.length ? qImagesHi : [...qImagesEn];
+
+        // Options
+        const optKeysEn = ['options', 'choices', 'answers', 'opts', 'options_en'];
+        const optKeysHi = ['options_hi', 'choices_hi', 'answers_hi', ...optKeysEn];
+
+        const rawOptsEn = extractFieldClient(itemEn, optKeysEn) || extractFieldClient(rawItem, optKeysEn) || [];
+        const optsEn = parseOptionsClient(rawOptsEn);
+
+        const rawOptsHi = extractFieldClient(itemHi, optKeysHi) || extractFieldClient(rawItem, optKeysHi) || [];
+        const optsHi = parseOptionsClient(rawOptsHi);
+
+        // Answer
+        const ansKeys = ['correctIndex', 'correct', 'answer', 'ans', 'correctIndex_hi', 'correct_hi', 'answer_hi', 'ans_hi'];
+        const rawAns = extractFieldClient(itemEn, ansKeys) ?? extractFieldClient(rawItem, ansKeys);
+        const correctIdx = parseAnswerClient(rawAns, optsEn.length);
+
+        // Explanations
+        const solKeysEn = ['explanation', 'solution', 'exp', 'ans_explanation', 'sol', 'explanation_en', 'solution_en'];
+        const solKeysHi = ['explanation_hi', 'solution_hi', 'exp_hi', ...solKeysEn];
+
+        const expEnRaw = extractFieldClient(itemEn, solKeysEn) || extractFieldClient(rawItem, solKeysEn) || '';
+        const expHiRaw = extractFieldClient(itemHi, solKeysHi) || extractFieldClient(rawItem, solKeysHi) || '';
+
+        const expImagesEn = [];
+        const expEnTxt = processHtmlWithImages(expEnRaw, expImagesEn);
+
+        const expImagesHi = [];
+        const expHiTxt = processHtmlWithImages(expHiRaw, expImagesHi);
+        const finalExpImagesHi = expImagesHi.length ? expImagesHi : [...expImagesEn];
+
+        questions.push({
+          questionText: stripQuestionNumbers(fullQEn),
+          questionTextHi: stripQuestionNumbers(fullQHi),
+          options: optsEn,
+          optionsHi: optsHi,
+          correctIndex: correctIdx,
+          explanation: expEnTxt,
+          explanationHi: expHiTxt,
+          difficulty: 'Medium',
+          questionImages: qImagesEn,
+          questionImagesHi: finalQImagesHi,
+          explanationImages: expImagesEn,
+          explanationImagesHi: finalExpImagesHi,
+          questionImageDriveLink: qImagesEn[0] || '',
+          explanationImageDriveLink: expImagesEn[0] || ''
+        });
+      });
+
+      return questions;
+    }
+
+    function onHtmlDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const el = document.getElementById('htmlDropzone');
+      if (el) el.classList.add('border-emerald-500', 'bg-emerald-50/40');
+    }
+
+    function onHtmlDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const el = document.getElementById('htmlDropzone');
+      if (el) el.classList.remove('border-emerald-500', 'bg-emerald-50/40');
+    }
+
+    function onHtmlDrop(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const el = document.getElementById('htmlDropzone');
+      if (el) el.classList.remove('border-emerald-500', 'bg-emerald-50/40');
+      const file = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (file) {
+        loadHtmlFile(file);
+      }
+    }
+
+    function handleHtmlFileInput(e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        loadHtmlFile(file);
+        e.target.value = '';
+      }
+    }
+
+    function loadHtmlFile(file) {
+      if (!file.name.toLowerCase().endsWith('.html') && !file.name.toLowerCase().endsWith('.htm')) {
+        showToast('Please select a valid .html or .htm test file', 'error');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        currentHtmlContent = event.target.result;
+        currentHtmlFile = {
+          name: file.name,
+          size: file.size
+        };
+        currentDecryptedData = null;
+        document.getElementById('htmlEmptyState')?.classList.add('hidden');
+        document.getElementById('htmlLoadedState')?.classList.remove('hidden');
+        document.getElementById('htmlFileName').textContent = file.name;
+        document.getElementById('htmlFileSize').textContent = `${formatFileSize(file.size)} • Ready`;
+
+        // Client-side quick decrypt and scan to detect question count
+        let detectedCount = null;
+        try {
+          const payloadMatch = currentHtmlContent.match(/const\s+ENCRYPTED_PAYLOAD\s*=\s*["']([^"']+)["']/);
+          const keyMatch = currentHtmlContent.match(/const\s+(?:SECRET_KEY|KEY|CIPHER_KEY)\s*=\s*["']([^"']+)["']/);
+          if (payloadMatch) {
+            const key = keyMatch ? keyMatch[1] : "Mickey_PureSoul222";
+            const binaryStr = atob(payloadMatch[1]);
+            const keyBytes = new TextEncoder().encode(key);
+            const decryptedBytes = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+              decryptedBytes[i] = binaryStr.charCodeAt(i) ^ keyBytes[i % keyBytes.length];
+            }
+            const decStr = new TextDecoder().decode(decryptedBytes);
+            currentDecryptedData = JSON.parse(decStr);
+          } else {
+            const jsonMatch = currentHtmlContent.match(/(?:QUESTIONS_BY_LANGUAGE|questions_data|test_questions)\s*=\s*(\{.*?\}|\[.*?\]);/s);
+            if (jsonMatch) {
+              currentDecryptedData = JSON.parse(jsonMatch[1]);
+            }
+          }
+
+          if (currentDecryptedData) {
+            const list = currentDecryptedData.en || currentDecryptedData.hi || currentDecryptedData.questions || (Array.isArray(currentDecryptedData) ? currentDecryptedData : null);
+            if (list && list.length) {
+              detectedCount = list.length;
+            }
+          }
+        } catch (e) {
+          console.log('Client-side preview decrypt notice:', e);
+        }
+
+        const statusMsg = document.getElementById('htmlStatusMsg');
+        if (statusMsg) {
+          if (detectedCount) {
+            statusMsg.innerHTML = `<span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Detected ${detectedCount} questions in test file! Enter range & click Extract.</span>`;
+          } else {
+            statusMsg.innerHTML = `<span class="text-emerald-700 animate-pulse"><i class="fa-solid fa-arrows-rotate fa-spin mr-1.5"></i> Analyzing test file & detecting questions...</span>`;
+          }
+        }
+
+        if (!detectedCount && currentHtmlContent) {
+          fetch(`${API_BASE}/api/html-info`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html_content: currentHtmlContent })
+          })
+          .then(res => res.json())
+          .then(info => {
+            if (info && info.status === 'ok' && info.total_questions) {
+              detectedCount = info.total_questions;
+              const sMsg = document.getElementById('htmlStatusMsg');
+              if (sMsg) {
+                sMsg.innerHTML = `<span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Detected ${detectedCount} questions in test file! Enter range & click Extract.</span>`;
+              }
+              const rangeInp = document.getElementById('htmlQuestionRangeInput');
+              if (rangeInp) {
+                rangeInp.placeholder = `e.g. 1-5, 1-${detectedCount}, or all`;
+              }
+            } else {
+              const sMsg = document.getElementById('htmlStatusMsg');
+              if (sMsg) {
+                sMsg.innerHTML = `<span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> File loaded (${formatFileSize(file.size)}). Ready to extract!</span>`;
+              }
+            }
+          })
+          .catch(err => {
+            console.log('html-info background query error:', err);
+            const sMsg = document.getElementById('htmlStatusMsg');
+            if (sMsg) {
+              sMsg.innerHTML = `<span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> File loaded (${formatFileSize(file.size)}). Ready to extract!</span>`;
+            }
+          });
+        }
+
+        showToast(`Loaded test HTML: ${file.name}!`, 'info');
+        updateHtmlExtractBtnState();
+      };
+      reader.readAsText(file);
+    }
+
+    function removeHtmlFile() {
+      currentHtmlFile = null;
+      currentHtmlContent = null;
+      currentDecryptedData = null;
+      document.getElementById('htmlEmptyState')?.classList.remove('hidden');
+      document.getElementById('htmlLoadedState')?.classList.add('hidden');
+      const input = document.getElementById('htmlFileInput');
+      if (input) input.value = '';
+      const statusMsg = document.getElementById('htmlStatusMsg');
+      if (statusMsg) {
+        statusMsg.innerHTML = `<i class="fa-solid fa-circle-info text-emerald-500 mr-1.5"></i><span>Ready to extract questions and solutions directly from HTML test file.</span>`;
+      }
+      updateHtmlExtractBtnState();
+    }
+
+    function updateHtmlExtractBtnState() {
+      const btn = document.getElementById('extractHtmlBtn');
+      if (btn) {
+        btn.disabled = !currentHtmlContent;
+      }
+    }
+
+    function onHtmlCheckboxChange(source) {
+      const cbDiagram = document.getElementById('htmlSetBasedCheckbox');
+      const cbTextOnly = document.getElementById('htmlTextPassageOnlyCheckbox');
+      const btnSpan = document.getElementById('extractHtmlBtnText');
+      if (source === 'diagram' && cbDiagram && cbDiagram.checked) {
+        if (cbTextOnly) cbTextOnly.checked = false;
+        if (btnSpan) btnSpan.textContent = 'Extract Questions & Solutions from HTML';
+      } else if (source === 'text' && cbTextOnly && cbTextOnly.checked) {
+        if (cbDiagram) cbDiagram.checked = false;
+        if (btnSpan) btnSpan.textContent = 'Extract Passage & Questions (No Diagrams)';
+      } else if (btnSpan) {
+        btnSpan.textContent = 'Extract Questions & Solutions from HTML';
+      }
+    }
+
+    async function extractHtmlQuestions() {
+      if (!currentHtmlContent) {
+        showToast('Please upload an HTML test file first!', 'error');
+        return;
+      }
+
+      const qRange = document.getElementById('htmlQuestionRangeInput')?.value.trim() || '1-5';
+      const examId = document.getElementById('htmlUploadExamSelect')?.value || currentExamId || 'sbi_clerk';
+      const isSetBased = document.getElementById('htmlSetBasedCheckbox')?.checked || false;
+      const noDiagrams = document.getElementById('htmlTextPassageOnlyCheckbox')?.checked || false;
+      const instructions = document.getElementById('htmlHintInput')?.value.trim() || '';
+
+      const btn = document.getElementById('extractHtmlBtn');
+      const btnText = document.getElementById('extractHtmlBtnText');
+      const statusMsg = document.getElementById('htmlStatusMsg');
+
+      btn.disabled = true;
+      btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Extracting Questions & Solutions...';
+
+      if (statusMsg) {
+        statusMsg.innerHTML = `<span class="text-emerald-700 animate-pulse"><i class="fa-solid fa-arrows-rotate fa-spin mr-1.5"></i> Extracting questions (${escapeHtml(qRange)}), capturing DI images & official solutions...</span>`;
+      }
+
+      // Step 1: Immediate client-side extraction so questions appear instantly with ZERO chance of empty cards
+      let clientQuestions = [];
+      try {
+        let decData = currentDecryptedData;
+        if (!decData) {
+          const payloadMatch = currentHtmlContent.match(/const\s+ENCRYPTED_PAYLOAD\s*=\s*["']([^"']+)["']/);
+          const keyMatch = currentHtmlContent.match(/const\s+(?:SECRET_KEY|KEY|CIPHER_KEY)\s*=\s*["']([^"']+)["']/);
+          if (payloadMatch) {
+            const key = keyMatch ? keyMatch[1] : "Mickey_PureSoul222";
+            const binaryStr = atob(payloadMatch[1]);
+            const keyBytes = new TextEncoder().encode(key);
+            const decryptedBytes = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+              decryptedBytes[i] = binaryStr.charCodeAt(i) ^ keyBytes[i % keyBytes.length];
+            }
+            decData = JSON.parse(new TextDecoder().decode(decryptedBytes));
+            currentDecryptedData = decData;
+          }
+        }
+
+        if (decData) {
+          const totalCount = (decData.en || decData.hi || decData.questions || (Array.isArray(decData) ? decData : [])).length || 35;
+          const targetNums = parseQuestionRangeFlexibly(qRange, totalCount);
+          clientQuestions = extractQuestionsClientSide(decData, targetNums, noDiagrams);
+        }
+      } catch (clientErr) {
+        console.warn('Client extraction fallback note:', clientErr);
+      }
+
+      if (clientQuestions.length > 0) {
+        clientQuestions.forEach(q => stagedQuestions.push(q));
+        renderStagedQuestions();
+        showToast(`Extracted ${clientQuestions.length} question(s) & official solutions!`, 'success');
+        if (statusMsg) {
+          statusMsg.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1.5"></i> Success! Extracted ${clientQuestions.length} question(s) with bilingual content, DI diagrams & official solutions.</span>`;
+        }
+        const stagedSection = document.getElementById('questionsContainer');
+        if (stagedSection) {
+          stagedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        btn.disabled = false;
+        btnText.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-sm mr-1.5"></i> Extract Questions & Solutions from HTML';
+        updateHtmlExtractBtnState();
+        return;
+      }
+
+      // Step 2: Server-side extraction fallback
+      try {
+        const payload = {
+          html_content: currentHtmlContent,
+          question_range: qRange,
+          exam_id: examId,
+          is_set_based: isSetBased,
+          no_diagrams: noDiagrams,
+          instructions: instructions
+        };
+
+        const res = await fetch(`${API_BASE}/api/extract-html`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.status === 'ok' && data.questions && data.questions.length > 0) {
+          showToast(`Extracted ${data.count} question(s) & official solutions from HTML!`, 'success');
+          if (statusMsg) {
+            statusMsg.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1.5"></i> Success! Extracted ${data.count} question(s) with bilingual content, DI diagrams & official solutions.</span>`;
+          }
+
+          data.questions.forEach(q => {
+            if (q.questionText) q.questionText = stripQuestionNumbers(q.questionText);
+            if (q.questionTextHi) q.questionTextHi = stripQuestionNumbers(q.questionTextHi);
+            stagedQuestions.push(q);
+          });
+
+          renderStagedQuestions();
+
+          const stagedSection = document.getElementById('questionsContainer');
+          if (stagedSection) {
+            stagedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          const errMsg = data.message || 'Extraction failed';
+          showToast(errMsg, 'error');
+          if (statusMsg) {
+            statusMsg.innerHTML = `<span class="text-rose-600 font-semibold"><i class="fa-solid fa-circle-exclamation mr-1.5"></i> Extraction Failed: ${escapeHtml(errMsg)}</span>`;
+          }
+        }
+      } catch (err) {
+        const errText = err.message || 'Network error during extraction';
+        showToast(errText, 'error');
+        if (statusMsg) {
+          statusMsg.innerHTML = `<span class="text-rose-600 font-semibold"><i class="fa-solid fa-circle-exclamation mr-1.5"></i> Error: ${escapeHtml(errText)}</span>`;
+        }
+      } finally {
+        btn.disabled = false;
+        btnText.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-sm mr-1.5"></i> Extract Questions & Solutions from HTML';
+        updateHtmlExtractBtnState();
       }
     }
 
